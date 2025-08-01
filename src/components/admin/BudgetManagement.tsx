@@ -51,12 +51,23 @@ const Bar = dynamic(() => import('react-chartjs-2').then(mod => ({ default: mod.
   )
 });
 
-// Dynamically import XLSX to avoid SSR issues
-const XLSX = dynamic(() => import('xlsx'), { ssr: false });
+// XLSX import handled differently for SSR
+const useXLSX = () => {
+  const [XLSX, setXLSX] = useState<any>(null);
+  
+  useEffect(() => {
+    import('xlsx').then((module) => {
+      setXLSX(module);
+    });
+  }, []);
+  
+  return XLSX;
+};
 
 const BudgetManagement = () => {
   const { getAllRecords } = useDatabase();
   const { user } = useAuth();
+  const XLSX = useXLSX();
   
   const [projects, setProjects] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -80,7 +91,7 @@ const BudgetManagement = () => {
     const registerChartComponents = async () => {
       try {
         const {
-          Chart as ChartJS,
+          Chart,
           CategoryScale,
           LinearScale,
           BarElement,
@@ -90,7 +101,7 @@ const BudgetManagement = () => {
           ArcElement,
         } = await import('chart.js');
 
-        ChartJS.register(
+        Chart.register(
           CategoryScale,
           LinearScale,
           BarElement,

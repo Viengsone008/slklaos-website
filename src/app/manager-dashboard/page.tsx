@@ -46,6 +46,7 @@ const ManagerDashboard = () => {
   const [contacts, setContacts] = useState<any[]>([]);
   const [quotes, setQuotes] = useState<any[]>([]);
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   // Client-side hydration check
   useEffect(() => {
@@ -61,6 +62,20 @@ const ManagerDashboard = () => {
     }, 60000); // Update every minute
 
     return () => clearInterval(timer);
+  }, [isClient]);
+
+  // Scroll progress effect
+  useEffect(() => {
+    if (!isClient) return;
+
+    const handleScroll = () => {
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (window.scrollY / totalHeight) * 100;
+      setScrollProgress(Math.min(progress, 100));
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [isClient]);
 
   useEffect(() => {
@@ -665,6 +680,7 @@ const ManagerDashboard = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

@@ -16,7 +16,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 // Import separate page components
 import ProjectManagement from './projects/page';
-import ProductManagement from './products/page';
+import ProductManagement from './Products/page';
 import ContactManagement from './contacts/page';
 import QuoteManagement from './quotes/page';
 import SubscriberManagement from './subscribers/page';
