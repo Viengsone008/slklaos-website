@@ -19,11 +19,14 @@ import {
 } from "lucide-react";
 
 import AnimatedSection from "../../components/AnimatedSection";
+import { motion, AnimatePresence } from "framer-motion";
 import QuoteModal from "../../components/QuoteModal";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { supabase } from "../../lib/supabase";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
+import WhatsAppChatButton from '../../components/WhatsAppChatButton';
+import FloatingQuoteButton from '../../components/FloatingQuoteButton';
 
 interface Project {
   id: string;
@@ -43,6 +46,56 @@ interface Project {
 }
 
 const ProjectsPage: React.FC = () => {
+  // Section refs for floating nav
+  const heroRef = React.useRef<HTMLDivElement>(null);
+  const filtersRef = React.useRef<HTMLDivElement>(null);
+  const showcaseRef = React.useRef<HTMLDivElement>(null);
+  const ctaRef = React.useRef<HTMLDivElement>(null);
+
+  const [activeSection, setActiveSection] = React.useState("hero");
+  const [showNav, setShowNav] = React.useState(false);
+  const [showQuoteButton, setShowQuoteButton] = useState(false);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const sections = [
+        { id: "hero", ref: heroRef },
+        { id: "filters", ref: filtersRef },
+        { id: "showcase", ref: showcaseRef },
+        { id: "cta", ref: ctaRef },
+      ];
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const el = sections[i].ref.current;
+        if (el && el.getBoundingClientRect().top <= 120) {
+          setActiveSection(sections[i].id);
+          break;
+        }
+      }
+      setShowNav(window.scrollY > 0);
+      setShowQuoteButton(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const sectionNav = [
+    { id: "hero", label: "Hero", ref: heroRef },
+    { id: "filters", label: "Filters", ref: filtersRef },
+    { id: "showcase", label: "Showcase", ref: showcaseRef },
+    { id: "cta", label: "CTA", ref: ctaRef },
+  ];
+  // Scroll progress indicator
+  const [scrollProgress, setScrollProgress] = useState(0);
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      setScrollProgress(progress);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -141,71 +194,133 @@ const ProjectsPage: React.FC = () => {
   ──────────────────────────────────────── */
   return (
     <>
+      {/* Floating Section Navigation (dots) */}
+      {showNav && (
+        <nav className="fixed left-4 top-1/2 z-[9999] flex flex-col gap-2 -translate-y-1/2 hidden sm:flex bg-white/40 backdrop-blur-md rounded-2xl p-3 shadow-lg border border-white/30">
+          {sectionNav.map((s) => (
+            <button
+              key={s.id}
+              onClick={() => s.ref.current?.scrollIntoView({ behavior: 'smooth' })}
+              className={`w-2.5 h-2.5 rounded-full border-2 ${activeSection === s.id ? 'bg-yellow-300 border-yellow-400 scale-110 shadow-yellow-200' : 'bg-white border-yellow-200'} shadow transition-all duration-300`}
+              aria-label={s.label}
+            />
+          ))}
+        </nav>
+      )}
+      {/* Scroll Progress Bar */}
+      <div className="fixed top-0 left-0 w-full h-1 z-[9999]">
+        <div
+          className="h-full bg-gradient-to-r from-[#bfa76a] to-[#e5e2d6] transition-all duration-200"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
       <Navbar />
       
       {/* ───────── LIQUID GLASS HERO ───────── */}
-      <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(120,119,198,0.2),transparent_50%)]"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_75%,rgba(236,72,153,0.2),transparent_50%)]"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_50%)]"></div>
-        </div> 
 
-        {/* Premium Background Image with Better Overlay */}
-        <div className="absolute inset-0 opacity-15">
+      <section ref={heroRef} id="hero" className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
+        {/* Hero Background Image */}
+        <div className="absolute inset-0 z-0">
           <img
             src="https://images.pexels.com/photos/3862365/pexels-photo-3862365.jpeg?auto=compress&cs=tinysrgb&w=1920"
             alt="Construction projects background"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center opacity-30"
+            draggable="false"
           />
-          {/* Stronger dark overlay for better text contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-800/90 to-slate-900/95"></div>
-          <div className="absolute inset-0 bg-black/30"></div>
+          {/* Overlay for contrast - lighter for more visible bg */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/70 via-slate-800/60 to-slate-900/70"></div>
         </div>
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 z-10 pointer-events-none">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(120,119,198,0.2),transparent_50%)]"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_75%,rgba(236,72,153,0.2),transparent_50%)]"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_50%)]"></div>
+        </div>
+
 
         <div className="relative z-10 container mx-auto px-6 py-32 flex items-center min-h-screen">
           <div className="max-w-6xl mx-auto">
-            <AnimatedSection className="text-center mb-20">
-              {/* Enhanced Liquid Glass Premium Badge */}
-              <div className="inline-flex items-center bg-black/30 backdrop-blur-xl border border-white/30 rounded-full px-8 py-4 mb-8 shadow-2xl">
+            <div className="text-center mb-20">
+              {/* Luxury Animated Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: -40, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                className="inline-flex items-center bg-black/30 backdrop-blur-xl border border-white/30 rounded-full px-8 py-4 mb-8 shadow-2xl"
+              >
                 <Crown className="w-5 h-5 text-amber-400 mr-3" />
                 <span className="text-white font-semibold text-lg drop-shadow-lg">Premium Construction Excellence</span>
                 <Sparkles className="w-5 h-5 text-amber-400 ml-3" />
-              </div>
+              </motion.div>
 
-              {/* Enhanced Title with Better Text Shadow */}
-              <h1 className="text-6xl lg:text-8xl font-extralight mb-8 tracking-tight text-white drop-shadow-2xl">
+              {/* Luxury Animated Title */}
+              <motion.h1
+                initial={{ opacity: 0, y: 60 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                className="text-6xl lg:text-8xl font-extralight mb-8 tracking-tight text-white drop-shadow-2xl"
+              >
                 Our Luxury <br />
-                <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 bg-clip-text text-transparent font-light drop-shadow-lg">
+                <motion.span
+                  initial={{ opacity: 0, x: -40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1.1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 bg-clip-text text-transparent font-light drop-shadow-lg"
+                >
                   Projects
-                </span>
-              </h1>
-              
-              {/* Enhanced Description with Better Contrast */}
-              <p className="text-2xl lg:text-3xl text-slate-100 mb-12 leading-relaxed font-light max-w-4xl mx-auto drop-shadow-lg">
-                Crafting architectural masterpieces and construction excellence across Laos with unparalleled sophistication
-              </p>
+                </motion.span>
+              </motion.h1>
 
-              {/* Enhanced Liquid Glass CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-6 justify-center mb-20">
-                <button
+              {/* Luxury Animated Description */}
+              <motion.p
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                className="text-2xl lg:text-3xl text-slate-100 mb-12 leading-relaxed font-light max-w-4xl mx-auto drop-shadow-lg"
+              >
+                Crafting architectural masterpieces and construction excellence across Laos with unparalleled sophistication
+              </motion.p>
+
+              {/* Luxury Animated CTA Buttons */}
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: {},
+                  visible: {
+                    transition: {
+                      staggerChildren: 0.18,
+                      delayChildren: 1.0,
+                    },
+                  },
+                }}
+                className="flex flex-col sm:flex-row gap-6 justify-center mb-20"
+              >
+                <motion.button
                   onClick={handleViewAllProjects}
+                  variants={{
+                    hidden: { opacity: 0, y: 40, scale: 0.98 },
+                    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+                  }}
                   className="group bg-gradient-to-r from-amber-400 to-amber-500 backdrop-blur-xl hover:from-amber-500 hover:to-amber-600 text-slate-900 px-12 py-6 rounded-2xl font-bold transition-all duration-300 shadow-2xl hover:shadow-amber-500/25 flex items-center justify-center text-xl border border-amber-400/50"
                 >
                   <Eye className="w-6 h-6 mr-3" />
                   Explore Portfolio
                   <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform" />
-                </button>
-                <button
+                </motion.button>
+                <motion.button
                   onClick={handleStartProject}
+                  variants={{
+                    hidden: { opacity: 0, y: 40, scale: 0.98 },
+                    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+                  }}
                   className="group bg-black/40 backdrop-blur-xl border border-white/40 hover:bg-black/60 text-white px-12 py-6 rounded-2xl font-bold transition-all duration-300 shadow-2xl flex items-center justify-center text-xl"
                 >
                   <Sparkles className="w-6 h-6 mr-3" />
                   Start Your Project
-                </button>
-              </div>
-            </AnimatedSection>
+                </motion.button>
+              </motion.div>
+            </div>
 
             {/* Enhanced Liquid Glass Stats */}
             <AnimatedSection animation="fade-up" delay={200}>
@@ -231,7 +346,7 @@ const ProjectsPage: React.FC = () => {
       </section>
 
       {/* ───────── LIQUID GLASS FILTERS & SEARCH ───────── */}
-      <section className="py-16 bg-gradient-to-r from-white/95 via-slate-50/95 to-white/95 backdrop-blur-3xl">
+      <section ref={filtersRef} id="filters" className="py-16 bg-gradient-to-r from-white/95 via-slate-50/95 to-white/95 backdrop-blur-3xl">
         <div className="container mx-auto px-6">
           <AnimatedSection>
             <div className="max-w-6xl mx-auto">
@@ -282,7 +397,7 @@ const ProjectsPage: React.FC = () => {
       </section>
 
       {/* ───────── LIQUID GLASS PROJECTS SHOWCASE ───────── */}
-      <section className="py-24 bg-gradient-to-br from-slate-50/95 via-white/95 to-slate-50/95 backdrop-blur-3xl">
+      <section ref={showcaseRef} id="showcase" className="py-24 bg-gradient-to-br from-slate-50/95 via-white/95 to-slate-50/95 backdrop-blur-3xl">
         <div className="container mx-auto px-6">
           <AnimatedSection className="text-center mb-20">
             <div className="inline-flex items-center bg-gradient-to-r from-amber-50/80 to-amber-100/80 backdrop-blur-xl rounded-full px-8 py-4 mb-8 border border-amber-200/30 shadow-xl">
@@ -503,7 +618,7 @@ const ProjectsPage: React.FC = () => {
       </section>
 
       {/* ───────── LIQUID GLASS CTA SECTION ───────── */}
-      <section className="py-24 bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-slate-900/95 backdrop-blur-3xl text-white relative overflow-hidden">
+      <section ref={ctaRef} id="cta" className="py-24 bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-slate-900/95 backdrop-blur-3xl text-white relative overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(120,119,198,0.3),transparent_50%)]"></div>
@@ -550,13 +665,18 @@ const ProjectsPage: React.FC = () => {
         </div>
       </section>
 
+      {/* Floating Quote Button */}
+      {showQuoteButton && (
+        <FloatingQuoteButton onClick={() => setIsQuoteModalOpen(true)} />
+      )}
       <Footer />
+      <WhatsAppChatButton />
 
       {/* Quote Modal */}
       <QuoteModal
         isOpen={isQuoteModalOpen}
         onClose={() => setIsQuoteModalOpen(false)}
-        source="luxury_projects_page"
+        source="products_get_product_quote"
       />
     </>
   );

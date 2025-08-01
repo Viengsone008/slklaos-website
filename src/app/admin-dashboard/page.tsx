@@ -909,7 +909,16 @@ const AdminDashboard = () => {
         </div>
 
         {/* Navigation */}
-        <nav className="relative flex-1 px-4 py-4 space-y-6 overflow-y-auto">
+        <nav
+          className="relative flex-1 px-4 py-4 space-y-6 overflow-y-auto luxury-card-glass shadow-gold border-l-4 border-gradient-to-b from-yellow-400 via-amber-300 to-yellow-100/60 bg-white/60 backdrop-blur-2xl"
+          style={{
+            boxShadow: '0 8px 32px 0 rgba(255, 215, 0, 0.18), 0 1.5px 0 0 #FFD700',
+            borderImage: 'linear-gradient(to bottom, #FFD700, #FFB300, #FFF7E0) 1',
+            borderLeftWidth: '4px',
+            borderLeftStyle: 'solid',
+            borderLeftColor: 'transparent',
+          }}
+        >
           {updateSidebarCategories().map((category, categoryIndex) => (
             <div key={categoryIndex}>
               {sidebarOpen && (

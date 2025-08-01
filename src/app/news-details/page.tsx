@@ -24,6 +24,18 @@ import 'react-toastify/dist/ReactToastify.css';
 import { supabase } from '../../lib/supabase';
 
 const NewsDetailPage = () => {
+  // Scroll progress indicator
+  const [scrollProgress, setScrollProgress] = useState(0);
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      setScrollProgress(progress);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   const router = useRouter();
   const searchParams = useSearchParams();
   const postId = searchParams.get('id');
@@ -203,6 +215,13 @@ const NewsDetailPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-orange-50">
+      {/* Scroll Progress Bar */}
+      <div className="fixed top-0 left-0 w-full h-1 z-[9999]">
+        <div
+          className="h-full bg-gradient-to-r from-[#bfa76a] to-[#e5e2d6] transition-all duration-200"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
       <Navbar />
       
       <div className="container mx-auto px-4 py-12">

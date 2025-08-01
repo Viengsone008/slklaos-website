@@ -3,13 +3,75 @@ import React, { useState } from 'react';
 import { Building2, Shield, Layers, CheckCircle, ArrowRight, Star, Award, Truck, Package } from 'lucide-react';
 import AnimatedSection from '../components/AnimatedSection';
 import QuoteModal from '../components/QuoteModal';
+import LiveChatConsultation from '../components/LiveChatConsultation';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useRouter } from 'next/navigation';
+import Trans from '../components/Trans';
+
+// SkeletonImage for smooth image loading
+const SkeletonImage = ({ src, alt, className }: { src: string; alt: string; className?: string }) => {
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <div className="relative">
+      {!loaded && <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-2xl" aria-hidden="true" />}
+      <img
+        src={src}
+        alt={alt}
+        className={className}
+        onLoad={() => setLoaded(true)}
+        style={{ display: loaded ? 'block' : 'none' }}
+      />
+    </div>
+  );
+};
+
+// Animated Counter
+const AnimatedCounter = ({ value, duration = 1500, className = '' }: { value: number; duration?: number; className?: string }) => {
+  const [count, setCount] = useState(0);
+  React.useEffect(() => {
+    let start = 0;
+    const end = value;
+    if (start === end) return;
+    let increment = end / (duration / 16);
+    let current = start;
+    const step = () => {
+      current += increment;
+      if (current < end) {
+        setCount(Math.floor(current));
+        requestAnimationFrame(step);
+      } else {
+        setCount(end);
+      }
+    };
+    step();
+    // eslint-disable-next-line
+  }, [value, duration]);
+  return <span className={className}>{count.toLocaleString()}</span>;
+};
+
+
 
 const Products = () => {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+
+  const [showQuoteButton, setShowQuoteButton] = useState(false);
+  const [isLiveChatOpen, setIsLiveChatOpen] = useState(false);
   const { t } = useLanguage();
   const router = useRouter();
+
+  // Show floating quote button only when scroll reaches the Products section onwards
+  React.useEffect(() => {
+    const productsSection = document.getElementById('products');
+    if (!productsSection) return;
+    const handleScroll = () => {
+      const rect = productsSection.getBoundingClientRect();
+      // Show if the top of the section is at or above the top of the viewport (triggered once, stays visible as you scroll down)
+      setShowQuoteButton(rect.top <= 0);
+    };
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const productCategories = [
     {
@@ -117,24 +179,26 @@ const Products = () => {
   const qualityFeatures = [
     {
       icon: Award,
-      title: "Premium Quality",
-      description: "Only the finest materials from trusted international brands"
+      title: t('Premium Quality'),
+      description: t('Only the finest materials from trusted international brands')
     },
     {
       icon: Star,
-      title: "Expert Selection",
-      description: "Carefully curated products tested for Laos climate conditions"
+      title: t('Expert Selection'),
+      description: t('Carefully curated products tested for Laos climate conditions')
     },
     {
       icon: Truck,
-      title: "Reliable Supply",
-      description: "Consistent availability with efficient logistics network"
+      title: t('Reliable Supply'),
+      description: t('Consistent availability with efficient logistics network')
     }
   ];  
 
 const handleViewProductDetails = (categoryId: string) => {
     router.push(`/product-catalogue#${categoryId}`);
 };
+
+
 
 
 
@@ -149,10 +213,10 @@ const handleDownloadCatalog = () => {
           {/* Section Header */}
           <AnimatedSection animation="fade-up" className="text-center mb-16">
            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Our <span className="text-[#3d9392]">Products</span>
+            {t('Our')} <span className="text-[#3d9392]">{t('Products')}</span>
           </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              High-quality construction materials for lasting results
+              {t('High-quality construction materials for lasting results')}
             </p>
           </AnimatedSection>
 
@@ -161,7 +225,6 @@ const handleDownloadCatalog = () => {
             {productCategories.map((category, index) => {
               const IconComponent = category.icon;
               const isReversed = index % 2 === 1;
-              
               return (
                 <div key={index} className={`grid lg:grid-cols-2 gap-12 items-center ${isReversed ? 'lg:grid-flow-col-dense' : ''}`}>
                   {/* Content */}
@@ -170,128 +233,88 @@ const handleDownloadCatalog = () => {
                       <div className="mb-6">
                         <AnimatedSection animation="bounce-in" delay={200}>
                           <div className="flex items-center mb-4">
-                            <div className={`${category.accentColor} p-3 rounded-xl mr-4`}>
+                            <div className={`${category.accentColor} p-3 rounded-xl mr-4 luxury-shadow luxury-border`}>
                               <IconComponent className="w-8 h-8 text-white" />
                             </div>
                             <div>
-                              <h3 className="text-3xl font-bold text-gray-900">
-                                {category.title}
+                              <h3 className="text-3xl font-bold text-gray-900 luxury-font">
+                                {t(category.title)}
                               </h3>
-                              <p className={`text-lg ${category.iconColor} font-medium`}>
-                                {category.subtitle}
-                              </p>
+                              <p className={`text-lg ${category.iconColor} font-medium luxury-font`}> {t(category.subtitle)} </p>
                             </div>
                           </div>
                         </AnimatedSection>
-                        
                         <AnimatedSection animation="fade-up" delay={300}>
-                          <p className="text-gray-600 text-lg leading-relaxed mb-8">
-                            {category.description}
-                          </p>
+                          <p className="text-gray-600 text-lg leading-relaxed mb-8 luxury-font"> {t(category.description)} </p>
                         </AnimatedSection>
                       </div>
-
                       {/* Product Types */}
                       <AnimatedSection animation={isReversed ? "fade-left" : "fade-right"} delay={400}>
                         <div className="mb-8">
-                          <h4 className="text-xl font-semibold text-gray-900 mb-4">Product Range:</h4>
+                          <h4 className="text-xl font-semibold text-gray-900 mb-4 luxury-font"><Trans as="span">Product Range:</Trans></h4>
                           <div className="grid md:grid-cols-2 gap-3">
                             {category.products.map((product, productIndex) => (
-                              <AnimatedSection 
-                                key={productIndex}
-                                animation="fade-right"
-                                delay={500 + (productIndex * 50)}
-                              >
+                              <AnimatedSection key={productIndex} animation="fade-right" delay={500 + (productIndex * 50)}>
                                 <div className="flex items-center">
                                   <CheckCircle className={`w-5 h-5 ${category.iconColor} mr-3 flex-shrink-0`} />
-                                  <span className="text-gray-700">{product}</span>
+                                  <span className="text-gray-700">{t(product)}</span>
                                 </div>
                               </AnimatedSection>
                             ))}
                           </div>
                         </div>
                       </AnimatedSection>
-
                       {/* Applications */}
                       <AnimatedSection animation={isReversed ? "fade-left" : "fade-right"} delay={600}>
                         <div className="mb-8">
-                          <h4 className="text-xl font-semibold text-gray-900 mb-4">Applications:</h4>
+                          <h4 className="text-xl font-semibold text-gray-900 mb-4 luxury-font"><Trans as="span">Applications:</Trans></h4>
                           <div className="grid md:grid-cols-2 gap-3">
                             {category.applications.map((application, appIndex) => (
-                              <AnimatedSection 
-                                key={appIndex}
-                                animation="fade-right"
-                                delay={700 + (appIndex * 50)}
-                              >
+                              <AnimatedSection key={appIndex} animation="fade-right" delay={700 + (appIndex * 50)}>
                                 <div className="flex items-center">
                                   <div className={`w-2 h-2 ${category.accentColor} rounded-full mr-3 flex-shrink-0`}></div>
-                                  <span className="text-gray-600">{application}</span>
+                                  <span className="text-gray-600">{t(application)}</span>
                                 </div>
                               </AnimatedSection>
                             ))}
                           </div>
                         </div>
                       </AnimatedSection>
-
                       {/* Key Features */}
                       <AnimatedSection animation="scale" delay={800}>
-                        <div className={`bg-gradient-to-r${category.bgGradient} backdrop-blur-sm p-6 rounded-2xl border border-white/20`}>
-                          <h4 className="text-lg font-semibold text-gray-900 mb-4">Key Features:</h4>
+                        <div className={`bg-gradient-to-r${category.bgGradient} backdrop-blur-sm p-6 rounded-2xl border border-white/20 luxury-border luxury-shadow`}> <h4 className="text-lg font-semibold text-gray-900 mb-4 luxury-font"><Trans as="span">Key Features:</Trans></h4>
                           <div className="grid grid-cols-2 gap-4">
                             {category.features.map((feature, featureIndex) => (
-                              <AnimatedSection 
-                                key={featureIndex}
-                                animation="fade-up"
-                                delay={900 + (featureIndex * 50)}
-                              >
+                              <AnimatedSection key={featureIndex} animation="fade-up" delay={900 + (featureIndex * 50)}>
                                 <div className="flex items-center">
                                   <Star className={`w-4 h-4 ${category.iconColor} mr-2 flex-shrink-0`} />
-                                  <span className="text-gray-700 text-sm font-medium">{feature}</span>
+                                  <span className="text-gray-700 text-sm font-medium">{t(feature)}</span>
                                 </div>
                               </AnimatedSection>
                             ))}
                           </div>
-                          
-                          {/* View Details Button */}
-                          <div className="mt-6 text-center">
-                            <button 
-                              onClick={() => handleViewProductDetails(category.id)}
-                              className={`${category.accentColor} text-white px-6 py-2 rounded-lg font-medium transition-all duration-300 hover:opacity-90 transform hover:scale-105 flex items-center mx-auto`}
-                            >
-                              View Product Details
-                              <ArrowRight className="w-4 h-4 ml-2" />
-                            </button>
+                          {/* View Details & 3D/AR Preview Buttons */}
+                          <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+                            <button onClick={() => handleViewProductDetails(category.id)} className={`${category.accentColor} text-white px-6 py-2 rounded-lg font-medium transition-all duration-300 hover:opacity-90 transform hover:scale-105 flex items-center mx-auto luxury-shadow`}> {t('View Product Details')} <ArrowRight className="w-4 h-4 ml-2" /> </button>
                           </div>
                         </div>
                       </AnimatedSection>
                     </AnimatedSection>
                   </div>
-
                   {/* Image */}
                   <div className={isReversed ? 'lg:col-start-1' : ''}>
                     <AnimatedSection animation={isReversed ? "fade-right" : "fade-left"} delay={200}>
-                      <div 
-                        className="relative group cursor-pointer" 
-                        onClick={() => handleViewProductDetails(category.id)}
-                      >
-                        <img 
-                          src={category.image}
-                          alt={category.title}
-                          className="w-full h-96 object-cover rounded-2xl shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:shadow-3xl"
-                        />
+                      <div className="relative group cursor-pointer glass-morphism bg-white/70 backdrop-blur-lg rounded-2xl shadow-2xl border border-[#e5f1f1] hover:border-[#6dbeb0] transition-all duration-500 group-hover:scale-105 group-hover:shadow-3xl luxury-shadow luxury-border" onClick={() => handleViewProductDetails(category.id)} tabIndex={0} role="button" aria-label={`View details for ${category.title}`} style={{ perspective: '800px' }}>
+                        <SkeletonImage src={category.image} alt={category.title} className="w-full h-96 object-cover rounded-2xl z-10 relative" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl transition-all duration-500 group-hover:from-black/40"></div>
-                        
                         {/* Floating Badge */}
                         <AnimatedSection animation="bounce-in" delay={400}>
                           <div className="absolute top-6 left-6 transition-all duration-500 group-hover:scale-110">
-                            <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
-                              <span className={`text-sm font-semibold ${category.iconColor}`}>
-                                Premium Quality
-                              </span>
+                            <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg border border-gold/40">
+                              <span className={`text-sm font-semibold ${category.iconColor}`}> Premium Quality </span>
                             </div>
                           </div>
                         </AnimatedSection>
-
                         {/* Hover Overlay */}
                         <div className="absolute inset-0 bg-gradient-to-t from-secondary/0 via-transparent to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center">
                           <AnimatedSection animation="zoom-in" delay={0}>
@@ -311,6 +334,25 @@ const handleDownloadCatalog = () => {
               );
             })}
           </div>
+          {/* Animated Product Stats Section */}
+          <AnimatedSection animation="fade-up" delay={200} className="mt-24 mb-20">
+            <div className="flex flex-wrap justify-center gap-12 bg-gradient-to-r from-gold/10 to-yellow-100 rounded-3xl p-10 border border-gold/30 luxury-shadow">
+              <div className="flex flex-col items-center">
+                <span className="text-4xl font-bold text-gold mb-2 luxury-font"><AnimatedCounter value={15} /></span>
+                <span className="text-lg text-gray-700 luxury-font">Years Warranty</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <span className="text-4xl font-bold text-gold mb-2 luxury-font"><AnimatedCounter value={120} /></span>
+                <span className="text-lg text-gray-700 luxury-font">Projects Completed</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <span className="text-4xl font-bold text-gold mb-2 luxury-font"><AnimatedCounter value={8} /></span>
+                <span className="text-lg text-gray-700 luxury-font">Countries Supplied</span>
+              </div>
+            </div>
+          </AnimatedSection>
+
+
 
           {/* Quality Assurance Section */}
           <AnimatedSection animation="fade-up" delay={400} className="mt-20">

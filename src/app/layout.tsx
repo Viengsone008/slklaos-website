@@ -4,7 +4,7 @@ import "./globals.css";
 import { LanguageProvider } from '../contexts/LanguageContext';
 import { AuthProvider } from '../contexts/AuthContext';
 import { DatabaseProvider } from '../contexts/DatabaseContext';
-import '../index.css';
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

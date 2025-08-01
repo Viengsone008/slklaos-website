@@ -27,6 +27,9 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { supabase } from "../../lib/supabase";
 import Navbar from '../Navbar';
 import Footer from '../Footer';
+import WhatsAppChatButton from '../../components/WhatsAppChatButton';
+import FloatingQuoteButton from '../../components/FloatingQuoteButton';
+import QuoteModal from '../../components/QuoteModal';
 
 // Utility function to slugify category names
 const slugify = (text: string) => {
@@ -39,6 +42,21 @@ const slugify = (text: string) => {
 };
 
 const CareersPage = () => {
+  // Scroll progress indicator and floating quote button visibility
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [showNav, setShowNav] = useState(false);
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      setScrollProgress(progress);
+      setShowNav(window.scrollY > 0);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   const router = useRouter();
   const { t } = useLanguage();
   const [categories, setCategories] = useState<string[]>([]);
@@ -199,41 +217,48 @@ const CareersPage = () => {
 
   return (
     <>
+      {/* Scroll Progress Bar */}
+      <div className="fixed top-0 left-0 w-full h-1 z-[9999]">
+        <div
+          className="h-full bg-gradient-to-r from-[#bfa76a] to-[#e5e2d6] transition-all duration-200"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
       <Navbar />
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-orange-50">
-        {/* HERO SECTION */}
-        <section className="relative py-32 bg-gradient-to-br from-[#3d9392] via-[#6dbeb0] to-[#1b3d5a] text-white overflow-hidden">
+        {/* HERO SECTION - Luxury Upgrade */}
+        <section className="relative py-36 md:py-44 bg-gradient-to-br from-[#3d9392] via-[#6dbeb0] to-[#1b3d5a] text-white overflow-hidden luxury-card-glass shadow-gold">
           <div className="absolute inset-0">
             <img 
               src="https://qawxuytlwqmsomsqlrsc.supabase.co/storage/v1/object/public/image//Career-Banner.jpg" 
               alt="Careers at SLK Trading"
-              className="w-full h-full object-cover opacity-80"
+              className="w-full h-full object-cover opacity-80 scale-105 blur-[2px]"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#3d9392]/80 to-[#1b3d5a]/80"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#3d9392]/80 via-[#bfa76a]/30 to-[#1b3d5a]/80"></div>
+            <div className="absolute inset-0 bg-white/10 backdrop-blur-[2px]"></div>
           </div>
           
           <div className="relative z-10 container mx-auto px-4">
-            <AnimatedSection className="text-center max-w-4xl mx-auto">
-              <h1 className="text-5xl lg:text-7xl font-bold mb-6 drop-shadow-2xl">
-                Join Our <span className="text-[#6dbeb0]">Team</span>
+            <AnimatedSection className="text-center max-w-4xl mx-auto luxury-card-glass bg-white/30 backdrop-blur-xl border border-[#bfa76a]/30 rounded-3xl shadow-gold px-8 py-12">
+              <h1 className="text-5xl lg:text-7xl font-extrabold mb-6 luxury-gradient-text drop-shadow-[0_6px_32px_rgba(191,167,106,0.45)]">
+                Join Our <span className="luxury-gold-text luxury-fade-text drop-shadow-gold">Team</span>
               </h1>
-              <p className="text-2xl text-blue-100 mb-8 leading-relaxed drop-shadow-lg">
-                Build your career with Laos' leading construction company
+              <p className="text-2xl md:text-3xl text-[#bfa76a] mb-8 leading-relaxed luxury-fade-text drop-shadow-gold font-medium">
+                Build your career with <span className="luxury-gold-text font-bold">Laos' leading construction company</span>
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                {/* Updated button to link to career-catalogue */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6">
                 <button 
                   onClick={handleApplyNow}
-                  className="bg-[#3d9392] hover:bg-[#6dbeb0] text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  className="luxury-card-glass bg-gradient-to-r from-[#bfa76a] via-[#e5e2d6] to-[#bfa76a] hover:from-[#e5e2d6] hover:to-[#bfa76a] text-[#1b3d5a] px-10 py-4 rounded-xl font-bold text-lg shadow-gold border border-[#bfa76a]/40 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#bfa76a]"
                 >
-                  View Open Positions
-                  <ArrowRight className="w-5 h-5 ml-2 inline" />
+                  <span className="luxury-gold-text">View Open Positions</span>
+                  <ArrowRight className="w-5 h-5 ml-2 inline text-[#bfa76a]" />
                 </button>
                 <button 
                   onClick={() => router.push('/about')}
-                  className="border-2 border-white/40 hover:bg-white/15 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300" 
+                  className="luxury-card-glass bg-gradient-to-r from-[#bfa76a] via-[#e5e2d6] to-[#bfa76a] border-2 border-[#bfa76a]/70 text-[#1b3d5a] px-10 py-4 rounded-xl font-extrabold text-lg shadow-gold transition-all duration-300 hover:scale-105 hover:from-[#e5e2d6] hover:to-[#bfa76a] focus:outline-none focus:ring-2 focus:ring-[#bfa76a] drop-shadow-[0_4px_24px_rgba(191,167,106,0.25)]"
                 >
-                  About Our Company
+                  <span className="luxury-gold-text">About Our Company</span>
                 </button>
               </div>
             </AnimatedSection>
@@ -626,6 +651,15 @@ const CareersPage = () => {
         </section>
       </div>
       <Footer />
+      {showNav && (
+        <FloatingQuoteButton onClick={() => setIsQuoteModalOpen(true)} />
+      )}
+      <WhatsAppChatButton />
+      <QuoteModal 
+        isOpen={isQuoteModalOpen} 
+        onClose={() => setIsQuoteModalOpen(false)}
+        source="footer_contact_now"
+      />
     </>
   );
 };

@@ -268,7 +268,7 @@ const Footer = () => {
                     onClick={() => setIsQuoteModalOpen(true)}
                     className="bg-white text-[#6dbeb0] px-4 py-2 rounded font-medium text-sm hover:bg-[#e5f1f1] transition-colors duration-300 w-full"
                   >
-                    Contact Now
+                    Get Free Quote
                   </button>
                 </div>
               </div>

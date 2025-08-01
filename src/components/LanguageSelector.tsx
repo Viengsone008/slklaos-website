@@ -4,7 +4,7 @@ import { Globe, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const LanguageSelector: React.FC = () => {
-  const { currentLanguage, setLanguage, languages } = useLanguage();
+  const { currentLanguage, setLanguage, languages, t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [isClient, setIsClient] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -13,6 +13,8 @@ const LanguageSelector: React.FC = () => {
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  // ...existing code...
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -106,7 +108,7 @@ const LanguageSelector: React.FC = () => {
         >
           <div className="p-2">
             <div className="text-xs font-semibold text-gray-600 px-3 py-2 border-b border-gray-200 mb-2">
-              Select Language / ເລືອກພາສາ / เลือกภาษา / 选择语言 / Chọn ngôn ngữ / Válasszon nyelvet / Sprache wählen / Seleziona lingua
+              {t('common.selectLanguage') || 'Select Language'} / ເລືອກພາສາ / เลือกภาษา / 选择语言 / Chọn ngôn ngữ / Válasszon nyelvet / Sprache wählen / Seleziona lingua
             </div>
             
             {languages?.map((language) => (

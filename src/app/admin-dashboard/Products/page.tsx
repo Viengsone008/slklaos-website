@@ -716,7 +716,7 @@ const ProductManagement: React.FC = () => {
       </div>
 
       {/* Product Grid */}
-      <div className="grid grid-cols-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {products.length > 0 ? (
           products.map((p) => (
             <div key={p.id} className="relative rounded-xl bg-white shadow-lg border border-gray-200 p-4 flex flex-col justify-between min-h-[320px]">

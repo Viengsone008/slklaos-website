@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
     './index.html',
     './src/**/*.{js,ts,jsx,tsx}',
@@ -8,8 +8,8 @@ export default {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'glass-morphism': 'rgba(255, 255, 255, 0.1)',
+      backgroundColor: {
+        'glass-morphism': 'rgba(255,255,255,0.1)',
       },
     },
   },

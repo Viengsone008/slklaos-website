@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 29, "column": 0}, "map": {"version":3,"sources":["file:///Users/viengsone/Documents/slkwebsite-next/src/pages/api/recent-activity.ts"],"sourcesContent":["import { createClient } from '@supabase/supabase-js';\n\nconst supabase = createClient(\n  process.env.NEXT_PUBLIC_SUPABASE_URL!,\n  process.env.SUPABASE_SERVICE_ROLE_KEY!\n);\n\nexport default async function handler(req, res) {\n  const { data, error } = await supabase\n    .from('activity')\n    .select('id, action, user, time, icon, color, entity_type, entity_id, details')\n    .order('time', { ascending: false })\n    .limit(10);\n\n  if (error) {\n    console.error(error);\n    return res.status(500).json([]);\n  }\n\n  res.status(200).json(data);\n}"],"names":[],"mappings":";;;AAAA;;AAEA,MAAM,WAAW,CAAA,GAAA,iJAAA,CAAA,eAAY,AAAD,gFAE1B,QAAQ,GAAG,CAAC,yBAAyB;AAGxB,eAAe,QAAQ,GAAG,EAAE,GAAG;IAC5C,MAAM,EAAE,IAAI,EAAE,KAAK,EAAE,GAAG,MAAM,SAC3B,IAAI,CAAC,YACL,MAAM,CAAC,wEACP,KAAK,CAAC,QAAQ;QAAE,WAAW;IAAM,GACjC,KAAK,CAAC;IAET,IAAI,OAAO;QACT,QAAQ,KAAK,CAAC;QACd,OAAO,IAAI,MAAM,CAAC,KAAK,IAAI,CAAC,EAAE;IAChC;IAEA,IAAI,MAAM,CAAC,KAAK,IAAI,CAAC;AACvB","debugId":null}}]
+}

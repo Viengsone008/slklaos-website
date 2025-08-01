@@ -148,6 +148,19 @@ const ProductCataloguePage: React.FC = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
+  // Scroll Progress Indicator
+  const [scrollProgress, setScrollProgress] = useState(0);
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      setScrollProgress(progress);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   // Products from Supabase
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -272,43 +285,75 @@ const ProductCataloguePage: React.FC = () => {
   /* ─────────────────── render ─────────────────── */
   return (
     <>
+      {/* Scroll Progress Bar */}
+      <div className="fixed top-0 left-0 w-full z-[999] h-2 bg-gradient-to-r from-[#bfa76a]/30 via-[#e5e2d6]/30 to-[#6dbeb0]/30">
+        <div
+          className="h-full bg-gradient-to-r from-[#bfa76a] via-[#e5e2d6] to-[#6dbeb0] rounded-r-full shadow-2xl transition-all duration-200"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
       <Navbar />
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-orange-50 scroll-smooth">
+      <div className="min-h-screen bg-gradient-to-br from-[#f8fafc] via-[#e5e2d6] to-[#bfa76a]/30 scroll-smooth">
         {/* HERO */}
-        <section className="relative py-32 bg-gradient-to-br from-blue-700 via-indigo-600 to-orange-500 text-white overflow-hidden">
+        <section className="relative py-36 bg-gradient-to-br from-[#bfa76a] via-[#e5e2d6] to-[#6dbeb0] text-[#1a2936] overflow-hidden shadow-2xl">
           <div className="absolute inset-0">
             <img 
               src="https://qawxuytlwqmsomsqlrsc.supabase.co/storage/v1/object/public/image//Products_Hero.jpg" 
               alt="SLK Trading Products"
-              className="w-full h-full object-cover opacity-80"
+              className="w-full h-full object-cover opacity-30 scale-105 transition-all duration-700"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#3d9392]/80 to-[#1b3d5a]/80"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-[#bfa76a]/80 via-[#e5e2d6]/80 to-[#6dbeb0]/90" style={{ zIndex: 2 }}></div>
           </div>
 
           <div className="relative z-10 container mx-auto px-4">
-            <AnimatedSection className="text-center max-w-4xl mx-auto">
-              <h1 className="text-5xl lg:text-7xl font-bold mb-6 drop-shadow-2xl">
-                Products <span className="text-[#6dbeb0]">Catalogue</span>
+            <AnimatedSection className="text-center max-w-4xl mx-auto animate-fade-in pt-12">
+              <h1 className="text-6xl lg:text-7xl font-extrabold mb-6 drop-shadow-2xl relative hero-shine" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '0.04em', textShadow: '0 2px 8px rgba(255,255,255,0.7)' }}>
+                <span className="inline-block animate-fadeInUp">Products <span className="text-[#bfa76a]">Catalogue</span></span>
+                <span className="hero-shine-bar" />
               </h1>
-              <p className="text-2xl text-blue-100 mb-8 leading-relaxed drop-shadow-lg">
+              <p className="text-2xl text-[#1a2936]/80 mb-8 leading-relaxed drop-shadow-lg font-semibold" style={{ fontFamily: 'Playfair Display, serif' }}>
                 Premium construction materials for your next project
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button 
                   onClick={() => setIsQuoteModalOpen(true)}
-                  className="bg-[#3d9392] hover:bg-[#6dbeb0] text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  className="bg-gradient-to-r from-[#bfa76a] to-[#6dbeb0] text-[#1a2936] hover:from-[#6dbeb0] hover:to-[#bfa76a] px-10 py-4 rounded-xl font-bold shadow-xl transition-all duration-300 flex items-center justify-center gap-2 text-lg transform hover:scale-105 border-2 border-[#bfa76a]"
+                  style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '0.04em', textShadow: '0 2px 8px rgba(255,255,255,0.7)' }}
                 >
                   Get Product Quote
                 </button>
                 <button 
                   onClick={() => router.push('/contact')}
-                  className="border-2 border-white/40 hover:bg-white/15 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300"
+                  className="bg-gradient-to-r from-[#6dbeb0] to-[#bfa76a] text-white border-2 border-[#bfa76a] hover:from-[#bfa76a] hover:to-[#6dbeb0] px-10 py-4 rounded-xl font-bold shadow-xl transition-all duration-300 flex items-center justify-center gap-2 text-lg transform hover:scale-105"
+                  style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '0.04em', textShadow: '0 2px 8px rgba(0,0,0,0.2)' }}
                 >
                   Contact Our Experts
                 </button>
               </div>
             </AnimatedSection>
           </div>
+          <style>{`
+            .hero-shine {
+              position: relative;
+              overflow: hidden;
+            }
+            .hero-shine-bar {
+              position: absolute;
+              top: 0;
+              left: -75%;
+              width: 50%;
+              height: 100%;
+              background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 100%);
+              transform: skewX(-20deg);
+              pointer-events: none;
+              animation: heroShineMove 2.2s cubic-bezier(.4,0,.2,1) 0.5s 1;
+            }
+            @keyframes heroShineMove {
+              0% { left: -75%; }
+              60% { left: 110%; }
+              100% { left: 110%; }
+            }
+          `}</style>
         </section>
 
         {/* MAIN LAYOUT */}
@@ -316,16 +361,17 @@ const ProductCataloguePage: React.FC = () => {
           <div className="flex flex-col lg:flex-row gap-8">
             {/* ───── Sidebar */}
             <aside className="lg:w-1/4">
-              <div className="sticky top-24 bg-white/80 backdrop-blur shadow-md rounded-xl p-4 space-y-4">
+              <div className="sticky top-24 bg-white/60 backdrop-blur-xl shadow-2xl rounded-2xl p-6 space-y-6 border border-[#bfa76a]/30">
                 {/* search */}
                 <div className="relative">
-                  <Search className="absolute left-3 top-2.5 text-gray-400 w-4 h-4" />
+                  <Search className="absolute left-3 top-3 text-[#bfa76a] w-5 h-5" />
                   <input
                     type="text"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     placeholder="Search products..."
-                    className="pl-9 pr-3 py-2 w-full border rounded-full shadow-sm focus:outline-none focus:ring focus:border-blue-300 text-sm"
+                    className="pl-11 pr-3 py-3 w-full border-2 border-[#bfa76a]/30 rounded-full shadow focus:outline-none focus:ring-2 focus:ring-[#bfa76a] text-base bg-white/80 placeholder-[#bfa76a]/60"
+                    style={{ fontFamily: 'Playfair Display, serif', fontWeight: 500 }}
                   />
                 </div>
 
@@ -334,11 +380,12 @@ const ProductCataloguePage: React.FC = () => {
                   <a
                     key={cat}
                     href={`#${cat}`}
-                    className={`flex items-center justify-center gap-2 w-full text-center rounded-full px-4 py-3 text-sm font-semibold transition-all border shadow-md uppercase ${
+                    className={`flex items-center justify-center gap-2 w-full text-center rounded-full px-6 py-4 text-base font-bold transition-all border-2 shadow-xl uppercase tracking-wide ${
                       activeCategory === cat
-                        ? "bg-[#417d80] text-white border-[#6dbeb0]"
-                        : "bg-gradient-to-r from-[#6dbeb0] to-blue-50 text-blue-700 hover:from-[#3d9392] hover:to-blue-100 border-blue-200"
+                        ? "bg-gradient-to-r from-[#bfa76a] to-[#6dbeb0] text-[#1a2936] border-[#bfa76a] scale-105"
+                        : "bg-gradient-to-r from-[#e5e2d6] to-white text-[#1a2936] hover:from-[#bfa76a] hover:to-[#6dbeb0] border-[#e5e2d6]"
                     }`}
+                    style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '0.04em' }}
                   >
                     {icons[cat]} {cat}
                   </a>
@@ -390,13 +437,13 @@ const ProductCataloguePage: React.FC = () => {
                               {!isCommercial && (
                                 <div className="mt-4">
                                   {loading ? (
-                                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                                       {[...Array(3)].map((_, i) => (
                                         <ProductSkeleton key={i} />
                                       ))}
                                     </div>
                                   ) : topProducts.length ? (
-                                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                                       {topProducts.map((p) => (
                                         <ProductCard
                                           key={p.id}
@@ -436,13 +483,13 @@ const ProductCataloguePage: React.FC = () => {
                                       {openSections[cSub] && (
                                         <div className="mt-3">
                                           {loading ? (
-                                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                                               {[...Array(3)].map((_, i) => (
                                                 <ProductSkeleton key={i} />
                                               ))}
                                             </div>
                                           ) : cProducts.length ? (
-                                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                                               {cProducts.map((p) => (
                                                 <ProductCard
                                                   key={p.id}
@@ -469,13 +516,13 @@ const ProductCataloguePage: React.FC = () => {
                   ) : (
                     /* WATERPROOFING / ROCKSOIL */
                     loading ? (
-                      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {[...Array(3)].map((_, i) => (
                           <ProductSkeleton key={i} />
                         ))}
                       </div>
                     ) : (
-                      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {filteredProducts
                           .filter((p) => p.category === mainCategory)
                           .map((p) => (
@@ -498,26 +545,27 @@ const ProductCataloguePage: React.FC = () => {
         {showBackToTop && <BackToTop />}
 
         {/* CTA */}
-        <section className="py-20 bg-gradient-to-r from-[#3d9392] to-[#6dbeb0] text-white">
+        <section className="py-24 bg-gradient-to-r from-[#bfa76a] to-[#6dbeb0] text-[#1a2936]">
           <div className="container mx-auto px-4">
             <AnimatedSection className="text-center">
-              <h2 className="text-4xl font-bold mb-6">
+              <h2 className="text-5xl font-extrabold mb-6" style={{ fontFamily: 'Playfair Display, serif', color: '#1a2936' }}>
                 Need Help Choosing Products?
               </h2>
-              <p className="text-xl text-orange-100 mb-8 max-w-2xl mx-auto">
-                Our experts are here to help you select the perfect materials for
-                your project
+              <p className="text-2xl text-[#1a2936]/80 mb-8 max-w-2xl mx-auto font-medium" style={{ fontFamily: 'Playfair Display, serif' }}>
+                Our experts are here to help you select the perfect materials for your project
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button
                   onClick={() => setIsQuoteModalOpen(true)}
-                  className="bg-white text-[#1b3d5a] hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-md"
+                  className="bg-gradient-to-r from-[#bfa76a] to-[#6dbeb0] text-[#1a2936] hover:from-[#6dbeb0] hover:to-[#bfa76a] px-10 py-4 rounded-xl font-bold shadow-xl transition-all duration-300 flex items-center justify-center gap-2 text-lg transform hover:scale-105 border-2 border-[#bfa76a]"
+                  style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '0.04em' }}
                 >
                   Get Product Quote
                 </button>
                 <a 
                   href="tel:+85621773737"
-                  className="border-2 border-white/30 hover:bg-white/10 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center"
+                  className="bg-gradient-to-r from-[#6dbeb0] to-[#bfa76a] text-white border-2 border-[#bfa76a] hover:from-[#bfa76a] hover:to-[#6dbeb0] px-10 py-4 rounded-xl font-bold shadow-xl transition-all duration-300 flex items-center justify-center gap-2 text-lg"
+                  style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '0.04em' }}
                 >
                   <Phone className="w-5 h-5 mr-2" /> Call Expert: +856 21 773 737
                 </a>
@@ -533,7 +581,7 @@ const ProductCataloguePage: React.FC = () => {
       <QuoteModal
         isOpen={isQuoteModalOpen}
         onClose={() => setIsQuoteModalOpen(false)}
-        source="product_catalogue_page"
+        source="products_get_product_quote"
       />
     </>
   );

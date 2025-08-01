@@ -33,6 +33,18 @@ const EmployeeDashboard = () => {
   const { user, logout } = useAuth();
   const { getAllRecords } = useDatabase();
   const router = useRouter();
+  // Scroll progress indicator
+  const [scrollProgress, setScrollProgress] = useState(0);
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      setScrollProgress(progress);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   const [tasks, setTasks] = useState<any[]>([]);
   const [materials, setMaterials] = useState<any[]>([]);
   const [projects, setProjects] = useState<any[]>([]);
@@ -397,7 +409,14 @@ const EmployeeDashboard = () => {
                       <div className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
                       <div className="flex items-center text-sm">
                         {stat.completed !== null && (
-                          <>
+    <>
+      {/* Scroll Progress Bar */}
+      <div className="fixed top-0 left-0 w-full h-1 z-[9999]">
+        <div
+          className="h-full bg-gradient-to-r from-[#bfa76a] to-[#e5e2d6] transition-all duration-200"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
                             <span className="text-green-600 font-medium">{stat.completed} completed</span>
                             <span className="mx-2 text-gray-300">•</span>
                             <span className="text-orange-600 font-medium">{stat.inProgress} {stat.title === 'Materials' ? 'low/out' : 'active'}</span>

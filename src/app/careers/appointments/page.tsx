@@ -6,35 +6,34 @@ import { Calendar, Clock, User } from "lucide-react";
 import Navbar from "@/app/Navbar";
 import Footer from "@/app/Footer";
 
-// --- Hero Section Component ---
+// --- Hero Section Component - Luxury Upgrade ---
 const HeroSection = () => (
   <section
-    className="relative flex items-center justify-center min-h-[520px] md:min-h-[700px] rounded-xl mb-10 shadow-lg overflow-hidden"
-    style={{
-      background: "rgba(31, 26, 26, 0.9)",
-    }}
+    className="relative flex items-center justify-center min-h-[520px] md:min-h-[700px] rounded-xl mb-10 shadow-gold overflow-hidden luxury-card-glass"
   >
     {/* Background Image */}
     <img
       src="https://qawxuytlwqmsomsqlrsc.supabase.co/storage/v1/object/public/image//Career-Banner2.png"
       alt="Interview Illustration"
-      className="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none select-none"
+      className="absolute inset-0 w-full h-full object-cover opacity-70 scale-105 blur-[2px] pointer-events-none select-none"
       style={{ zIndex: 0 }}
     />
-    <div className="relative z-10 max-w-2xl mx-auto px-6 text-center mt-18">
-      <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-white leading-tight drop-shadow">
-        Welcome to SLK Interview Scheduler
+    <div className="absolute inset-0 bg-gradient-to-r from-[#3d9392]/80 via-[#bfa76a]/30 to-[#1b3d5a]/80"></div>
+    <div className="absolute inset-0 bg-white/10 backdrop-blur-[2px]"></div>
+    <div className="relative z-10 max-w-2xl mx-auto px-6 text-center mt-18 luxury-card-glass bg-white/30 backdrop-blur-xl border border-[#bfa76a]/30 rounded-3xl shadow-gold py-12">
+      <h1 className="text-4xl md:text-5xl font-extrabold mb-6 luxury-gradient-text drop-shadow-[0_6px_32px_rgba(191,167,106,0.45)]">
+        <span className="luxury-gold-text luxury-fade-text drop-shadow-gold">Welcome to SLK Interview Scheduler</span>
       </h1>
-      <p className="text-lg md:text-xl mb-8 leading-relaxed text-white drop-shadow">
+      <p className="text-lg md:text-xl mb-8 leading-relaxed text-[#bfa76a] luxury-fade-text drop-shadow-gold font-medium">
         Easily book your interview slot online.<br />
-        Only shortlisted candidates can reserve a time.
+        <span className="luxury-gold-text font-bold">Only shortlisted candidates can reserve a time.</span>
       </p>
-      <div className="flex justify-center gap-4">
+      <div className="flex justify-center gap-4 mt-4">
         <a
           href="#appointment"
-          className="bg-white text-green-700 font-semibold px-8 py-4 rounded-lg shadow hover:bg-green-100 transition text-lg"
+          className="luxury-card-glass bg-gradient-to-r from-[#bfa76a] via-[#e5e2d6] to-[#bfa76a] hover:from-[#e5e2d6] hover:to-[#bfa76a] text-[#1b3d5a] font-bold px-10 py-4 rounded-xl shadow-gold border border-[#bfa76a]/40 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#bfa76a] text-lg"
         >
-          Book Interview Slot
+          <span className="luxury-gold-text">Book Interview Slot</span>
         </a>
       </div>
     </div>
@@ -42,6 +41,18 @@ const HeroSection = () => (
 );
 
 const AppointmentLanding: React.FC = () => {
+  // Scroll progress indicator
+  const [scrollProgress, setScrollProgress] = useState(0);
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      setScrollProgress(progress);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   const [slots, setSlots] = useState<any[]>([]);
   const [selectedSlotId, setSelectedSlotId] = useState<string | null>(null);
   const [candidateName, setCandidateName] = useState("");
@@ -255,6 +266,13 @@ const AppointmentLanding: React.FC = () => {
 
   return (
     <>
+      {/* Scroll Progress Bar */}
+      <div className="fixed top-0 left-0 w-full h-1 z-[9999]">
+        <div
+          className="h-full bg-gradient-to-r from-[#bfa76a] to-[#e5e2d6] transition-all duration-200"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
       <Navbar />
       <div className="bg-gray-50 min-h-screen w-full">
         <HeroSection />

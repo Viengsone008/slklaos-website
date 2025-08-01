@@ -20,6 +20,19 @@ import {
 import AnimatedSection from "../../components/AnimatedSection";
 
 const JobDetailPage = () => {
+  // Scroll progress indicator
+  const [scrollProgress, setScrollProgress] = useState(0);
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      setScrollProgress(progress);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  
   const searchParams = useSearchParams();
   const router = useRouter();
   const jobId = searchParams.get('id');
@@ -126,39 +139,46 @@ const JobDetailPage = () => {
 
   return (
     <>
+      {/* Scroll Progress Bar */}
+      <div className="fixed top-0 left-0 w-full h-1 z-[9999]">
+        <div
+          className="h-full bg-gradient-to-r from-[#bfa76a] to-[#e5e2d6] transition-all duration-200"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
       <Navbar />
 
-      {/* Hero Image Banner */}
+      {/* Hero Image Banner - Luxury Upgrade */}
       <div
-        className="relative w-full h-[60vh] bg-cover bg-center"
+        className="relative w-full h-[60vh] bg-cover bg-center luxury-card-glass shadow-gold overflow-hidden"
         style={{
           backgroundImage: `url('${job.hero_image_url || "https://qawxuytlwqmsomsqlrsc.supabase.co/storage/v1/object/public/image//Career-Banner.jpg"}')`,
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#3d9392]/80 via-[#bfa76a]/30 to-[#1b3d5a]/80" />
+        <div className="absolute inset-0 bg-white/10 backdrop-blur-[2px]" />
         <div className="relative z-10 container mx-auto px-4 h-full flex items-center">
-          <div className="text-white max-w-4xl">
+          <div className="text-white max-w-4xl luxury-card-glass bg-white/30 backdrop-blur-xl border border-[#bfa76a]/30 rounded-3xl shadow-gold px-8 py-10">
             <AnimatedSection>
-              <h1 className="text-4xl lg:text-6xl font-bold mb-6 drop-shadow-2xl">
-                {job.title}
+              <h1 className="text-4xl lg:text-6xl font-extrabold mb-6 luxury-gradient-text drop-shadow-[0_6px_32px_rgba(191,167,106,0.45)]">
+                <span className="luxury-gold-text luxury-fade-text drop-shadow-gold">{job.title}</span>
               </h1>
-              
-              <div className="flex flex-wrap gap-6 text-lg text-gray-200">
+              <div className="flex flex-wrap gap-6 text-lg text-[#bfa76a] font-semibold luxury-fade-text drop-shadow-gold">
                 <div className="flex items-center">
-                  <Building2 className="w-5 h-5 mr-2" />
+                  <Building2 className="w-5 h-5 mr-2 text-[#bfa76a]" />
                   {job.category || job.department}
                 </div>
                 <div className="flex items-center">
-                  <MapPin className="w-5 h-5 mr-2" />
+                  <MapPin className="w-5 h-5 mr-2 text-[#bfa76a]" />
                   {job.location || 'Vientiane, Laos'}
                 </div>
                 <div className="flex items-center">
-                  <Briefcase className="w-5 h-5 mr-2" />
+                  <Briefcase className="w-5 h-5 mr-2 text-[#bfa76a]" />
                   {job.employment_type || job.job_type || 'Full-time'}
                 </div>
                 {job.salary_range && (
                   <div className="flex items-center">
-                    <DollarSign className="w-5 h-5 mr-2" />
+                    <DollarSign className="w-5 h-5 mr-2 text-[#bfa76a]" />
                     {job.salary_range}
                   </div>
                 )}

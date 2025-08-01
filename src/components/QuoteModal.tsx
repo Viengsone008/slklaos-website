@@ -327,7 +327,7 @@ const QuoteModal: React.FC<QuoteModalProps> = ({
       ) : (
         /* -------------------------- Form modal --------------------------- */
         <div className="relative min-h-screen flex items-center justify-center p-4">
-          <div className="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="relative bg-white rounded-2xl shadow-2xl w-full lg:w-auto max-w-full lg:max-w-8xl max-h-[90vh] lg:max-h-[75vh] overflow-y-auto mx-auto">
             <ModalHeader title={getModalTitle()} subtitle={getModalSubtitle()} onClose={onClose} />
 
             {/* Error banner */}
@@ -340,7 +340,7 @@ const QuoteModal: React.FC<QuoteModalProps> = ({
             {/* The form */}
             <form onSubmit={handleSubmit} className="p-6 space-y-8">
               <Section title="Personal Information" icon={<User className="w-4 h-4 mr-2" />}>
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4 text-gray-700">
                   <Input 
                     name="name" 
                     label="Full Name *" 
@@ -348,6 +348,7 @@ const QuoteModal: React.FC<QuoteModalProps> = ({
                     value={formData.name} 
                     onChange={handleChange}
                     autoComplete="name"
+                    placeholder="e.g. John Smith"
                   />
                   <Input
                     name="email"
@@ -357,6 +358,7 @@ const QuoteModal: React.FC<QuoteModalProps> = ({
                     value={formData.email}
                     onChange={handleChange}
                     autoComplete="email"
+                    placeholder="e.g. john@email.com"
                   />
                   <Input
                     name="phone"
@@ -366,6 +368,7 @@ const QuoteModal: React.FC<QuoteModalProps> = ({
                     value={formData.phone}
                     onChange={handleChange}
                     autoComplete="tel"
+                    placeholder="e.g. +856 20 5551 5551"
                   />
                   <Input
                     name="company"
@@ -373,6 +376,7 @@ const QuoteModal: React.FC<QuoteModalProps> = ({
                     value={formData.company}
                     onChange={handleChange}
                     autoComplete="organization"
+                    placeholder="e.g. SLK Trading Co., Ltd."
                   />
                 </div>
                 {/* Honeypot */}
@@ -388,7 +392,7 @@ const QuoteModal: React.FC<QuoteModalProps> = ({
               </Section>
 
               <Section title="Project Information" icon={<Briefcase className="w-4 h-4 mr-2" />}>
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4 text-gray-700">
                   <Select
                     name="project_type"
                     label="Project Type"
@@ -437,15 +441,16 @@ const QuoteModal: React.FC<QuoteModalProps> = ({
                   <Input
                     name="location"
                     label="Project Location"
-                    placeholder="City, Province, Laos"
+                    placeholder="e.g. Vientiane Capital, Laos"
                     value={formData.location}
                     onChange={handleChange}
                   />
                 </div>
+                
                 <Textarea
                   name="description"
                   label="Project Description"
-                  placeholder="Please describe your project requirements, specific needs, or any questions you have..."
+                  placeholder="e.g. I need a 2-storey modern house in Vientiane, 3 bedrooms, 2 bathrooms, budget $100,000. Please include landscaping and a garage."
                   value={formData.description}
                   onChange={handleChange}
                 />
@@ -568,7 +573,8 @@ const Textarea: React.FC<TextareaProps> = ({ label, ...rest }) => (
     <textarea
       {...rest}
       rows={4}
-      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6dbeb0] focus:border-transparent resize-none transition-colors"
+      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6dbeb0] focus:border-transparent resize-none transition-colors text-base text-gray-900 placeholder-gray-500"
+      style={{ minHeight: '120px', fontSize: '1.1rem', color: '#1a2936', background: '#fff' }}
     />
   </div>
 );

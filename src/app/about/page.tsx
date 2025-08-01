@@ -1,18 +1,52 @@
 "use client";
 import React, { useState, useRef } from 'react';
+import SparkleParticles from '../../components/SparkleParticles';
+import Head from 'next/head';
 import { Award, Users, Target, Clock, Building2, Shield, Layers, Star, CheckCircle, ArrowRight, Heart, Globe, Zap } from 'lucide-react';
+import FloatingQuoteButton from '../../components/FloatingQuoteButton';
 import AnimatedSection from '../../components/AnimatedSection';
 import QuoteModal from '../../components/QuoteModal';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useRouter } from 'next/navigation';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
+import WhatsAppChatButton from '../../components/WhatsAppChatButton';
 
 const AboutPage = () => {
+  // Scroll progress indicator
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [activeSection, setActiveSection] = useState('hero');
+  const [showNav, setShowNav] = useState(false);
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      setScrollProgress(progress);
+      // Section spy
+      const sections = [
+        { id: 'hero', ref: heroRef },
+        { id: 'story', ref: storyRef },
+        { id: 'journey', ref: journeyRef },
+        { id: 'team', ref: teamRef },
+      ];
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const el = sections[i].ref.current;
+        if (el && el.getBoundingClientRect().top <= 120) {
+          setActiveSection(sections[i].id);
+          break;
+        }
+      }
+      setShowNav(window.scrollY > 0);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
   const { t } = useLanguage();
   const router = useRouter();
 
+  const heroRef = useRef<HTMLDivElement>(null);
   const storyRef = useRef<HTMLDivElement>(null);
   const teamRef = useRef<HTMLDivElement>(null);
   const journeyRef = useRef<HTMLDivElement>(null);
@@ -36,19 +70,19 @@ const AboutPage = () => {
   const stats = [
     {
       icon: Award, 
-      number: "10+",
+      number: "20+",
       label: "Years of Excellence",
       description: "Proven track record in Laos construction industry"
     },
     {
       icon: Users,
-      number: "200+",
+      number: "20+",
       label: "Projects Completed",
       description: "Successfully delivered across various sectors"
     },
     {
       icon: Target,
-      number: "100%",
+      number: "99%",
       label: "Client Satisfaction",
       description: "Committed to exceeding expectations"
     },
@@ -192,55 +226,128 @@ const AboutPage = () => {
     }
   ]; 
 
-  return ( 
+  // Parallax state for hero image
+  const [parallax, setParallax] = useState(0);
+  React.useEffect(() => {
+    const onScroll = () => setParallax(window.scrollY * 0.3);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Animated number counter
+  const AnimatedNumber = ({ value }: { value: number | string }) => {
+    const [display, setDisplay] = React.useState(0);
+    React.useEffect(() => {
+      if (typeof value === 'string' && value.endsWith('+')) {
+        value = parseInt(value);
+      }
+      let start = 0;
+      const end = typeof value === 'number' ? value : parseInt(value as string);
+      if (isNaN(end)) return;
+      const duration = 800;
+      const step = Math.ceil(end / (duration / 16));
+      if (end === 0) {
+        setDisplay(0);
+        return;
+      }
+      const interval = setInterval(() => {
+        start += step;
+        if (start >= end) {
+          setDisplay(end);
+          clearInterval(interval);
+        } else {
+          setDisplay(start);
+        }
+      }, 16);
+      return () => clearInterval(interval);
+    }, [value]);
+    return <span>{typeof value === 'string' && value.endsWith('+') ? display + '+' : display}</span>;
+  };
+
+  // Floating section nav
+  const sectionNav = [
+    { id: 'hero', label: 'Hero', ref: heroRef },
+    { id: 'story', label: 'Our Story', ref: storyRef },
+    { id: 'journey', label: 'Journey', ref: journeyRef },
+    { id: 'team', label: 'Team', ref: teamRef },
+  ];
+
+
+  return (
     <>
+      {/* Scroll Progress Bar */}
+      <div className="fixed top-0 left-0 w-full h-1 z-[9999]">
+        <div
+          className="h-full bg-gradient-to-r from-[#bfa76a] to-[#e5e2d6] transition-all duration-200"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
+      <Head>
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+      </Head>
       <Navbar />
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-orange-50">
+      <div className="min-h-screen bg-gradient-to-br from-[#f8fafc] via-[#e0e7ef] to-[#f9e7d2]">
+        {/* Floating Section Navigation (dots) */}
+        {showNav && (
+          <nav className="fixed left-4 top-1/2 z-[9999] flex flex-col gap-2 -translate-y-1/2 hidden sm:flex bg-white/40 backdrop-blur-md rounded-2xl p-3 shadow-lg border border-white/30">
+            {sectionNav.map((s) => (
+              <button
+                key={s.id}
+                onClick={() => s.ref.current?.scrollIntoView({ behavior: 'smooth' })}
+                className={`w-2.5 h-2.5 rounded-full border-2 ${activeSection === s.id ? 'bg-yellow-300 border-yellow-400 scale-110 shadow-yellow-200' : 'bg-white border-yellow-200'} shadow transition-all duration-300`}
+                aria-label={s.label}
+              />
+            ))}
+          </nav>
+        )}
         {/* Hero Section */}
-        <section className="relative py-32 bg-gradient-to-br from-blue-800 via-indigo-700 to-orange-600 text-white overflow-hidden">
-          <div className="absolute inset-0">
+        <section ref={heroRef} id="hero" className="relative min-h-screen flex items-center bg-gradient-to-br from-[#bfa76a] via-[#e5e2d6] to-[#f8fafc] text-[#1a2936] overflow-hidden luxury-card-glass shadow-gold">
+          <SparkleParticles className="" />
+          <div className="absolute inset-0" style={{ transform: `translateY(${parallax}px)` }}>
             <img 
               src="https://qawxuytlwqmsomsqlrsc.supabase.co/storage/v1/object/public/image//About_Hero.png"  
               alt="SLK Trading team at work"
-              className="w-full h-full object-cover opacity-90"
+              className="w-full h-full object-cover opacity-20 transition-opacity duration-500 scale-105 blur-[2px]"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#6dbeb0]/80 to-[#1b3d5a]/80"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1a2936]/70 via-[#bfa76a]/20 to-transparent"></div>
+            <div className="absolute inset-0 bg-white/10 backdrop-blur-[2px]"></div>
           </div>
-           
-          <div className="relative z-10 container mx-auto px-4">
-            <AnimatedSection className="text-center max-w-4xl mx-auto">
-              <h1 className="text-5xl lg:text-7xl font-bold mb-6 drop-shadow-2xl">
-                About <span className="text-[#6dbeb0]">SLK Trading & Design Construction</span>
+          <div className="relative z-10 container mx-auto px-4 flex flex-col justify-center items-center h-full">
+            <AnimatedSection className="text-center max-w-4xl mx-auto luxury-card-glass bg-white/40 backdrop-blur-2xl border border-[#bfa76a]/30 rounded-3xl shadow-gold px-8 py-14">
+              <h1 className="text-6xl lg:text-7xl font-extrabold mb-6 luxury-gradient-text drop-shadow-[0_6px_32px_rgba(191,167,106,0.45)]" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '0.04em' }}>
+                About <span className="luxury-gold-text luxury-fade-text drop-shadow-gold">SLK Trading & Design Construction</span>
               </h1>
-              <p className="text-2xl text-blue-100 mb-8 leading-relaxed drop-shadow-lg">
-                Building Laos' future with quality, innovation, and excellence
+              <div className="h-1 w-24 bg-gradient-to-r from-[#bfa76a] to-[#e5e2d6] rounded-full mb-8 mx-auto opacity-90 shadow-gold" />
+              <p className="text-2xl mb-8 leading-relaxed font-semibold luxury-fade-text text-[#bfa76a] drop-shadow-gold" style={{ fontFamily: 'Playfair Display, serif' }}>
+                Building Laos' future with <span className="luxury-gold-text font-bold">quality</span>, <span className="luxury-gold-text font-bold">innovation</span>, and <span className="luxury-gold-text font-bold">excellence</span>
               </p>
-              <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center mt-4">
                 <button 
                   onClick={() => setIsQuoteModalOpen(true)}
-                  className="bg-[#1b3d5a] hover:bg-[#336675] text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  className="luxury-card-glass bg-gradient-to-r from-[#bfa76a] via-[#e5e2d6] to-[#bfa76a] hover:from-[#e5e2d6] hover:to-[#bfa76a] text-[#1a2936] px-8 py-4 rounded-xl font-extrabold text-lg shadow-gold border border-[#bfa76a]/40 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#bfa76a]"
+                  style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '0.04em', textShadow: '0 2px 12px #fff, 0 2px 8px #f1ce76ff, 0 1px 2px #1a2936' }}
                 >
                   Work With Us
-                  <ArrowRight className="w-5 h-5 ml-2 inline" />
+                  <ArrowRight className="w-5 h-5 ml-2 inline text-[#bfa76a]" />
                 </button>
-
                 <button 
                   onClick={scrollToStory}
-                  className="border-2 border-white/40 hover:bg-white/15 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300"
+                  className="luxury-card-glass border-2 border-[#bfa76a] hover:bg-[#bfa76a]/10 text-white px-8 py-4 rounded-xl font-extrabold text-lg shadow-gold transition-all duration-300 outline-none focus:ring-4 focus:ring-[#bfa76a]/40"
+                  style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '0.04em', textShadow: '0 2px 12px #fff, 0 2px 8px #f5d575ff, 0 1px 2px #1a2936' }}
                 >
                   Our Story
                 </button>
-
                 <button 
                   onClick={scrollToJourney}
-                  className="border-2 border-white/40 hover:bg-white/15 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300"
+                  className="luxury-card-glass border-2 border-[#bfa76a] hover:bg-[#bfa76a]/10 text-white px-8 py-4 rounded-xl font-extrabold text-lg shadow-gold transition-all duration-300 outline-none focus:ring-4 focus:ring-[#bfa76a]/40"
+                  style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '0.04em', textShadow: '0 2px 12px #fff, 0 2px 8px #f5ce6aff, 0 1px 2px #1a2936' }}
                 >
                   Our Journey
                 </button>
-
                 <button 
                   onClick={scrollToTeam}
-                  className="border-2 border-white/40 hover:bg-white/15 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300"
+                  className="luxury-card-glass border-2 border-[#bfa76a] hover:bg-[#bfa76a]/10 text-white px-8 py-4 rounded-xl font-extrabold text-lg shadow-gold transition-all duration-300 outline-none focus:ring-4 focus:ring-[#bfa76a]/40"
+                  style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '0.04em', textShadow: '0 2px 12px #fff, 0 2px 8px #f3cc6cff, 0 1px 2px #1a2936' }}
                 >
                   Meet Our Team
                 </button>
@@ -267,16 +374,16 @@ const AboutPage = () => {
                 return (
                   <AnimatedSection
                     key={index}
-                    animation="scale"
+                  animation="fade-up"
                     delay={index * 100}
                     className="text-center"
                   >
-                    <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                      <div className="bg-orange-100 p-4 rounded-xl inline-flex mb-4">
+                    <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-[#bfa76a] group relative">
+                      <div className="bg-orange-100 p-4 rounded-xl inline-flex mb-4 border-2 border-[#bfa76a]/30 group-hover:border-[#bfa76a] transition-all duration-300">
                         <IconComponent className="w-8 h-8 text-orange-600" />
                       </div>
                       <div className="text-4xl font-bold text-gray-900 mb-2">
-                        {stat.number}
+                        <AnimatedNumber value={stat.number} />
                       </div>
                       <div className="font-semibold text-gray-700 mb-2">
                         {stat.label}
@@ -395,9 +502,9 @@ const AboutPage = () => {
               {team.map((member, index) => (
                 <AnimatedSection
                   key={index}
-                  animation="fade-up"
+                  animation="fade-left"
                   delay={index * 150}
-                  className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden"
+                  className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border-2 border-transparent hover:border-[#bfa76a] group relative"
                 >
                   <div className="relative h-64">
                     <img  
@@ -406,13 +513,27 @@ const AboutPage = () => {
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    {/* Hover overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#bfa76a]/90 to-[#e5e2d6]/90 opacity-0 group-hover:opacity-95 transition-all duration-300 flex flex-col justify-center items-center p-6 text-center">
+                      <p className="text-lg font-bold text-[#1a2936] mb-2">{member.name}</p>
+                      <p className="text-[#3d9392] font-medium mb-2">{member.position}</p>
+                      <p className="text-[#1a2936] text-sm mb-2">{member.description}</p>
+                      <div className="flex flex-wrap gap-2 justify-center mb-2">
+                        {member.specialties.map((specialty, specialtyIndex) => (
+                          <span key={specialtyIndex} className="bg-white/80 text-[#bfa76a] px-3 py-1 rounded-full text-xs font-semibold border border-[#bfa76a]">{specialty}</span>
+                        ))}
+                      </div>
+                      {/* Socials placeholder */}
+                      <div className="flex gap-3 justify-center mt-2">
+                        <a href="#" className="text-[#3d9392] hover:text-[#bfa76a] transition-colors" aria-label="LinkedIn"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.968v5.699h-3v-10h2.881v1.367h.041c.401-.761 1.381-1.563 2.844-1.563 3.042 0 3.604 2.003 3.604 4.605v5.591z"/></svg></a>
+                        <a href="#" className="text-[#3d9392] hover:text-[#bfa76a] transition-colors" aria-label="Facebook"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.733 0-1.325.592-1.325 1.326v21.348c0 .733.592 1.326 1.325 1.326h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.312h3.587l-.467 3.622h-3.12v9.293h6.116c.729 0 1.322-.593 1.322-1.326v-21.349c0-.734-.593-1.326-1.326-1.326z"/></svg></a>
+                      </div>
+                    </div>
                   </div>
-                  
                   <div className="p-6">
                     <h3 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
                     <p className="text-[#3d9392] font-medium mb-3">{member.position}</p>
                     <p className="text-gray-600 text-sm mb-4 leading-relaxed">{member.description}</p>
-                    
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-2">Specialties:</h4>
                       <div className="space-y-1">
@@ -536,11 +657,14 @@ const AboutPage = () => {
       </div>
 
       <Footer />
-
+      {showNav && (
+        <FloatingQuoteButton onClick={() => setIsQuoteModalOpen(true)} />
+      )}
+      <WhatsAppChatButton />
       <QuoteModal 
         isOpen={isQuoteModalOpen} 
         onClose={() => setIsQuoteModalOpen(false)}
-        source="about_page"
+        source="products_get_product_quote"
       />
     </>
   );

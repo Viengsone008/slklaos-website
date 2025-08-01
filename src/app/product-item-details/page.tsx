@@ -86,6 +86,18 @@ const mapDbRowToProduct = (row: any): Product => ({
    Component
    --------------------------------------------------------------*/
 const ProductItemDetailPage: React.FC = () => {
+  // Scroll Progress Indicator
+  const [scrollProgress, setScrollProgress] = useState(0);
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      setScrollProgress(progress);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   const router = useRouter();
   const searchParams = useSearchParams();
   const productId = searchParams.get('id');
@@ -257,7 +269,14 @@ const ProductItemDetailPage: React.FC = () => {
   const ProductIcon = product.category === "waterproofing" ? Shield : Layers;
 
   return (
-    <> 
+    <>
+      {/* Scroll Progress Bar */}
+      <div className="fixed top-0 left-0 w-full z-[999] h-2 bg-gradient-to-r from-[#3d9392]/30 to-[#6dbeb0]/30">
+        <div
+          className="h-full bg-gradient-to-r from-[#3d9392] to-[#6dbeb0] rounded-r-full shadow-lg transition-all duration-200"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
       <Navbar />
       
       {/* Luxury Background */}
@@ -266,7 +285,7 @@ const ProductItemDetailPage: React.FC = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(120,119,198,0.3),transparent_50%)]"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_75%,rgba(236,72,153,0.3),transparent_50%)]"></div>
         
-        <div className="relative z-10 container mx-auto mt-24 px-6 py-16">
+        <div className="relative z-10 container mx-auto mt-24 px-2 sm:px-4 md:px-6 py-8 md:py-16">
           {/* Luxury Breadcrumbs */}
           <AnimatedSection animation="fade-right" className="mb-12">
             <div className="flex items-center text-sm text-slate-400 mb-8">
@@ -299,12 +318,12 @@ const ProductItemDetailPage: React.FC = () => {
           </AnimatedSection>
 
           {/* Hero Product Section */}
-          <AnimatedSection animation="fade-up" className="mb-20">
+          <AnimatedSection animation="fade-up" className="mb-12 md:mb-20">
             <div className="bg-gradient-to-br from-white/95 to-slate-50/95 backdrop-blur-xl rounded-[2rem] shadow-2xl overflow-hidden border border-white/20">
-              <div className="grid lg:grid-cols-2 gap-0">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                 {/* Image Gallery */}
                 <div className="relative flex flex-col bg-gradient-to-br from-slate-50 to-white">
-                  <div className="relative w-full h-96 md:h-[520px] xl:h-[600px] overflow-hidden group">
+                  <div className="relative w-full h-64 xs:h-80 sm:h-96 md:h-[420px] xl:h-[600px] overflow-hidden group">
                     <img
                       src={currentImage || product.image}
                       alt={product.name}
@@ -326,7 +345,7 @@ const ProductItemDetailPage: React.FC = () => {
 
                   {/* Luxury Thumbnails */}
                   {product.images && product.images.length > 1 && (
-                    <div className="relative mt-8 px-8">
+                    <div className="relative mt-4 sm:mt-8 px-2 sm:px-8">
                       {canScrollLeft && (
                         <button
                           onClick={() => scrollThumbs("left")}
@@ -346,7 +365,7 @@ const ProductItemDetailPage: React.FC = () => {
 
                       <div
                         ref={thumbRef}
-                        className="flex space-x-4 overflow-x-auto px-10 pb-4 scroll-smooth no-scrollbar"
+                        className="flex space-x-2 sm:space-x-4 overflow-x-auto px-2 sm:px-10 pb-4 scroll-smooth no-scrollbar"
                       >
                         {product.images.map((img, i) => (
                           <button
@@ -389,7 +408,7 @@ const ProductItemDetailPage: React.FC = () => {
                 </div>
 
                 {/* Product Information */}
-                <div className="p-10 md:p-12 lg:p-16 flex flex-col justify-center bg-gradient-to-br from-white to-slate-50/50">
+                <div className="p-4 xs:p-6 sm:p-8 md:p-12 lg:p-16 flex flex-col justify-center bg-gradient-to-br from-white to-slate-50/50">
                   <div className="flex items-start mb-8">
                     <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-4 rounded-2xl mr-6 shadow-inner">
                       <ProductIcon className="w-8 h-8 text-amber-600" />
@@ -413,7 +432,7 @@ const ProductItemDetailPage: React.FC = () => {
 
                   {/* Premium Features */}
                   {product.features && product.features.length > 0 && (
-                    <div className="mb-10 bg-gradient-to-r from-slate-50 to-white p-8 rounded-3xl shadow-inner border border-slate-100">
+                    <div className="mb-8 sm:mb-10 bg-gradient-to-r from-slate-50 to-white p-4 sm:p-8 rounded-3xl shadow-inner border border-slate-100">
                       <h3 className="font-semibold text-slate-800 mb-6 text-xl flex items-center">
                         <Award className="w-5 h-5 mr-2 text-amber-500" />
                         Premium Features
@@ -436,8 +455,8 @@ const ProductItemDetailPage: React.FC = () => {
                   )}
 
                   {/* Price & Warranty */}
-                  <div className="mb-10">
-                    <div className="grid grid-cols-2 gap-6">
+                  <div className="mb-8 sm:mb-10">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                       {product.price && (
                         <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-6 rounded-2xl shadow-inner">
                           <span className="text-amber-700 text-sm block mb-2 font-medium">Investment</span>
@@ -458,9 +477,9 @@ const ProductItemDetailPage: React.FC = () => {
 
                   {/* Color Selection */}
                   {product.colours && product.colours.length > 0 && (
-                    <div className="mb-10">
+                    <div className="mb-8 sm:mb-10">
                       <h4 className="text-lg font-semibold text-slate-800 mb-4">Available Finishes</h4>
-                      <div className="flex flex-wrap gap-3">
+                      <div className="flex flex-wrap gap-2 sm:gap-3">
                         {product.colours.slice(0, 6).map((color, i) => (
                           <button
                             key={i}
@@ -486,7 +505,7 @@ const ProductItemDetailPage: React.FC = () => {
                   )}
                   
                   {/* Quantity & Quote */}
-                  <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 mb-10">
+                  <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 mb-8 sm:mb-10">
                     <div className="w-full md:w-1/3">
                       <label className="block text-sm font-semibold text-slate-600 mb-3">Quantity (sqm)</label>
                       <input
@@ -500,7 +519,7 @@ const ProductItemDetailPage: React.FC = () => {
                     <div className="w-full md:w-2/3">
                       <button
                         onClick={handleAddToQuote}
-                        className="w-full bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:from-amber-500 hover:to-amber-600 text-slate-900 px-8 py-5 rounded-2xl font-semibold transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-amber-500/25 flex items-center justify-center text-lg"
+                        className="w-full bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:from-amber-500 hover:to-amber-600 text-slate-900 px-6 sm:px-8 py-4 sm:py-5 rounded-2xl font-semibold transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-amber-500/25 flex items-center justify-center text-base sm:text-lg"
                       >
                         <DollarSign className="w-5 h-5 mr-2" /> Request Luxury Quote
                       </button>
@@ -508,8 +527,8 @@ const ProductItemDetailPage: React.FC = () => {
                   </div>
 
                   {/* Share & Actions */}
-                  <div className="flex items-center justify-between pt-8 border-t border-slate-200">
-                    <div>
+                  <div className="flex flex-col sm:flex-row items-center justify-between pt-8 border-t border-slate-200 gap-6 sm:gap-0">
+                    <div className="w-full sm:w-auto">
                       <p className="text-slate-600 mb-4 font-medium">Share this luxury product</p>
                       <div className="flex space-x-3">
                         <button
@@ -532,7 +551,7 @@ const ProductItemDetailPage: React.FC = () => {
                         </button>
                       </div>
                     </div>
-                    <button className="flex items-center bg-slate-100 hover:bg-slate-200 px-6 py-3 rounded-xl text-slate-700 transition-all duration-300 shadow-md hover:shadow-lg">
+                    <button className="flex items-center bg-slate-100 hover:bg-slate-200 px-6 py-3 rounded-xl text-slate-700 transition-all duration-300 shadow-md hover:shadow-lg w-full sm:w-auto justify-center mt-4 sm:mt-0">
                       <Heart className="w-5 h-5 mr-2 stroke-slate-500" />
                       <span className="font-medium">Save</span>
                     </button>
@@ -543,12 +562,12 @@ const ProductItemDetailPage: React.FC = () => {
           </AnimatedSection>
 
           {/* Main Content Grid */}
-          <div className="grid lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-10">
             {/* Left Content */}
             <div className="lg:col-span-2">
               <AnimatedSection animation="fade-up" delay={200}>
                 {/* Luxury Tabbed Navigation */}
-                <div className="mb-10 bg-white/90 backdrop-blur-xl rounded-3xl p-2 shadow-xl border border-white/20">
+                <div className="mb-8 sm:mb-10 bg-white/90 backdrop-blur-xl rounded-3xl p-1 sm:p-2 shadow-xl border border-white/20">
                   <div className="flex overflow-x-auto no-scrollbar">
                     <button
                       onClick={() => setActiveTab("description")}
@@ -600,10 +619,10 @@ const ProductItemDetailPage: React.FC = () => {
                 </div>
 
                 {/* Tab Content */}
-                <div className="mb-12">
+                <div className="mb-8 sm:mb-12">
                   {/* Description Tab */}
                   {activeTab === "description" && (
-                    <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-xl p-10 md:p-12 border border-white/20">
+                    <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-xl p-4 xs:p-6 sm:p-10 md:p-12 border border-white/20">
                       {product.longDescription && product.longDescription.trim().length > 0 ? (
                         <div className="prose prose-lg max-w-none">
                           {product.longDescription.split('\n\n').map((para, idx) => (
@@ -620,12 +639,12 @@ const ProductItemDetailPage: React.FC = () => {
 
                       {/* Benefits */}
                       {product.benefits && product.benefits.length > 0 && (
-                        <div className="mt-12 pt-12 border-t border-slate-200">
+                        <div className="mt-8 sm:mt-12 pt-8 sm:pt-12 border-t border-slate-200">
                           <h3 className="text-3xl font-light text-slate-800 mb-8 flex items-center">
                             <Crown className="w-7 h-7 mr-3 text-amber-500" />
                             Luxury Benefits
                           </h3>
-                          <div className="grid md:grid-cols-2 gap-8">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                             {product.benefits.map((bnf, i) => (
                               <div key={i} className="flex items-start gap-6 bg-gradient-to-br from-slate-50 to-white p-8 rounded-2xl shadow-lg border border-slate-100">
                                 <div className="bg-gradient-to-br from-emerald-100 to-emerald-200 p-3 rounded-xl">
@@ -640,9 +659,9 @@ const ProductItemDetailPage: React.FC = () => {
 
                       {/* Colors */}
                       {product.colours && product.colours.length > 0 && (
-                        <div className="mt-12 pt-12 border-t border-slate-200">
+                        <div className="mt-8 sm:mt-12 pt-8 sm:pt-12 border-t border-slate-200">
                           <h3 className="text-3xl font-light text-slate-800 mb-8">Exquisite Finishes</h3>
-                          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+                          <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 sm:gap-8">
                             {product.colours.map((c, i) => (
                               <div key={i} className="flex flex-col items-center text-center group cursor-pointer">
                                 {c.image ? (
@@ -666,12 +685,12 @@ const ProductItemDetailPage: React.FC = () => {
 
                   {/* Specifications Tab */}
                   {activeTab === "specs" && product.specifications && (
-                    <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-xl p-10 md:p-12 border border-white/20">
+                    <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-xl p-4 xs:p-6 sm:p-10 md:p-12 border border-white/20">
                       <h2 className="text-3xl font-light text-slate-800 mb-10 flex items-center">
                         <Award className="w-7 h-7 mr-3 text-amber-500" />
                         Technical Excellence
                       </h2>
-                      <div className="grid md:grid-cols-2 gap-x-20 gap-y-8">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 md:gap-x-20 gap-y-6 md:gap-y-8">
                         {product.specifications.map((s, i) => (
                           <div key={i} className="flex justify-between items-center pb-4 border-b border-slate-200">
                             <span className="text-slate-600 font-medium">{s.name}</span>
@@ -684,9 +703,9 @@ const ProductItemDetailPage: React.FC = () => {
 
                   {/* Applications Tab */}
                   {activeTab === "applications" && product.applications && (
-                    <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-xl p-10 md:p-12 border border-white/20">
+                    <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-xl p-4 xs:p-6 sm:p-10 md:p-12 border border-white/20">
                       <h2 className="text-3xl font-light text-slate-800 mb-10">Premium Applications</h2>
-                      <div className="grid md:grid-cols-2 gap-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                         {product.applications.map((app, i) => (
                           <div key={i} className="flex items-center bg-gradient-to-r from-slate-50 to-white p-6 rounded-2xl shadow-md border border-slate-100">
                             <div className="w-3 h-3 bg-gradient-to-r from-amber-400 to-amber-500 rounded-full mr-4" />
@@ -699,9 +718,9 @@ const ProductItemDetailPage: React.FC = () => {
 
                   {/* Installation Tab */}
                   {activeTab === "installation" && product.installation && (
-                    <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-xl p-10 md:p-12 border border-white/20">
+                    <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-xl p-4 xs:p-6 sm:p-10 md:p-12 border border-white/20">
                       <h2 className="text-3xl font-light text-slate-800 mb-10">Professional Installation</h2>
-                      <div className="space-y-8">
+                      <div className="space-y-6 md:space-y-8">
                         {product.installation.map((step, i) => (
                           <div key={i} className="flex bg-gradient-to-r from-slate-50 to-white p-8 rounded-2xl shadow-md border border-slate-100">
                             <div className="bg-gradient-to-r from-amber-400 to-amber-500 w-12 h-12 rounded-full flex items-center justify-center text-slate-900 font-bold mr-8 flex-shrink-0 shadow-lg">
@@ -717,12 +736,12 @@ const ProductItemDetailPage: React.FC = () => {
 
                 {/* Luxury Downloads */}
                 {(product.pdfUrl || product.catalogueUrl) && (
-                  <div className="bg-gradient-to-r from-slate-800 via-slate-900 to-slate-800 rounded-3xl shadow-2xl p-10 md:p-12 mb-10 text-white">
+                  <div className="bg-gradient-to-r from-slate-800 via-slate-900 to-slate-800 rounded-3xl shadow-2xl p-4 xs:p-6 sm:p-10 md:p-12 mb-8 sm:mb-10 text-white">
                     <h2 className="text-3xl font-light mb-8 flex items-center">
                       <Download className="w-8 h-8 mr-4 text-amber-400" /> 
                       Premium Resources
                     </h2>
-                    <div className="grid sm:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                       {product.pdfUrl && (
                         <a
                           href={product.pdfUrl}
@@ -768,10 +787,10 @@ const ProductItemDetailPage: React.FC = () => {
             </div>
 
             {/* Right Sidebar */}
-            <div>
+            <div className="lg:col-span-1">
               <AnimatedSection animation="fade-left" delay={300}>
                 {/* Luxury Quote Request */}
-                <div className="bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 rounded-3xl shadow-2xl p-8 text-white mb-10 border border-slate-700">
+                <div className="bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 rounded-3xl shadow-2xl p-4 xs:p-6 sm:p-8 text-white mb-8 sm:mb-10 border border-slate-700">
                   <h3 className="text-2xl font-light mb-4 flex items-center">
                     <Crown className="w-6 h-6 mr-2 text-amber-400" />
                     Exclusive Quote
@@ -788,7 +807,7 @@ const ProductItemDetailPage: React.FC = () => {
                 </div>
 
                 {/* Why Choose This Product */}
-                <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-xl p-8 mb-10 border border-white/20">
+                <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-xl p-4 xs:p-6 sm:p-8 mb-8 sm:mb-10 border border-white/20">
                   <h3 className="text-2xl font-light text-slate-800 mb-8 flex items-center">
                     <Sparkles className="w-6 h-6 mr-2 text-amber-500" />
                     Luxury Excellence
@@ -837,9 +856,9 @@ const ProductItemDetailPage: React.FC = () => {
 
                 {/* Related Products */}
                 {relatedProducts.length > 0 && (
-                  <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-xl p-8 mb-10 border border-white/20">
+                  <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-xl p-4 xs:p-6 sm:p-8 mb-8 sm:mb-10 border border-white/20">
                     <h3 className="text-2xl font-light text-slate-800 mb-8">Curated Collection</h3>
-                    <div className="space-y-6">
+                    <div className="space-y-4 sm:space-y-6">
                       {relatedProducts.slice(0, 3).map((rp) => (
                         <div
                           key={rp.id}
@@ -867,12 +886,12 @@ const ProductItemDetailPage: React.FC = () => {
                 )}
 
                 {/* Luxury Contact */}
-                <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-xl p-8 border border-white/20">
+                <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-xl p-4 xs:p-6 sm:p-8 border border-white/20">
                   <h3 className="text-2xl font-light text-slate-800 mb-4">Luxury Concierge</h3>
                   <p className="text-slate-600 mb-8 leading-relaxed">
                     Our luxury specialists are standing by to assist with your selection and provide expert consultation.
                   </p>
-                  <div className="space-y-4 mb-8">
+                  <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
                     <div className="flex items-center bg-gradient-to-r from-slate-50 to-white p-4 rounded-2xl shadow-inner border border-slate-100">
                       <Phone className="w-5 h-5 text-amber-600 mr-4" />
                       <span className="text-slate-700 font-semibold">+856 21 773 737</span>
@@ -882,10 +901,10 @@ const ProductItemDetailPage: React.FC = () => {
                       <span className="text-slate-700 font-semibold">mark@slklaos.la</span>
                     </div>
                   </div>
-                  <div className="pt-6 border-t border-slate-200">
+                  <div className="pt-4 sm:pt-6 border-t border-slate-200">
                     <button
                       onClick={() => router.push("/contact")}
-                      className="w-full bg-gradient-to-r from-slate-100 to-slate-200 hover:from-slate-200 hover:to-slate-300 text-slate-800 py-4 px-6 rounded-2xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center"
+                      className="w-full bg-gradient-to-r from-slate-100 to-slate-200 hover:from-slate-200 hover:to-slate-300 text-slate-800 py-3 sm:py-4 px-4 sm:px-6 rounded-2xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center"
                     >
                       <Clock className="w-5 h-5 mr-2" />
                       Schedule Consultation

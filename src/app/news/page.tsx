@@ -26,14 +26,65 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/navigation';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
+import WhatsAppChatButton from '../../components/WhatsAppChatButton';
+import FloatingQuoteButton from '../../components/FloatingQuoteButton';
+import QuoteModal from '../../components/QuoteModal';
 
 const NewsPage = () => {
+  // Floating section nav refs
+  const heroRef = React.useRef<HTMLDivElement>(null);
+  const featuredRef = React.useRef<HTMLDivElement>(null);
+  const recentRef = React.useRef<HTMLDivElement>(null);
+  const allNewsRef = React.useRef<HTMLDivElement>(null);
+  const newsletterRef = React.useRef<HTMLDivElement>(null);
+  const [activeSection, setActiveSection] = React.useState('hero');
+  const [showNav, setShowNav] = React.useState(false);
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const sections = [
+        { id: 'hero', ref: heroRef },
+        { id: 'featured', ref: featuredRef },
+        { id: 'recent', ref: recentRef },
+        { id: 'all', ref: allNewsRef },
+        { id: 'newsletter', ref: newsletterRef },
+      ];
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const el = sections[i].ref.current;
+        if (el && el.getBoundingClientRect().top <= 120) {
+          setActiveSection(sections[i].id);
+          break;
+        }
+      }
+      setShowNav(window.scrollY > 0);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  const sectionNav = [
+    { id: 'hero', label: 'Hero', ref: heroRef },
+    { id: 'featured', label: 'Featured', ref: featuredRef },
+    { id: 'recent', label: 'Recent', ref: recentRef },
+    { id: 'all', label: 'All News', ref: allNewsRef },
+    { id: 'newsletter', label: 'Newsletter', ref: newsletterRef },
+  ];
+  // Scroll progress indicator
+  const [scrollProgress, setScrollProgress] = useState(0);
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      setScrollProgress(progress);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   const { t } = useLanguage();
   const router = useRouter();
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<any[]>([]);
   const [loadingPosts, setLoadingPosts] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
   const [subscriberEmail, setSubscriberEmail] = useState('');
   const [isSubscribing, setIsSubscribing] = useState(false);
@@ -183,6 +234,7 @@ const NewsPage = () => {
   const prevSlide = () => setCurrentSlide((prev) => (prev === 0 ? slideshowPosts.length - 1 : prev - 1));
   const goToSlide = (index: number) => setCurrentSlide(index);
 
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
   if (loadingPosts) {
     return (
       <>
@@ -197,40 +249,65 @@ const NewsPage = () => {
 
   return (
     <>
+      {/* Scroll Progress Bar */}
+      <div className="fixed top-0 left-0 w-full h-1 z-[9999]">
+        <div
+          className="h-full bg-gradient-to-r from-[#bfa76a] to-[#e5e2d6] transition-all duration-200"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
       <Navbar />
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-orange-50">
-        {/* Hero Section */}
-        <section className="relative py-32 bg-gradient-to-br from-[#3d9392] via-[#6dbeb0] to-[#1b3d5a] text-white overflow-hidden">
-          <div className="absolute inset-0">
-            <img 
-              src="https://qawxuytlwqmsomsqlrsc.supabase.co/storage/v1/object/public/image//News_Hero.jpg" 
-              alt="Latest news and updates"
-              className="w-full h-full object-cover opacity-80"
+      {/* Floating Section Navigation (dots) */}
+      {showNav && (
+        <nav className="fixed left-4 top-1/2 z-[9999] flex flex-col gap-2 -translate-y-1/2 hidden sm:flex bg-white/40 backdrop-blur-md rounded-2xl p-3 shadow-lg border border-white/30">
+          {sectionNav.map((s) => (
+            <button
+              key={s.id}
+              onClick={() => s.ref.current?.scrollIntoView({ behavior: 'smooth' })}
+              className={`w-2.5 h-2.5 rounded-full border-2 ${activeSection === s.id ? 'bg-[#3d9392] border-[#3d9392] scale-110 shadow-blue-200' : 'bg-white border-blue-200'} shadow transition-all duration-300`}
+              aria-label={s.label}
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#3d9392]/80 to-[#1b3d5a]/80"></div> 
+          ))}
+        </nav>
+      )}
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-orange-50">
+        {/* Hero Section - Luxury Upgrade */}
+        <section
+          ref={heroRef}
+          id="hero"
+          className="relative py-36 md:py-44 bg-gradient-to-br from-[#3d9392] via-[#6dbeb0] to-[#1b3d5a] text-white overflow-hidden luxury-card-glass shadow-gold"
+        >
+          <div className="absolute inset-0">
+            <img
+              src="https://qawxuytlwqmsomsqlrsc.supabase.co/storage/v1/object/public/image//News_Hero.jpg"
+              alt="Latest news and updates"
+              className="w-full h-full object-cover opacity-80 scale-105 blur-[2px]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#3d9392]/80 via-[#bfa76a]/30 to-[#1b3d5a]/80"></div>
+            <div className="absolute inset-0 bg-white/10 backdrop-blur-[2px]"></div>
           </div>
-          
+
           <div className="relative z-10 container mx-auto px-4">
-            <AnimatedSection className="text-center max-w-4xl mx-auto">
-              <h1 className="text-5xl lg:text-7xl font-bold mb-6 drop-shadow-2xl">
-                Latest <span className="text-[#6dbeb0]">News</span>
-              </h1> 
-              <p className="text-2xl text-blue-100 mb-8 leading-relaxed drop-shadow-lg">
-                Stay updated with our latest projects, announcements, and industry insights
+            <AnimatedSection className="text-center max-w-4xl mx-auto luxury-card-glass bg-white/30 backdrop-blur-xl border border-[#bfa76a]/30 rounded-3xl shadow-gold px-8 py-12">
+              <h1 className="text-5xl lg:text-7xl font-extrabold mb-6 luxury-gradient-text drop-shadow-[0_6px_32px_rgba(191,167,106,0.45)]">
+                Latest <span className="luxury-gold-text luxury-fade-text drop-shadow-gold">News</span>
+              </h1>
+              <p className="text-2xl md:text-3xl text-[#bfa76a] mb-8 leading-relaxed luxury-fade-text drop-shadow-gold font-medium">
+                Stay updated with our <span className="luxury-gold-text font-bold">latest projects</span>, <span className="luxury-gold-text font-bold">announcements</span>, and <span className="luxury-gold-text font-bold">industry insights</span>
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button 
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6">
+                <button
                   onClick={openSubscribeModal}
-                  className="bg-[#3d9392] hover:bg-[#6dbeb0] text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  className="luxury-card-glass bg-gradient-to-r from-[#bfa76a] via-[#e5e2d6] to-[#bfa76a] hover:from-[#e5e2d6] hover:to-[#bfa76a] text-[#1b3d5a] px-10 py-4 rounded-xl font-bold text-lg shadow-gold border border-[#bfa76a]/40 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#bfa76a]"
                 >
-                  Subscribe to Updates
-                  <ArrowRight className="w-5 h-5 ml-2 inline" />
+                  <span className="luxury-gold-text">Subscribe to Updates</span>
+                  <ArrowRight className="w-5 h-5 ml-2 inline text-[#bfa76a]" />
                 </button>
-                <button 
+                <button
                   onClick={() => router.push('/projects')}
-                  className="border-2 border-white/40 hover:bg-white/15 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300"
+                  className="luxury-card-glass bg-gradient-to-r from-[#bfa76a] via-[#e5e2d6] to-[#bfa76a] border-2 border-[#bfa76a]/70 text-[#1b3d5a] px-10 py-4 rounded-xl font-extrabold text-lg shadow-gold transition-all duration-300 hover:scale-105 hover:from-[#e5e2d6] hover:to-[#bfa76a] focus:outline-none focus:ring-2 focus:ring-[#bfa76a] drop-shadow-[0_4px_24px_rgba(191,167,106,0.25)]"
                 >
-                  View Our Projects
+                  <span className="luxury-gold-text">View Our Projects</span>
                 </button>
               </div>
             </AnimatedSection>
@@ -249,7 +326,7 @@ const NewsPage = () => {
                   placeholder="Search news..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3d9392] focus:border-transparent"   
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3d9392] focus:border-transparent bg-white text-gray-900 placeholder:text-[#bfa76a] font-semibold text-base"
                 /> 
               </div>
 
@@ -278,7 +355,7 @@ const NewsPage = () => {
 
         {/* Featured Slideshow */}
         {slideshowPosts.length > 0 && (
-          <section className="py-16 bg-white">
+          <section ref={featuredRef} id="featured" className="py-16 bg-white">
             <div className="container mx-auto px-4">
               <AnimatedSection className="text-center mb-10">
                 <h2 className="text-4xl font-bold text-gray-900 mb-6">
@@ -422,7 +499,7 @@ const NewsPage = () => {
 
         {/* Recent Posts */}
         {recentPosts.length > 0 && (
-          <section className="py-16 bg-gray-50">
+          <section ref={recentRef} id="recent" className="py-16 bg-gray-50">
             <div className="container mx-auto px-4">
               <AnimatedSection className="text-center mb-10">
                 <h2 className="text-4xl font-bold text-gray-900 mb-6">
@@ -441,7 +518,7 @@ const NewsPage = () => {
                   >
                     {/* Post Image */}
                     <div 
-                      className="relative h-48 overflow-hidden cursor-pointer"
+                      className="relative h-48 overflow-hidden cursor-pointer luxury-card-glass rounded-3xl border-2 border-[#bfa76a]/30 shadow-2xl group"
                       onClick={(e) => {
                         e.stopPropagation();
                         handleImageClick(post.id);
@@ -450,21 +527,19 @@ const NewsPage = () => {
                       <img 
                         src={post.featuredImage || post.featured_image}
                         alt={post.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 rounded-3xl"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent group-hover:from-black/50 transition-all duration-300"></div>
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
-                      
-                      {/* Liquid Glass Category Badge */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#bfa76a]/30 via-black/30 to-transparent group-hover:from-[#bfa76a]/50 group-hover:via-black/50 transition-all duration-300 rounded-3xl"></div>
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300 rounded-3xl"></div>
+                      {/* Luxury Category Badge */}
                       <div className="absolute top-4 left-4">
-                        <span className={getCategoryBadge(post.category)}>
+                        <span className="px-3 py-1.5 rounded-full text-xs font-bold capitalize luxury-gold-text bg-gradient-to-r from-[#bfa76a]/90 to-[#e5e2d6]/90 shadow-gold border border-[#bfa76a]/40 backdrop-blur-xl">
                           {post.category}
                         </span>
                       </div>
-
-                      {/* Liquid Glass Reading Time Badge */}
+                      {/* Luxury Reading Time Badge */}
                       <div className="absolute top-4 right-4">
-                        <span className="px-2.5 py-1 rounded-full text-xs font-medium backdrop-blur-lg bg-black/20 text-white border border-white/20 shadow-lg">
+                        <span className="px-2.5 py-1 rounded-full text-xs font-semibold luxury-gradient-text bg-white/60 border border-[#bfa76a]/30 shadow-gold backdrop-blur-xl">
                           {post.readTime || '5 min read'}
                         </span>
                       </div>
@@ -523,13 +598,16 @@ const NewsPage = () => {
         )}
 
         {/* All News Grid */}
-        <section className="py-20">
+        <section ref={allNewsRef} id="all" className="py-20">
           <div className="container mx-auto px-4">
             <AnimatedSection className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                All <span className="text-[#3d9392]">News</span>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4 luxury-fade-text">
+                All <span className="luxury-gold-text">News</span>
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <div className="flex justify-center mb-6">
+                <div className="h-1 w-32 bg-gradient-to-r from-[#bfa76a] via-[#e5e2d6] to-[#bfa76a] rounded-full shadow-gold"></div>
+              </div>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto luxury-fade-text">
                 Browse our complete collection of news, projects, and insights
               </p>
             </AnimatedSection>
@@ -540,12 +618,12 @@ const NewsPage = () => {
                   key={post.id}
                   animation="fade-up"
                   delay={index * 150}
-                  className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden group cursor-pointer"
+                  className="bg-white rounded-2xl shadow-lg hover:shadow-gold transition-all duration-300 transform hover:-translate-y-2 overflow-hidden group cursor-pointer border border-[#bfa76a]/20 luxury-card-glass"
                   onClick={() => handleCardClick(post.id)}
                 >
                   {/* Post Image */}
                   <div 
-                    className="relative h-48 overflow-hidden cursor-pointer"
+                    className="relative h-48 overflow-hidden cursor-pointer luxury-card-glass rounded-3xl border-2 border-[#bfa76a]/30 shadow-2xl group"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleImageClick(post.id);
@@ -554,21 +632,19 @@ const NewsPage = () => {
                     <img 
                       src={post.featuredImage || post.featured_image}
                       alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 rounded-3xl"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent group-hover:from-black/50 transition-all duration-300"></div>
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
-                    
-                    {/* Liquid Glass Category Badge */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#bfa76a]/30 via-black/30 to-transparent group-hover:from-[#bfa76a]/50 group-hover:via-black/50 transition-all duration-300 rounded-3xl"></div>
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300 rounded-3xl"></div>
+                    {/* Luxury Category Badge */}
                     <div className="absolute top-4 left-4">
-                      <span className={getCategoryBadge(post.category)}>
+                      <span className="px-3 py-1.5 rounded-full text-xs font-bold capitalize luxury-gold-text bg-gradient-to-r from-[#bfa76a]/90 to-[#e5e2d6]/90 shadow-gold border border-[#bfa76a]/40 backdrop-blur-xl">
                         {post.category}
                       </span>
                     </div>
-
-                    {/* Liquid Glass Reading Time Badge */}
+                    {/* Luxury Reading Time Badge */}
                     <div className="absolute top-4 right-4">
-                      <span className="px-2.5 py-1 rounded-full text-xs font-medium backdrop-blur-lg bg-black/20 text-white border border-white/20 shadow-lg">
+                      <span className="px-2.5 py-1 rounded-full text-xs font-semibold luxury-gradient-text bg-white/60 border border-[#bfa76a]/30 shadow-gold backdrop-blur-xl">
                         {post.readTime || '5 min read'}
                       </span>
                     </div>
@@ -602,12 +678,12 @@ const NewsPage = () => {
                     {/* Tags */}
                     {post.tags && post.tags.length > 0 && (
                       <div className="flex flex-wrap gap-2 mb-4">
-                        {post.tags.slice(0, 3).map((tag, tagIndex) => (
+                        {post.tags.slice(0, 3).map((tag: string, tagIndex: number) => (
                           <span
                             key={tagIndex}
-                            className="inline-flex items-center px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs"
+                            className="inline-flex items-center px-2 py-1 bg-gradient-to-r from-[#e5e2d6]/80 to-[#bfa76a]/80 text-[#bfa76a] border border-[#bfa76a]/30 shadow-gold rounded-full text-xs font-semibold backdrop-blur-xl luxury-fade-text"
                           >
-                            <Tag className="w-3 h-3 mr-1" />
+                            <Tag className="w-3 h-3 mr-1 text-[#bfa76a]" />
                             {tag}
                           </span>
                         ))}
@@ -690,7 +766,7 @@ const NewsPage = () => {
         </section>
 
         {/* Newsletter Signup */}
-        <section className="py-20 bg-gradient-to-r from-[#6dbeb0] to-[#3d9392] text-white">
+        <section ref={newsletterRef} id="newsletter" className="py-20 bg-gradient-to-r from-[#6dbeb0] to-[#3d9392] text-white">
           <div className="container mx-auto px-4">
             <AnimatedSection className="text-center max-w-2xl mx-auto">
               <h2 className="text-4xl font-bold mb-6">Stay Updated</h2>
@@ -713,8 +789,8 @@ const NewsPage = () => {
 
         {/* Subscribe Modal */}
         {showSubscribeModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-            <div className="bg-white rounded-xl max-w-md w-full p-6 relative">
+          <div className="fixed inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center p-4 z-50 transition-all duration-300">
+            <div className="bg-white rounded-xl max-w-md w-full p-6 relative shadow-2xl border border-[#bfa76a]/20">
               <button 
                 onClick={closeSubscribeModal}
                 className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
@@ -760,8 +836,8 @@ const NewsPage = () => {
                         value={subscriberEmail}
                         onChange={(e) => setSubscriberEmail(e.target.value)}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3d9392] focus:border-transparent"
-                        placeholder="your@email.com"
+                        className="w-full px-4 py-3 border border-[#bfa76a]/40 rounded-lg focus:ring-2 focus:ring-[#bfa76a] focus:border-[#bfa76a] bg-white text-gray-900 placeholder:text-[#bfa76a] font-semibold text-base shadow-gold"
+                        placeholder="Enter your email address"
                       />
                     </div>
                     
@@ -796,6 +872,15 @@ const NewsPage = () => {
         <ToastContainer position="bottom-right" />
       </div>
       <Footer />
+      {showNav && (
+        <FloatingQuoteButton onClick={() => setIsQuoteModalOpen(true)} />
+      )}
+      <WhatsAppChatButton />
+      <QuoteModal 
+        isOpen={isQuoteModalOpen} 
+        onClose={() => setIsQuoteModalOpen(false)}
+        source="hero_get_free_quote"
+      />
     </>
   );
 };

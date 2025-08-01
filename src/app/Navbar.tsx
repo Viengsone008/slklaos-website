@@ -104,14 +104,14 @@ const Navbar = () => {
   };
   
   const navItems = [
-    { name: 'HOME', path: '/', sectionId: 'home' },
-    { name: 'SERVICES', path: '/services', sectionId: 'services' },
-    { name: 'PRODUCTS', path: '/products', sectionId: 'products' },
-    { name: 'PROJECTS', path: '/projects', sectionId: 'projects' },
-    { name: 'ABOUT US', path: '/about', sectionId: 'about' },
-    { name: 'NEWS', path: '/news', sectionId: 'blog' },
-    { name: 'CONTACT', path: '/contact', sectionId: 'contact' },
-    { name: 'CAREERS', path: '/careers', sectionId: undefined },
+    { name: t('HOME'), path: '/', sectionId: 'home', key: 'HOME' },
+    { name: t('SERVICES'), path: '/services', sectionId: 'services', key: 'SERVICES' },
+    { name: t('PRODUCTS'), path: '/products', sectionId: 'products', key: 'PRODUCTS' },
+    { name: t('PROJECTS'), path: '/projects', sectionId: 'projects', key: 'PROJECTS' },
+    { name: t('ABOUT US'), path: '/about', sectionId: 'about', key: 'ABOUT US' },
+    { name: t('NEWS'), path: '/news', sectionId: 'blog', key: 'NEWS' },
+    { name: t('CONTACT'), path: '/contact', sectionId: 'contact', key: 'CONTACT' },
+    { name: t('CAREERS'), path: '/careers', sectionId: undefined, key: 'CAREERS' },
   ];
 
    // Dynamic styling based on current section or page
@@ -141,12 +141,16 @@ const Navbar = () => {
     return pathname === item.path;
   };
 
+  // SSR-safe: Always show navbar on desktop and during SSR
+  const isSSR = typeof window === 'undefined';
   return (
     <nav
       data-navbar
       className={`fixed top-0 left-0 right-0 z-[9999] px-6 pt-2 transition-all duration-300 ${
-        isMobile ? 'translate-y-0' : (isVisible ? 'translate-y-0' : '-translate-y-full')
-      }`}
+        !isMobile
+          ? 'translate-y-0'
+          : (isVisible ? 'translate-y-0' : '-translate-y-full')
+      } lg:translate-y-0`}
     >
       <div className={`${styles.navBg} border-2 rounded-2xl px-4 md:px-6 py-4 transition-all duration-500 shadow-lg`}>
         <div className="flex items-center justify-between w-full gap-y-4">
@@ -170,27 +174,27 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-6">
+         <div className="hidden lg:flex items-center space-x-6">
             {navItems.map((item) => (
               <button
-                key={item.name} 
+                key={item.key}
                 onClick={() => handleNavigation(item.path, item.sectionId)}
                 className={`${styles.navLinks} transition-all duration-500 hover:scale-105 relative text-base`}
                 style={{ textShadow: '0 2px 8px rgba(0,0,0,0.7)' }} // for extra visibility
               >
-                <span className="relative z-10">{item.name}</span> 
+                <span className="relative z-10">{item.name}</span>
                 {isActiveNavItem(item) && (
                   <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#6dbeb0] rounded-full"></div>
                 )}
               </button>
             ))}
-            <LanguageSelector />
+            {/* <LanguageSelector /> */}
             {/* Updated Admin button to link to admin-login page */}
             <button
               onClick={() => handleNavigation('/admin-login')}
               className="bg-[#6dbeb0] hover:bg-[#3d9392] text-white px-6 py-2 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ml-4"
             >
-              Admin
+              {t('Admin')}
             </button>
           </div>
 
@@ -209,7 +213,7 @@ const Navbar = () => {
             <div className="space-y-3 px-1">
               {navItems.map((item) => (
                 <button
-                  key={item.name}
+                  key={item.key}
                   onClick={() => handleNavigation(item.path, item.sectionId)}
                   className={`block w-full text-left py-2 px-3 rounded-lg font-medium ${styles.mobileLinks} transition-all duration-500 relative`}
                 >
@@ -229,7 +233,7 @@ const Navbar = () => {
                 onClick={() => handleNavigation('/admin-login')}
                 className="block w-full bg-[#6dbeb0] hover:bg-[#3d9392] text-white px-6 py-3 rounded-xl font-semibold transition-colors duration-300 shadow-lg mt-4 text-center"
               >
-                Admin
+                {t('Admin')}
               </button>
             </div>
           </div>

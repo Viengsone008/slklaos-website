@@ -7,6 +7,9 @@ import { useRouter } from 'next/navigation';
 import { supabase } from '../../lib/supabase';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
+import WhatsAppChatButton from '../../components/WhatsAppChatButton';
+import FloatingQuoteButton from '../../components/FloatingQuoteButton';
+import QuoteModal from '../../components/QuoteModal';
 
 const serviceToDepartment: Record<string, string> = {
   construction: "Planning",
@@ -19,6 +22,21 @@ const serviceToDepartment: Record<string, string> = {
 };
 
 const ContactPage = () => {
+  // Scroll progress indicator
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+  const [showNav, setShowNav] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      setScrollProgress(progress);
+      setShowNav(window.scrollY > 0);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   const router = useRouter();
   const { t } = useLanguage();
 
@@ -289,47 +307,58 @@ const ContactPage = () => {
 
   return (
     <>
+      {/* Scroll Progress Bar */}
+      <div className="fixed top-0 left-0 w-full h-1 z-[9999]">
+        <div
+          className="h-full bg-gradient-to-r from-[#bfa76a] to-[#e5e2d6] transition-all duration-200"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
       <Navbar />
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-orange-50">
         {/* Hero Section */}
-        <section className="relative py-32 bg-gradient-to-br from-blue-700 via-indigo-600 to-orange-500 text-white overflow-hidden">
-          <div className="absolute inset-0"> 
+        <section className="relative py-36 bg-gradient-to-br from-[#e5e2d6] via-[#bfa76a]/30 to-[#3d9392]/20 text-white overflow-hidden luxury-card-glass shadow-gold">
+          <div className="absolute inset-0">
             <img 
               src="https://qawxuytlwqmsomsqlrsc.supabase.co/storage/v1/object/public/image//Contact_us_Hero.png" 
               alt="Contact SLK Trading"
-              className="w-full h-full object-cover opacity-90"
+              className="w-full h-full object-cover opacity-80"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#417d80]/80 to-[#417d80]/80"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-[#bfa76a]/80 via-[#e5e2d6]/60 to-[#3d9392]/80"></div>
+            <div className="absolute inset-0 bg-white/30 backdrop-blur-xl"></div>
           </div>
-          
-          <div className="relative z-10 container mx-auto px-4"> 
-            <AnimatedSection className="text-center max-w-4xl mx-auto">
-              <h1 className="text-5xl lg:text-7xl font-bold mb-6 drop-shadow-2xl">
-                Contact <span className="text-[#6dbeb0]">Us</span>
+
+          <div className="relative z-10 container mx-auto px-4">
+            <AnimatedSection className="text-center max-w-4xl mx-auto luxury-card-glass bg-white/60 rounded-3xl p-12 shadow-gold border-2 border-[#bfa76a]/30 backdrop-blur-2xl">
+              <h1 className="text-5xl lg:text-7xl font-extrabold mb-4 luxury-gradient-text drop-shadow-[0_6px_32px_rgba(191,167,106,0.55)]">
+                <span className="luxury-gold-text luxury-fade-text drop-shadow-gold">Contact Us</span>
               </h1>
-              <p className="text-2xl text-blue-100 mb-8 leading-relaxed drop-shadow-lg">
-                Get in touch with our construction experts
+              <div className="flex justify-center mb-6">
+                <div className="h-1 w-32 bg-gradient-to-r from-[#bfa76a] via-[#e5e2d6] to-[#bfa76a] rounded-full shadow-gold"></div>
+              </div>
+              <p className="text-2xl text-[#3d3935] mb-10 leading-relaxed luxury-fade-text">
+                Get in touch with our <span className="luxury-gold-text">construction experts</span>
               </p>
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
                 <div className="text-center">
-                  <Phone className="w-8 h-8 text-[#6dbeb0] mx-auto mb-2" />
-                  <div className="text-lg font-semibold">Call Us</div>
-                  <div className="text-blue-200 text-sm">24/7 Support</div>
+                  <Phone className="w-10 h-10 text-[#bfa76a] mx-auto mb-2 luxury-gold-text" />
+                  <div className="text-lg font-bold text-[#3d3935] luxury-fade-text">Call Us</div>
+                  <div className="text-[#bfa76a] text-sm font-medium">24/7 Support</div>
                 </div>
                 <div className="text-center">
-                  <Mail className="w-8 h-8 text-[#6dbeb0] mx-auto mb-2" />
-                  <div className="text-lg font-semibold">Email Us</div>
-                  <div className="text-blue-200 text-sm">Quick Response</div>
+                  <Mail className="w-10 h-10 text-[#bfa76a] mx-auto mb-2 luxury-gold-text" />
+                  <div className="text-lg font-bold text-[#3d3935] luxury-fade-text">Email Us</div>
+                  <div className="text-[#bfa76a] text-sm font-medium">Quick Response</div>
                 </div>
                 <div className="text-center">
-                  <MapPin className="w-8 h-8 text-[#6dbeb0] mx-auto mb-2" />
-                  <div className="text-lg font-semibold">Visit Us</div>
-                  <div className="text-blue-200 text-sm">Multiple Locations</div>
+                  <MapPin className="w-10 h-10 text-[#bfa76a] mx-auto mb-2 luxury-gold-text" />
+                  <div className="text-lg font-bold text-[#3d3935] luxury-fade-text">Visit Us</div>
+                  <div className="text-[#bfa76a] text-sm font-medium">Multiple Locations</div>
                 </div>
                 <div className="text-center">
-                  <MessageCircle className="w-8 h-8 text-[#6dbeb0] mx-auto mb-2" />
-                  <div className="text-lg font-semibold">Chat</div>
-                  <div className="text-blue-200 text-sm">Live Support</div>
+                  <MessageCircle className="w-10 h-10 text-[#bfa76a] mx-auto mb-2 luxury-gold-text" />
+                  <div className="text-lg font-bold text-[#3d3935] luxury-fade-text">Chat</div>
+                  <div className="text-[#bfa76a] text-sm font-medium">Live Support</div>
                 </div>
               </div>
             </AnimatedSection>
@@ -342,9 +371,9 @@ const ContactPage = () => {
             <div className="grid lg:grid-cols-2 gap-16">
               {/* Contact Form */}
               <AnimatedSection animation="fade-right">
-                <div className="bg-white p-8 rounded-2xl shadow-2xl border border-gray-200">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                    Send Us a Message
+                <div className="bg-white/80 p-8 rounded-2xl shadow-gold border-2 border-[#bfa76a]/30 luxury-card-glass backdrop-blur-xl">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6 luxury-fade-text">
+                    Send Us a <span className="luxury-gold-text">Message</span>
                   </h2>
                   {error && (
                     <div className="bg-red-50 border border-red-200 text-red-800 p-4 rounded-lg mb-6">
@@ -364,7 +393,7 @@ const ContactPage = () => {
                           onChange={handleChange}
                           required
                           disabled={isSubmitting || success}
-                          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 disabled:opacity-50 text-gray-900 placeholder-gray-500 font-medium"
+                          className="w-full px-4 py-3 rounded-lg border border-[#bfa76a]/30 focus:ring-2 focus:ring-[#bfa76a] focus:border-[#bfa76a] transition-all duration-300 disabled:opacity-50 text-gray-900 placeholder:text-[#bfa76a] font-semibold bg-white/80 shadow-gold"
                           placeholder="Your full name"
                         />
                       </div>
@@ -379,7 +408,7 @@ const ContactPage = () => {
                           onChange={handleChange}
                           required
                           disabled={isSubmitting || success}
-                          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 disabled:opacity-50 text-gray-900 placeholder-gray-500 font-medium"
+                          className="w-full px-4 py-3 rounded-lg border border-[#bfa76a]/30 focus:ring-2 focus:ring-[#bfa76a] focus:border-[#bfa76a] transition-all duration-300 disabled:opacity-50 text-gray-900 placeholder:text-[#bfa76a] font-semibold bg-white/80 shadow-gold"
                           placeholder="your@email.com"
                         />
                       </div>
@@ -396,7 +425,7 @@ const ContactPage = () => {
                           value={formData.phone}
                           onChange={handleChange}
                           disabled={isSubmitting || success}
-                          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 disabled:opacity-50 text-gray-900 placeholder-gray-500 font-medium"
+                          className="w-full px-4 py-3 rounded-lg border border-[#bfa76a]/30 focus:ring-2 focus:ring-[#bfa76a] focus:border-[#bfa76a] transition-all duration-300 disabled:opacity-50 text-gray-900 placeholder:text-[#bfa76a] font-semibold bg-white/80 shadow-gold"
                           placeholder="+856 20 xxx xxxx"
                         />
                       </div>
@@ -410,7 +439,7 @@ const ContactPage = () => {
                           value={formData.company}
                           onChange={handleChange}
                           disabled={isSubmitting || success}
-                          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 disabled:opacity-50 text-gray-900 placeholder-gray-500 font-medium"
+                          className="w-full px-4 py-3 rounded-lg border border-[#bfa76a]/30 focus:ring-2 focus:ring-[#bfa76a] focus:border-[#bfa76a] transition-all duration-300 disabled:opacity-50 text-gray-900 placeholder:text-[#bfa76a] font-semibold bg-white/80 shadow-gold"
                           placeholder="Your company name"
                         />
                       </div>
@@ -426,7 +455,7 @@ const ContactPage = () => {
                           value={formData.service}
                           onChange={handleChange}
                           disabled={isSubmitting || success}
-                          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 disabled:opacity-50 text-gray-900 placeholder-gray-500 font-medium"
+                          className="w-full px-4 py-3 rounded-lg border border-[#bfa76a]/30 focus:ring-2 focus:ring-[#bfa76a] focus:border-[#bfa76a] transition-all duration-300 disabled:opacity-50 text-gray-900 placeholder:text-[#bfa76a] font-semibold bg-white/80 shadow-gold"
                         >
                           <option value="">Select a service</option>
                           <option value="construction">Design & Construction</option>
@@ -448,7 +477,7 @@ const ContactPage = () => {
                           value={formData.urgency}
                           onChange={handleChange}
                           disabled={isSubmitting || success}
-                          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 disabled:opacity-50 text-gray-900 placeholder-gray-500 font-medium"
+                          className="w-full px-4 py-3 rounded-lg border border-[#bfa76a]/30 focus:ring-2 focus:ring-[#bfa76a] focus:border-[#bfa76a] transition-all duration-300 disabled:opacity-50 text-gray-900 placeholder:text-[#bfa76a] font-semibold bg-white/80 shadow-gold"
                         >
                           <option value="low">Low - General inquiry</option>
                           <option value="medium">Medium - Planning phase</option>
@@ -469,8 +498,8 @@ const ContactPage = () => {
                         value={formData.subject}
                         onChange={handleChange}
                         disabled={isSubmitting || success}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 disabled:opacity-50 text-gray-900 placeholder-gray-500 font-medium"
-                        placeholder="Brief subject of your inquiry"
+                          className="w-full px-4 py-3 rounded-lg border border-[#bfa76a]/30 focus:ring-2 focus:ring-[#bfa76a] focus:border-[#bfa76a] transition-all duration-300 disabled:opacity-50 text-gray-900 placeholder:text-[#bfa76a] font-semibold bg-white/80 shadow-gold"
+                          placeholder="Brief subject of your inquiry"
                       />
                     </div>
 
@@ -486,7 +515,7 @@ const ContactPage = () => {
                         required
                         rows={6}
                         disabled={isSubmitting || success}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 resize-none disabled:opacity-50 text-gray-900 placeholder-gray-500 font-medium"
+                        className="w-full px-4 py-3 rounded-lg border border-[#bfa76a]/30 focus:ring-2 focus:ring-[#bfa76a] focus:border-[#bfa76a] transition-all duration-300 resize-none disabled:opacity-50 text-gray-900 placeholder:text-[#bfa76a] font-semibold bg-white/80 shadow-gold"
                         placeholder="Please describe your project requirements, questions, or how we can help you..."
                       ></textarea>
                     </div>
@@ -540,7 +569,7 @@ const ContactPage = () => {
                     <button
                       type="submit"
                       disabled={isSubmitting || success}
-                      className="w-full bg-[#6dbeb0] hover:bg-[#5ab1a0] disabled:bg-[#6dbeb0] text-white px-8 py-4 rounded-lg font-semibold flex items-center justify-center transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl disabled:transform-none disabled:shadow-none"
+                      className="w-full bg-gradient-to-r from-[#bfa76a] to-[#e5e2d6] hover:from-[#e5e2d6] hover:to-[#bfa76a] text-[#3d3935] px-8 py-4 rounded-xl font-bold flex items-center justify-center transition-all duration-300 transform hover:scale-105 shadow-gold hover:shadow-2xl disabled:opacity-60 disabled:transform-none disabled:shadow-none luxury-gradient-text border border-[#bfa76a]/40"
                     >
                       {isSubmitting ? (
                         <>
@@ -578,7 +607,7 @@ const ContactPage = () => {
                           key={index}
                           animation="fade-left"
                           delay={index * 100}
-                          className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                          className="bg-white/80 p-6 rounded-2xl shadow-gold hover:shadow-gold transition-all duration-300 transform hover:-translate-y-1 border-2 border-[#bfa76a]/20 luxury-card-glass backdrop-blur-xl"
                         >
                           <div className="flex items-start">
                             <div className="bg-[#6dbeb0]/20 p-3 rounded-lg mr-4 flex-shrink-0">
@@ -604,7 +633,7 @@ const ContactPage = () => {
                   <h3 className="text-2xl font-bold text-gray-900 mb-6">Our Locations</h3>
                   <div className="space-y-4">
                     {officeLocations.map((office, index) => (
-                      <div key={index} className="bg-white p-4 rounded-xl shadow-md border border-gray-200">
+                      <div key={index} className="bg-white/80 p-4 rounded-xl shadow-gold border-2 border-[#bfa76a]/20 luxury-card-glass backdrop-blur-xl">
                         <h4 className="font-semibold text-gray-900 mb-2">{office.name}</h4>
                         <div className="space-y-1 text-sm text-gray-600">
                           <p className="flex items-center">
@@ -696,7 +725,7 @@ const ContactPage = () => {
                   {/* Directions Button */}
                   <div className="absolute bottom-4 right-4">
                     <a
-                      href="https://www.google.com/maps/dir//Vientiane,+Laos/@17.9666648,102.6420784,12z"
+                      href="https://www.google.com/maps/search/?api=1&query=XHVX%2BQX3+SLK+Trading+and+Design-Construction+Complete+Sole+Co+LTD,+%E0%BA%AE%E0%BB%88%E0%BA%AD%E0%BA%A1+1,+Vientiane,+Laos"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-[#3d9392] hover:bg-[#6dbeb0] text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center shadow-lg transition-colors"
@@ -779,14 +808,14 @@ const ContactPage = () => {
       {/* SUCCESS POPUP MODAL */}
       {success && (
         <div className="fixed inset-0 z-50 overflow-y-auto">
-          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm"></div>
+          <div className="fixed inset-0 bg-white/80 backdrop-blur-md"></div>
           
           <div className="relative min-h-screen flex items-center justify-center p-4">
-            <div className="relative bg-white rounded-3xl shadow-2xl max-w-2xl w-full animate-scale-in">
+            <div className="relative bg-white/90 rounded-3xl shadow-gold max-w-2xl w-full animate-scale-in border-2 border-[#bfa76a]/30 luxury-card-glass backdrop-blur-xl">
               {/* Header */}
-              <div className="bg-gradient-to-r from-green-500 to-emerald-600 text-white p-8 rounded-t-3xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
-                <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full -ml-12 -mb-12"></div>
+              <div className="bg-gradient-to-r from-[#bfa76a] to-[#e5e2d6] text-[#3d3935] p-8 rounded-t-3xl relative overflow-hidden luxury-gradient-text border-b-2 border-[#bfa76a]/30">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#bfa76a]/10 rounded-full -mr-16 -mt-16"></div>
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-[#bfa76a]/10 rounded-full -ml-12 -mb-12"></div>
                 
                 {/* Countdown Timer */}
                 <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-sm rounded-full p-3 flex items-center space-x-2">
@@ -795,14 +824,14 @@ const ContactPage = () => {
                 </div>
                 
                 <div className="relative z-10 text-center">
-                  <div className="bg-white/20 p-4 rounded-full inline-flex mb-4">
-                    <CheckCircle className="w-12 h-12 text-white" />
+                  <div className="bg-[#bfa76a]/20 p-4 rounded-full inline-flex mb-4">
+                    <CheckCircle className="w-12 h-12 text-[#bfa76a]" />
                   </div>
-                  <h2 className="text-3xl font-bold mb-2">Message Sent Successfully!</h2>
+                  <h2 className="text-3xl font-bold mb-2 luxury-fade-text">Message Sent <span className="luxury-gold-text">Successfully!</span></h2>
                   <div className="flex items-center justify-center space-x-2">
-                    <Sparkles className="w-5 h-5" />
-                    <p className="text-green-100 text-lg">We've received your inquiry</p>
-                    <Sparkles className="w-5 h-5" />
+                    <Sparkles className="w-5 h-5 text-[#bfa76a]" />
+                    <p className="text-[#bfa76a] text-lg">We've received your inquiry</p>
+                    <Sparkles className="w-5 h-5 text-[#bfa76a]" />
                   </div>
                 </div>
               </div>
@@ -890,7 +919,7 @@ const ContactPage = () => {
                   
                   <button
                     onClick={handleCloseSuccess}
-                    className="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
+                    className="bg-gradient-to-r from-[#bfa76a] to-[#e5e2d6] hover:from-[#e5e2d6] hover:to-[#bfa76a] text-[#3d3935] px-8 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-gold hover:shadow-2xl luxury-gradient-text border border-[#bfa76a]/40"
                   >
                     Continue Browsing
                   </button>
@@ -900,7 +929,7 @@ const ContactPage = () => {
               {/* Close Button */}
               <button
                 onClick={handleCloseSuccess}
-                className="absolute top-4 right-16 text-white/80 hover:text-white hover:bg-white/20 p-2 rounded-full transition-colors"
+                className="absolute top-4 right-16 text-[#bfa76a]/80 hover:text-[#bfa76a] hover:bg-[#bfa76a]/10 p-2 rounded-full transition-colors"
               >
                 <X className="w-6 h-6" />
               </button>
@@ -910,6 +939,16 @@ const ContactPage = () => {
       )}
 
       <Footer />
+      {showNav && (
+        <FloatingQuoteButton onClick={() => setIsQuoteModalOpen(true)} />
+      )}
+      <WhatsAppChatButton />
+      <QuoteModal 
+        isOpen={isQuoteModalOpen} 
+        onClose={() => setIsQuoteModalOpen(false)}
+        source="footer_contact_now"
+      />
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
     </>
   );
 };

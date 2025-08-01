@@ -21,11 +21,15 @@ import {
 } from 'lucide-react';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
+import Head from 'next/head';
 import AnimatedSection from '../../components/AnimatedSection';
 import QuoteModal from '../../components/QuoteModal';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { supabase } from '../../lib/supabase';
+import AnimatedGradientBackground from '../components/AnimatedGradientBackground';
+import LuxuryDivider from '../components/LuxuryDivider';
+
 
 interface Project {
   id: string;
@@ -54,9 +58,21 @@ interface Project {
 }
 
 const ProjectDetailPage: React.FC = () => {
+  // Scroll Progress Indicator
+  const [scrollProgress, setScrollProgress] = useState(0);
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      setScrollProgress(progress);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   const router = useRouter();
   const searchParams = useSearchParams();
-  const projectId = searchParams.get('id');
+  const projectId = searchParams?.get('id');
 
   const [project, setProject] = useState<Project | null>(null);
   const [relatedProjects, setRelatedProjects] = useState<Project[]>([]);
@@ -67,7 +83,7 @@ const ProjectDetailPage: React.FC = () => {
 
   const handleRelatedProjectClick = (relatedProjectId: string) => {
     router.push(`/project-details?id=${relatedProjectId}`);
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleBack = () => {
@@ -92,6 +108,14 @@ const ProjectDetailPage: React.FC = () => {
     } else {
       window.open(shareUrls[platform], '_blank', 'width=600,height=400');
     }
+  };
+
+  // Copy link to clipboard
+  const handleCopyLink = () => {
+    if (!project) return;
+    const url = `${window.location.origin}/project-details?id=${project.id}`;
+    navigator.clipboard.writeText(url);
+    toast.success('Project link copied!');
   };
 
   const handleDownloadBrochure = () => {
@@ -185,34 +209,65 @@ const ProjectDetailPage: React.FC = () => {
   }
 
   return (
-    <>
+    <React.Fragment>
+      {/* Scroll Progress Bar */}
+      <div className="fixed top-0 left-0 w-full z-[999] h-2 bg-gradient-to-r from-[#3d9392]/30 to-[#6dbeb0]/30">
+        <div
+          className="h-full bg-gradient-to-r from-[#3d9392] to-[#6dbeb0] rounded-r-full shadow-lg transition-all duration-200"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
+      <Head>
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+      </Head>
+      {/* Animated Gradient Background */}
+      <AnimatedGradientBackground />
       <Navbar />
-      <div className="min-h-screen bg-gradient-to-br from-[#f8fafc] via-[#e0e7ef] to-[#f9e7d2]">
-        {/* Back Button */}
-        <div className="container mx-auto px-4 pt-12">
-          <AnimatedSection animation="fade-right" className="mb-8">
-            <button
-              onClick={handleBack}
-              className="flex items-center mt-14 text-gray-600 hover:text-[#336675] transition-colors"
-            >
-              <ArrowLeft className="w-5 h-5 mr-2" />
-              Back to Projects
-            </button>
-          </AnimatedSection>   
-        </div>
-
+      <div className="min-h-screen bg-gradient-to-br from-[#f8fafc] via-[#e0e7ef] to-[#f9e7d2] relative z-10">
+        {/* Spacer to keep space between navbar and hero image */}
+        <div className="pt-28" />
         {/* Hero */}
-        <AnimatedSection animation="fade-up" className="mb-12 container mx-auto px-4">
-          <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
-            <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+        <AnimatedSection animation="fade-up" className="mb-12 container mx-auto px-4 pt-4">
+          <div className="relative h-[44rem] rounded-2xl overflow-hidden shadow-2xl group" style={{ boxShadow: '0 8px 40px 0 rgba(191,167,106,0.10), 0 1.5px 8px 0 rgba(191,167,106,0.08)' }}>
+            <img 
+              src={project.image} 
+              alt={`Main image for project: ${project.title}`}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              onError={e => { (e.target as HTMLImageElement).src = '/SLK-logo.png'; }}
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+            {/* Category badge top left */}
+            <span
+              className="absolute top-8 left-8 px-5 py-2 rounded-full text-base font-extrabold z-10 backdrop-blur-md bg-white/80 border border-[#bfa76a] shadow-lg text-[#bfa76a] tracking-wide"
+              style={{
+                fontFamily: 'Playfair Display, serif',
+                letterSpacing: '0.04em',
+                boxShadow: '0 4px 24px 0 rgba(191,167,106,0.18)',
+                WebkitBackdropFilter: 'blur(12px)',
+                backdropFilter: 'blur(12px)',
+                textShadow: '0 2px 8px rgba(191,167,106,0.12), 0 1px 0 #fff',
+              }}
+              aria-label={`Project category: ${project.category}`}
+            >
+              {project.category.charAt(0).toUpperCase() + project.category.slice(1)}
+            </span>
+            {/* Status badge top right */}
+            <span
+              className={`absolute top-8 right-8 px-4 py-2 rounded-full text-xs font-semibold z-10 shadow-lg border border-[#bfa76a] backdrop-blur-md ${
+                project.status === 'completed'
+                  ? 'bg-[#bfa76a]/90 text-white'
+                  : 'bg-[#e5e2d6]/90 text-[#bfa76a]'
+              }`}
+              style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '0.04em' }}
+              aria-label={`Project status: ${project.status}`}
+            >
+              {project.status.charAt(0).toUpperCase() + project.status.slice(1)}
+            </span>
             <div className="absolute bottom-0 left-0 right-0 p-8">
-              <span className="bg-[#336675] text-white px-3 py-1 rounded-full text-sm font-medium mb-4 inline-block">
-                {project.category}
-              </span>
-              <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4 drop-shadow-lg">
+              <h1 className="text-4xl lg:text-5xl font-extrabold text-white mb-4 drop-shadow-lg" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '0.04em' }}>
                 {project.title}
               </h1>
+              <div className="h-1 w-24 bg-gradient-to-r from-[#bfa76a] to-[#e5e2d6] rounded-full mb-4 opacity-80" />
               <div className="flex flex-wrap gap-4 text-white/90">
                 <div className="flex items-center">
                   <MapPin className="w-5 h-5 mr-2 text-[#336675]" />
@@ -238,19 +293,23 @@ const ProjectDetailPage: React.FC = () => {
         {/* Key Features */}
         <div className="container mx-auto px-4 pb-12">
           <AnimatedSection animation="fade-up" delay={200}>
-            <div className="bg-white rounded-2xl shadow-lg p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Key Features</h2>
+            <div className="bg-white/80 rounded-2xl shadow-lg p-8 backdrop-blur-md border border-[#e5e2d6] mb-12" style={{ boxShadow: '0 2px 16px 0 rgba(191,167,106,0.08)' }}>
+              <h2 className="text-2xl font-extrabold text-[#bfa76a] mb-6 tracking-wide" style={{ fontFamily: 'Playfair Display, serif' }}>Key Features</h2>
+              <LuxuryDivider animated />
               <div className="grid md:grid-cols-2 gap-3">
-                {project.features.map((feature, index) => (
-                  <div key={index} className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                    <span className="text-gray-700">{feature}</span>
-                  </div>
-                ))}
+                {project.features && project.features.length > 0 ? (
+                  project.features.map((feature, index) => (
+                    <div key={index} className="flex items-center">
+                      <CheckCircle className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
+                      <span className="text-gray-700">{feature}</span>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-gray-500 text-sm">No key features listed for this project.</p>
+                )}
               </div>
             </div>
           </AnimatedSection>
-        </div>
 
         {/* Main Content */}
         <div className="container mx-auto px-4 pb-12 grid lg:grid-cols-3 gap-8">
@@ -258,11 +317,12 @@ const ProjectDetailPage: React.FC = () => {
           <div className="lg:col-span-2">
             {/* Project Overview */}
             <AnimatedSection animation="fade-up" delay={200}>
-              <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                  <Building2 className="w-6 h-6 mr-3 text-orange-500" />
+              <div className="bg-white/80 rounded-2xl shadow-lg p-8 mb-12 backdrop-blur-md border border-[#e5e2d6]" style={{ boxShadow: '0 2px 16px 0 rgba(191,167,106,0.08)' }}>
+                <h2 className="text-2xl font-extrabold text-[#bfa76a] mb-6 flex items-center tracking-wide" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  <Building2 className="w-6 h-6 mr-3 text-[#bfa76a]" />
                   Project Overview
                 </h2>
+                <div className="h-0.5 w-16 bg-gradient-to-r from-[#bfa76a] to-[#e5e2d6] rounded-full mb-6 opacity-80" />
                 <p className="text-gray-700 text-justify leading-relaxed mb-6">{project.description}</p>
                 <div className="grid md:grid-cols-2 gap-6 mb-6">
                   <div>
@@ -279,11 +339,12 @@ const ProjectDetailPage: React.FC = () => {
 
             {/* Specifications & Materials */}
             <AnimatedSection animation="fade-up" delay={300}>
-              <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                  <FileText className="w-6 h-6 mr-3 text-blue-600" />
+              <div className="bg-white/80 rounded-2xl shadow-lg p-8 mb-12 backdrop-blur-md border border-[#e5e2d6]" style={{ boxShadow: '0 2px 16px 0 rgba(191,167,106,0.08)' }}>
+                <h2 className="text-2xl font-extrabold text-[#bfa76a] mb-6 flex items-center tracking-wide" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  <FileText className="w-6 h-6 mr-3 text-[#bfa76a]" />
                   Project Specifications
                 </h2>
+                <div className="h-0.5 w-16 bg-gradient-to-r from-[#bfa76a] to-[#e5e2d6] rounded-full mb-6 opacity-80" />
                 <div className="grid md:grid-cols-2 gap-8">
                   {/* Technical Specifications */}
                   <div>
@@ -324,8 +385,9 @@ const ProjectDetailPage: React.FC = () => {
 
             {/* Gallery */}
             <AnimatedSection animation="fade-up" delay={350}>
-              <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Project Gallery</h2>
+              <div className="bg-white/80 rounded-2xl shadow-lg p-8 mb-8 backdrop-blur-md border border-[#e5e2d6]" style={{ boxShadow: '0 2px 16px 0 rgba(191,167,106,0.08)' }}>
+                <h2 className="text-2xl font-extrabold text-[#bfa76a] mb-6 tracking-wide" style={{ fontFamily: 'Playfair Display, serif' }}>Project Gallery</h2>
+                <div className="h-0.5 w-16 bg-gradient-to-r from-[#bfa76a] to-[#e5e2d6] rounded-full mb-6 opacity-80" />
                 
                 {project.gallery && project.gallery.length > 0 ? (
                   <>
@@ -334,27 +396,31 @@ const ProjectDetailPage: React.FC = () => {
                       <img
                         src={project.gallery[activeGalleryImage]}
                         alt={`${project.title} - Featured`}
-                        className="w-full h-96 object-cover"
+                        className="w-full h-[34rem] object-cover"
+                        onError={e => { (e.target as HTMLImageElement).src = '/SLK-logo.png'; }}
                       />
                     </div>
                     {/* thumbnails */}
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="flex gap-4 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 py-2">
                       {project.gallery.map((img, idx) => (
-                        <div
+                        <button
                           key={idx}
-                          className={`rounded-lg overflow-hidden cursor-pointer border-2 transition-all ${
+                          className={`rounded-lg overflow-hidden cursor-pointer border-2 transition-all focus:outline-none focus:ring-2 focus:ring-orange-400 ${
                             activeGalleryImage === idx
-                              ? 'border-orange-500 shadow-lg'
+                              ? 'border-orange-500 shadow-lg ring-2 ring-orange-400'
                               : 'border-transparent'
                           }`}
                           onClick={() => setActiveGalleryImage(idx)}
+                          aria-label={`Show image ${idx + 1}`}
+                          tabIndex={0}
                         >
                           <img
                             src={img}
                             alt={`${project.title} thumb ${idx + 1}`}
-                            className="w-full h-24 object-cover hover:opacity-90 transition-opacity"
+                            className="w-32 h-24 object-cover hover:opacity-90 transition-opacity"
+                            onError={e => { (e.target as HTMLImageElement).src = '/SLK-logo.png'; }}
                           />
-                        </div>
+                        </button>
                       ))}
                     </div>
                   </>
@@ -369,22 +435,29 @@ const ProjectDetailPage: React.FC = () => {
             {/* Testimonial */}
             {project.testimonial && (
               <AnimatedSection animation="fade-up" delay={400}>
-                <div className="bg-gradient-to-r from-blue-50 to-orange-50 rounded-2xl shadow-lg p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                    <Star className="w-6 h-6 mr-3 text-yellow-500" />
+                <div className="bg-gradient-to-r from-[#f9f6ef] to-[#f5e9d0] rounded-2xl shadow-lg p-8 relative border border-[#e5e2d6]" style={{ boxShadow: '0 2px 16px 0 rgba(191,167,106,0.08)' }}>
+                  <span className="absolute -top-6 left-8 text-5xl text-orange-300 opacity-60 select-none" aria-hidden="true"></span>
+                  <h2 className="text-2xl font-extrabold text-[#bfa76a] mb-6 flex items-center tracking-wide" style={{ fontFamily: 'Playfair Display, serif' }}>
+                    <Star className="w-6 h-6 mr-3 text-[#bfa76a]" />
                     Client Testimonial
                   </h2>
-                  <div className="bg-white rounded-xl p-6 shadow-sm">
+                  <div className="h-0.5 w-16 bg-gradient-to-r from-[#bfa76a] to-[#e5e2d6] rounded-full mb-6 opacity-80" />
+                  <div className="bg-white/90 rounded-xl p-6 shadow-sm relative border border-[#e5e2d6]" style={{ boxShadow: '0 1px 8px 0 rgba(191,167,106,0.06)' }}>
                     <div className="flex items-center mb-4">
                       {[...Array(5)].map((_, i) => (
                         <Star
                           key={i}
                           className={`w-5 h-5 ${i < Math.floor(project.rating) ? 'text-yellow-500 fill-current' : 'text-gray-300'}`}
+                          aria-label={i < Math.floor(project.rating) ? 'Filled star' : 'Empty star'}
                         />
                       ))}
                       <span className="ml-2 text-gray-700 font-medium">{project.rating}/5</span>
                     </div>
-                    <blockquote className="text-gray-700 italic mb-4">"{project.testimonial}"</blockquote>
+                    <blockquote className="text-gray-700 italic mb-4 flex items-center gap-2">
+                      <span className="text-2xl text-orange-400">“</span>
+                      {project.testimonial}
+                      <span className="text-2xl text-orange-400">”</span>
+                    </blockquote>
                     <div className="text-right">
                       <p className="font-semibold text-gray-900">{project.clientName || project.client}</p>
                       <p className="text-sm text-gray-600">{project.clientPosition || 'Project Client'}</p>
@@ -396,10 +469,11 @@ const ProjectDetailPage: React.FC = () => {
           </div>
 
           {/* Sidebar */}
-          <div>
+          {/* Sidebar - sticky on large screens */}
+          <div className="lg:sticky lg:top-32">
             <AnimatedSection animation="fade-left" delay={300}>
               {/* Project Details */}
-              <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
+              <div className="bg-white/80 rounded-2xl shadow-lg p-6 mb-8 backdrop-blur-md border border-[#e5e2d6]" style={{ boxShadow: '0 2px 16px 0 rgba(191,167,106,0.08)' }}>
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">Project Details</h3>
                 <div className="space-y-4">
                   <div className="flex justify-between items-center pb-2 border-b border-gray-100">
@@ -437,7 +511,7 @@ const ProjectDetailPage: React.FC = () => {
               </div>
 
               {/* Share & Download */}
-              <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
+              <div className="bg-white/80 rounded-2xl shadow-lg p-6 mb-8 backdrop-blur-md border border-[#e5e2d6]" style={{ boxShadow: '0 2px 16px 0 rgba(191,167,106,0.08)' }}>
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">Share & Download</h3>
                 <div className="mb-6">
                   <p className="text-gray-600 mb-3">Share this project:</p>
@@ -470,9 +544,22 @@ const ProjectDetailPage: React.FC = () => {
                     >
                       <Mail className="w-5 h-5" />
                     </button>
+                    {/* Tooltip for copy link */}
+                    <div className="relative group">
+                      <button
+                        onClick={handleCopyLink}
+                        className="bg-gray-200 hover:bg-gray-300 text-gray-700 p-2 rounded-lg transition-colors"
+                        aria-label="Copy project link"
+                        tabIndex={0}
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 17l4 4 4-4m0-5V3m-8 9v6a2 2 0 002 2h4a2 2 0 002-2v-6" /></svg>
+                      </button>
+                      <span className="absolute left-1/2 -translate-x-1/2 mt-2 px-2 py-1 rounded bg-gray-800 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20 whitespace-nowrap">
+                        Copy link
+                      </span>
+                    </div>
                   </div>
                 </div>
-             
                 {project.brochure_url && (
                   <div className="mt-4">
                     <a
@@ -489,17 +576,22 @@ const ProjectDetailPage: React.FC = () => {
               </div>
 
               {/* CTA */}
-              <div className="bg-[#336675] rounded-2xl shadow-lg p-6 text-white mb-8">
+              <div className="bg-gradient-to-r from-[#bfa76a] to-[#e5e2d6] rounded-2xl shadow-lg p-6 text-[#1a2936] mb-8 border border-[#e5e2d6]" style={{ boxShadow: '0 2px 16px 0 rgba(191,167,106,0.08)' }}>
                 <h3 className="text-xl font-semibold mb-4">Interested in a Similar Project?</h3>
                 <p className="text-blue-100 mb-6">
                   Contact us to discuss your project requirements and get a detailed quote.
                 </p>
                 <button
                   onClick={() => setIsQuoteModalOpen(true)}
-                  className="w-full bg-[#336675] hover:bg-[#6dbeb0] text-white py-3 px-6 rounded-lg font-semibold transition-colors flex items-center justify-center"
+                  className="w-full text-[#bfa76a] py-3 px-6 rounded-lg font-extrabold transition-all duration-200 flex items-center justify-center shadow-lg border border-[#bfa76a] group bg-white/90 hover:bg-[#bfa76a] hover:text-white"
+                  style={{
+                    fontFamily: 'Playfair Display, serif',
+                    letterSpacing: '0.04em',
+                    boxShadow: '0 4px 24px 0 rgba(191,167,106,0.15)',
+                  }}
                 >
-                  <DollarSign className="w-5 h-5 mr-2" />
-                  Get a Free Quote
+                  <DollarSign className="w-5 h-5 mr-2 transition-transform duration-200 group-hover:scale-110" />
+                  <span className="transition-colors duration-200">Get a Free Quote</span>
                 </button>
               </div>
 
@@ -509,22 +601,25 @@ const ProjectDetailPage: React.FC = () => {
                   <h3 className="text-xl font-semibold text-gray-900 mb-4">Related Projects</h3>
                   <div className="space-y-4">
                     {relatedProjects.map((rp) => (
-                      <div
+                      <button
                         key={rp.id}
-                        className="flex items-start cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors"
+                        className="flex items-start w-full text-left cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-orange-400"
                         onClick={() => handleRelatedProjectClick(rp.id)}
+                        aria-label={`Go to project ${rp.title}`}
+                        tabIndex={0}
                       >
                         <img
                           src={rp.image}
-                          alt={rp.title}
+                          alt={`Related project: ${rp.title} in ${rp.location}`}
                           className="w-20 h-20 object-cover rounded-lg mr-3"
+                          onError={e => { (e.target as HTMLImageElement).src = '/SLK-logo.png'; }}
                         />
                         <div>
                           <h4 className="font-medium text-gray-900 text-sm mb-1">{rp.title}</h4>
                           <p className="text-xs text-gray-500">{rp.category}</p>
                           <p className="text-xs text-gray-500">{rp.location}</p>
                         </div>
-                      </div>
+                      </button>
                     ))}
                   </div>
                 </div>
@@ -533,18 +628,16 @@ const ProjectDetailPage: React.FC = () => {
           </div>
         </div>
       </div>
-
+      {/* Close main container div before footer and modals */}
+      </div>
       <Footer />
-      
       <QuoteModal
         isOpen={isQuoteModalOpen}
         onClose={() => setIsQuoteModalOpen(false)}
-        source="project_detail_page"
+        source="hero_get_free_quote"
       />
-      
       <ToastContainer position="bottom-right" />
-    </>
+    </React.Fragment>
   );
-};
-
+}
 export default ProjectDetailPage;
