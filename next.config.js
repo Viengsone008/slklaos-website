@@ -13,11 +13,8 @@ module.exports = {
     ignoreDuringBuilds: true,
   },
   
-  // Optimize build performance
-  experimental: {
-    esmExternals: 'loose',
-    serverComponentsExternalPackages: ['xlsx', 'canvas'],
-  },
+  // External packages that should not be bundled
+  serverExternalPackages: ['xlsx', 'canvas'],
   
   // webpack optimization to prevent build hangs
   webpack: (config, { isServer }) => {
@@ -35,6 +32,7 @@ module.exports = {
       ...config.optimization,
       splitChunks: {
         chunks: 'all',
+        maxSize: 244000,
         cacheGroups: {
           vendor: {
             test: /[\\/]node_modules[\\/]/,
