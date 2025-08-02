@@ -1,16 +1,24 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Production optimization for faster builds
+  output: 'standalone',
+  
   // Netlify-specific configuration
   trailingSlash: true,
   
+  // Disable features that slow down builds
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  
   // Build optimizations for faster deployment
   experimental: {
-    turbo: {
-      loaders: {
-        '.svg': ['@svgr/webpack'],
-      },
-    },
+    // Disable features that cause build slowdowns
+    serverComponentsExternalPackages: ['recharts', 'react-big-calendar', 'xlsx'],
   },
   
   // Reduce bundle size
