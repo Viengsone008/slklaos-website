@@ -1,10 +1,10 @@
 (globalThis.TURBOPACK_CHUNK_LISTS = globalThis.TURBOPACK_CHUNK_LISTS || []).push({
     script: typeof document === "object" ? document.currentScript : undefined,
     chunks: [
-  "static/chunks/_d41774b9._.js",
+  "static/chunks/_6ed97ceb._.js",
   "static/chunks/src_components_4f28a754._.js",
   "static/chunks/src_app_admin-dashboard_projects_page_tsx_bf1e3d16._.js",
-  "static/chunks/src_app_admin-dashboard_products_page_tsx_94b340c8._.js",
+  "static/chunks/src_app_admin-dashboard_Products_page_tsx_776e89db._.js",
   "static/chunks/src_app_admin-dashboard_contacts_page_tsx_edf546cc._.js",
   "static/chunks/src_app_admin-dashboard_quotes_page_tsx_9bf3cba1._.js",
   "static/chunks/src_app_admin-dashboard_subscribers_page_tsx_9d7e3de8._.js",
@@ -21,7 +21,7 @@
   "static/chunks/node_modules_@popperjs_core_lib_c305c6ec._.js",
   "static/chunks/node_modules_react-big-calendar_dist_react-big-calendar_esm_70e6c142.js",
   "static/chunks/node_modules_date-fns_0d66739a._.js",
-  "static/chunks/node_modules_6c90dfde._.js",
+  "static/chunks/node_modules_fa8aa7d5._.js",
   "static/chunks/node_modules_90720df9._.css"
 ],
     source: "dynamic"

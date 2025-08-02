@@ -38,11 +38,10 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bell$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Bell$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/bell.js [app-client] (ecmascript) <export default as Bell>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$user$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__User$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/user.js [app-client] (ecmascript) <export default as User>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$AnimatedSection$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/AnimatedSection.tsx [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/shared/lib/app-dynamic.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hot$2d$toast$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react-hot-toast/dist/index.mjs [app-client] (ecmascript)");
 // Import separate page components
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$admin$2d$dashboard$2f$projects$2f$page$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/app/admin-dashboard/projects/page.tsx [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$admin$2d$dashboard$2f$products$2f$page$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/app/admin-dashboard/products/page.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$admin$2d$dashboard$2f$Products$2f$page$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/app/admin-dashboard/Products/page.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$admin$2d$dashboard$2f$contacts$2f$page$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/app/admin-dashboard/contacts/page.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$admin$2d$dashboard$2f$quotes$2f$page$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/app/admin-dashboard/quotes/page.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$admin$2d$dashboard$2f$subscribers$2f$page$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/app/admin-dashboard/subscribers/page.tsx [app-client] (ecmascript)");
@@ -50,14 +49,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$admin$2d$dashb
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$admin$2d$dashboard$2f$users$2f$page$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/app/admin-dashboard/users/page.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$admin$2d$dashboard$2f$settings$2f$page$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/app/admin-dashboard/settings/page.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$admin$2d$dashboard$2f$careers$2f$page$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/app/admin-dashboard/careers/page.tsx [app-client] (ecmascript)");
-;
-;
-;
-;
-;
-;
-;
-;
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
@@ -77,80 +68,43 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-;
-// Add chart imports with proper dynamic loading
-const BarChart = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(_c = ()=>__turbopack_context__.r("[project]/node_modules/recharts/es6/index.js [app-client] (ecmascript, next/dynamic entry, async loader)")(__turbopack_context__.i).then((mod)=>mod.BarChart), {
-    loadableGenerated: {
-        modules: [
-            "[project]/node_modules/recharts/es6/index.js [app-client] (ecmascript, next/dynamic entry)"
+// Temporarily simplified chart components to prevent build timeout
+const SimpleChart = (param)=>{
+    let { data, title } = param;
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "bg-white p-4 rounded-lg shadow",
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                className: "text-lg font-semibold mb-4",
+                children: title
+            }, void 0, false, {
+                fileName: "[project]/src/app/admin-dashboard/page.tsx",
+                lineNumber: 31,
+                columnNumber: 5
+            }, ("TURBOPACK compile-time value", void 0)),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "h-64 flex items-center justify-center bg-gray-50 rounded",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                    className: "text-gray-500",
+                    children: "Chart will be available after deployment"
+                }, void 0, false, {
+                    fileName: "[project]/src/app/admin-dashboard/page.tsx",
+                    lineNumber: 33,
+                    columnNumber: 7
+                }, ("TURBOPACK compile-time value", void 0))
+            }, void 0, false, {
+                fileName: "[project]/src/app/admin-dashboard/page.tsx",
+                lineNumber: 32,
+                columnNumber: 5
+            }, ("TURBOPACK compile-time value", void 0))
         ]
-    },
-    ssr: false
-});
-_c1 = BarChart;
-const Bar = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(_c2 = ()=>__turbopack_context__.r("[project]/node_modules/recharts/es6/index.js [app-client] (ecmascript, next/dynamic entry, async loader)")(__turbopack_context__.i).then((mod)=>mod.Bar), {
-    loadableGenerated: {
-        modules: [
-            "[project]/node_modules/recharts/es6/index.js [app-client] (ecmascript, next/dynamic entry)"
-        ]
-    },
-    ssr: false
-});
-_c3 = Bar;
-const XAxis = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(_c4 = ()=>__turbopack_context__.r("[project]/node_modules/recharts/es6/index.js [app-client] (ecmascript, next/dynamic entry, async loader)")(__turbopack_context__.i).then((mod)=>mod.XAxis), {
-    loadableGenerated: {
-        modules: [
-            "[project]/node_modules/recharts/es6/index.js [app-client] (ecmascript, next/dynamic entry)"
-        ]
-    },
-    ssr: false
-});
-_c5 = XAxis;
-const YAxis = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(_c6 = ()=>__turbopack_context__.r("[project]/node_modules/recharts/es6/index.js [app-client] (ecmascript, next/dynamic entry, async loader)")(__turbopack_context__.i).then((mod)=>mod.YAxis), {
-    loadableGenerated: {
-        modules: [
-            "[project]/node_modules/recharts/es6/index.js [app-client] (ecmascript, next/dynamic entry)"
-        ]
-    },
-    ssr: false
-});
-_c7 = YAxis;
-const CartesianGrid = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(_c8 = ()=>__turbopack_context__.r("[project]/node_modules/recharts/es6/index.js [app-client] (ecmascript, next/dynamic entry, async loader)")(__turbopack_context__.i).then((mod)=>mod.CartesianGrid), {
-    loadableGenerated: {
-        modules: [
-            "[project]/node_modules/recharts/es6/index.js [app-client] (ecmascript, next/dynamic entry)"
-        ]
-    },
-    ssr: false
-});
-_c9 = CartesianGrid;
-const Tooltip = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(_c10 = ()=>__turbopack_context__.r("[project]/node_modules/recharts/es6/index.js [app-client] (ecmascript, next/dynamic entry, async loader)")(__turbopack_context__.i).then((mod)=>mod.Tooltip), {
-    loadableGenerated: {
-        modules: [
-            "[project]/node_modules/recharts/es6/index.js [app-client] (ecmascript, next/dynamic entry)"
-        ]
-    },
-    ssr: false
-});
-_c11 = Tooltip;
-const Legend = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(_c12 = ()=>__turbopack_context__.r("[project]/node_modules/recharts/es6/index.js [app-client] (ecmascript, next/dynamic entry, async loader)")(__turbopack_context__.i).then((mod)=>mod.Legend), {
-    loadableGenerated: {
-        modules: [
-            "[project]/node_modules/recharts/es6/index.js [app-client] (ecmascript, next/dynamic entry)"
-        ]
-    },
-    ssr: false
-});
-_c13 = Legend;
-const ResponsiveContainer = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$shared$2f$lib$2f$app$2d$dynamic$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(_c14 = ()=>__turbopack_context__.r("[project]/node_modules/recharts/es6/index.js [app-client] (ecmascript, next/dynamic entry, async loader)")(__turbopack_context__.i).then((mod)=>mod.ResponsiveContainer), {
-    loadableGenerated: {
-        modules: [
-            "[project]/node_modules/recharts/es6/index.js [app-client] (ecmascript, next/dynamic entry)"
-        ]
-    },
-    ssr: false
-});
-_c15 = ResponsiveContainer;
+    }, void 0, true, {
+        fileName: "[project]/src/app/admin-dashboard/page.tsx",
+        lineNumber: 30,
+        columnNumber: 3
+    }, ("TURBOPACK compile-time value", void 0));
+};
+_c = SimpleChart;
 const AdminDashboard = ()=>{
     var _user_name_charAt, _user_name, _user_name_charAt1, _user_name1;
     _s();
@@ -607,75 +561,75 @@ const AdminDashboard = ()=>{
                     onBack: ()=>setCurrentPage('dashboard')
                 }, void 0, false, {
                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                    lineNumber: 412,
+                    lineNumber: 410,
                     columnNumber: 16
                 }, ("TURBOPACK compile-time value", void 0));
             case 'products':
-                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$admin$2d$dashboard$2f$products$2f$page$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$admin$2d$dashboard$2f$Products$2f$page$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                     onBack: ()=>setCurrentPage('dashboard')
                 }, void 0, false, {
                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                    lineNumber: 414,
+                    lineNumber: 412,
                     columnNumber: 16
                 }, ("TURBOPACK compile-time value", void 0));
             case 'contacts':
                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$admin$2d$dashboard$2f$contacts$2f$page$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                    lineNumber: 416,
+                    lineNumber: 414,
                     columnNumber: 16
                 }, ("TURBOPACK compile-time value", void 0));
             case 'users':
                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$admin$2d$dashboard$2f$users$2f$page$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                    lineNumber: 418,
+                    lineNumber: 416,
                     columnNumber: 16
                 }, ("TURBOPACK compile-time value", void 0));
             case 'tasks':
                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(TasksPageContent, {}, void 0, false, {
                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                    lineNumber: 420,
+                    lineNumber: 418,
                     columnNumber: 16
                 }, ("TURBOPACK compile-time value", void 0));
             case 'quotes':
                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$admin$2d$dashboard$2f$quotes$2f$page$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                    lineNumber: 422,
+                    lineNumber: 420,
                     columnNumber: 16
                 }, ("TURBOPACK compile-time value", void 0));
             case 'materials':
                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(MaterialsPageContent, {}, void 0, false, {
                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                    lineNumber: 424,
+                    lineNumber: 422,
                     columnNumber: 16
                 }, ("TURBOPACK compile-time value", void 0));
             case 'settings':
                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$admin$2d$dashboard$2f$settings$2f$page$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                    lineNumber: 426,
+                    lineNumber: 424,
                     columnNumber: 16
                 }, ("TURBOPACK compile-time value", void 0));
             case 'subscribers':
                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$admin$2d$dashboard$2f$subscribers$2f$page$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                    lineNumber: 428,
+                    lineNumber: 426,
                     columnNumber: 16
                 }, ("TURBOPACK compile-time value", void 0));
             case 'posts':
                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$admin$2d$dashboard$2f$posts$2f$page$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                    lineNumber: 430,
+                    lineNumber: 428,
                     columnNumber: 16
                 }, ("TURBOPACK compile-time value", void 0));
             case 'careers':
                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$admin$2d$dashboard$2f$careers$2f$page$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                    lineNumber: 432,
+                    lineNumber: 430,
                     columnNumber: 16
                 }, ("TURBOPACK compile-time value", void 0));
             default:
                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(DashboardContent, {}, void 0, false, {
                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                    lineNumber: 434,
+                    lineNumber: 432,
                     columnNumber: 16
                 }, ("TURBOPACK compile-time value", void 0));
         }
@@ -740,12 +694,12 @@ const AdminDashboard = ()=>{
                                         className: "absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSI0Ii8+PC9nPjwvZz48L3N2Zz4=')]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                        lineNumber: 489,
+                                        lineNumber: 487,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0))
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                    lineNumber: 488,
+                                    lineNumber: 486,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -761,7 +715,7 @@ const AdminDashboard = ()=>{
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                lineNumber: 494,
+                                                lineNumber: 492,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -769,7 +723,7 @@ const AdminDashboard = ()=>{
                                                 children: "Here's your SLK Trading & Construction overview for today."
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                lineNumber: 495,
+                                                lineNumber: 493,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -781,7 +735,7 @@ const AdminDashboard = ()=>{
                                                             className: "w-4 h-4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                            lineNumber: 498,
+                                                            lineNumber: 496,
                                                             columnNumber: 23
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -794,45 +748,45 @@ const AdminDashboard = ()=>{
                                                             })
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                            lineNumber: 499,
+                                                            lineNumber: 497,
                                                             columnNumber: 23
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                    lineNumber: 497,
+                                                    lineNumber: 495,
                                                     columnNumber: 21
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                lineNumber: 496,
+                                                lineNumber: 494,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                        lineNumber: 493,
+                                        lineNumber: 491,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0))
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                    lineNumber: 492,
+                                    lineNumber: 490,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                            lineNumber: 487,
+                            lineNumber: 485,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                        lineNumber: 486,
+                        lineNumber: 484,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0))
                 }, void 0, false, {
                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                    lineNumber: 485,
+                    lineNumber: 483,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$AnimatedSection$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -850,7 +804,7 @@ const AdminDashboard = ()=>{
                                         children: "System Overview"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                        lineNumber: 519,
+                                        lineNumber: 517,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -864,20 +818,20 @@ const AdminDashboard = ()=>{
                                                         className: "w-4 h-4"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                        lineNumber: 525,
+                                                        lineNumber: 523,
                                                         columnNumber: 19
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         children: "Add New"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                        lineNumber: 526,
+                                                        lineNumber: 524,
                                                         columnNumber: 19
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                lineNumber: 521,
+                                                lineNumber: 519,
                                                 columnNumber: 17
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             showQuickActions && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -935,7 +889,7 @@ const AdminDashboard = ()=>{
                                                                 className: "w-4 h-4 ".concat(action.color)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                                lineNumber: 547,
+                                                                lineNumber: 545,
                                                                 columnNumber: 27
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -943,31 +897,31 @@ const AdminDashboard = ()=>{
                                                                 children: action.title
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                                lineNumber: 548,
+                                                                lineNumber: 546,
                                                                 columnNumber: 27
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, action.id, true, {
                                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                        lineNumber: 542,
+                                                        lineNumber: 540,
                                                         columnNumber: 25
                                                     }, ("TURBOPACK compile-time value", void 0));
                                                 })
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                lineNumber: 530,
+                                                lineNumber: 528,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                        lineNumber: 520,
+                                        lineNumber: 518,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                lineNumber: 518,
+                                lineNumber: 516,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -994,7 +948,7 @@ const AdminDashboard = ()=>{
                                                                     children: stat.title
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                                    lineNumber: 574,
+                                                                    lineNumber: 572,
                                                                     columnNumber: 27
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1002,7 +956,7 @@ const AdminDashboard = ()=>{
                                                                     children: stat.value
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                                    lineNumber: 575,
+                                                                    lineNumber: 573,
                                                                     columnNumber: 27
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1012,7 +966,7 @@ const AdminDashboard = ()=>{
                                                                             className: "w-3 h-3 text-emerald-500"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                                            lineNumber: 577,
+                                                                            lineNumber: 575,
                                                                             columnNumber: 29
                                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1020,13 +974,13 @@ const AdminDashboard = ()=>{
                                                                             children: stat.change
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                                            lineNumber: 578,
+                                                                            lineNumber: 576,
                                                                             columnNumber: 29
                                                                         }, ("TURBOPACK compile-time value", void 0))
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                                    lineNumber: 576,
+                                                                    lineNumber: 574,
                                                                     columnNumber: 27
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1034,13 +988,13 @@ const AdminDashboard = ()=>{
                                                                     children: stat.description
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                                    lineNumber: 580,
+                                                                    lineNumber: 578,
                                                                     columnNumber: 27
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                            lineNumber: 573,
+                                                            lineNumber: 571,
                                                             columnNumber: 25
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1049,18 +1003,18 @@ const AdminDashboard = ()=>{
                                                                 className: "w-6 h-6 text-white"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                                lineNumber: 583,
+                                                                lineNumber: 581,
                                                                 columnNumber: 27
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                            lineNumber: 582,
+                                                            lineNumber: 580,
                                                             columnNumber: 25
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                    lineNumber: 572,
+                                                    lineNumber: 570,
                                                     columnNumber: 23
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1074,7 +1028,7 @@ const AdminDashboard = ()=>{
                                                                     children: "Progress"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                                    lineNumber: 589,
+                                                                    lineNumber: 587,
                                                                     columnNumber: 27
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1085,13 +1039,13 @@ const AdminDashboard = ()=>{
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                                    lineNumber: 590,
+                                                                    lineNumber: 588,
                                                                     columnNumber: 27
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                            lineNumber: 588,
+                                                            lineNumber: 586,
                                                             columnNumber: 25
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1103,46 +1057,46 @@ const AdminDashboard = ()=>{
                                                                 }
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                                lineNumber: 593,
+                                                                lineNumber: 591,
                                                                 columnNumber: 27
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                            lineNumber: 592,
+                                                            lineNumber: 590,
                                                             columnNumber: 25
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                    lineNumber: 587,
+                                                    lineNumber: 585,
                                                     columnNumber: 23
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                            lineNumber: 568,
+                                            lineNumber: 566,
                                             columnNumber: 21
                                         }, ("TURBOPACK compile-time value", void 0))
                                     }, index, false, {
                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                        lineNumber: 562,
+                                        lineNumber: 560,
                                         columnNumber: 19
                                     }, ("TURBOPACK compile-time value", void 0));
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                lineNumber: 557,
+                                lineNumber: 555,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                        lineNumber: 517,
+                        lineNumber: 515,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0))
                 }, void 0, false, {
                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                    lineNumber: 516,
+                    lineNumber: 514,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$AnimatedSection$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -1161,19 +1115,19 @@ const AdminDashboard = ()=>{
                                             className: "w-5 h-5 mr-2 text-blue-600"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                            lineNumber: 612,
+                                            lineNumber: 610,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         "Recent Activity"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                    lineNumber: 611,
+                                    lineNumber: 609,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                lineNumber: 610,
+                                lineNumber: 608,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1193,12 +1147,12 @@ const AdminDashboard = ()=>{
                                                             className: "w-5 h-5 ".concat(activity.color)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                            lineNumber: 625,
+                                                            lineNumber: 623,
                                                             columnNumber: 29
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                        lineNumber: 624,
+                                                        lineNumber: 622,
                                                         columnNumber: 27
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1209,7 +1163,7 @@ const AdminDashboard = ()=>{
                                                                 children: activity.action
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                                lineNumber: 628,
+                                                                lineNumber: 626,
                                                                 columnNumber: 29
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1219,37 +1173,37 @@ const AdminDashboard = ()=>{
                                                                         className: "w-3 h-3 mr-1"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                                        lineNumber: 630,
+                                                                        lineNumber: 628,
                                                                         columnNumber: 31
                                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                                     activity.time
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                                lineNumber: 629,
+                                                                lineNumber: 627,
                                                                 columnNumber: 29
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                        lineNumber: 627,
+                                                        lineNumber: 625,
                                                         columnNumber: 27
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                lineNumber: 623,
+                                                lineNumber: 621,
                                                 columnNumber: 25
                                             }, ("TURBOPACK compile-time value", void 0))
                                         }, index, false, {
                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                            lineNumber: 622,
+                                            lineNumber: 620,
                                             columnNumber: 23
                                         }, ("TURBOPACK compile-time value", void 0));
                                     })
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                    lineNumber: 618,
+                                    lineNumber: 616,
                                     columnNumber: 17
                                 }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "text-center py-8",
@@ -1260,12 +1214,12 @@ const AdminDashboard = ()=>{
                                                 className: "w-6 h-6 text-slate-400"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                lineNumber: 642,
+                                                lineNumber: 640,
                                                 columnNumber: 21
                                             }, ("TURBOPACK compile-time value", void 0))
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                            lineNumber: 641,
+                                            lineNumber: 639,
                                             columnNumber: 19
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1273,7 +1227,7 @@ const AdminDashboard = ()=>{
                                             children: "No recent activity"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                            lineNumber: 644,
+                                            lineNumber: 642,
                                             columnNumber: 19
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1281,29 +1235,29 @@ const AdminDashboard = ()=>{
                                             children: "Activity will appear here when actions are performed"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                            lineNumber: 645,
+                                            lineNumber: 643,
                                             columnNumber: 19
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                    lineNumber: 640,
+                                    lineNumber: 638,
                                     columnNumber: 17
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                lineNumber: 616,
+                                lineNumber: 614,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                        lineNumber: 609,
+                        lineNumber: 607,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0))
                 }, void 0, false, {
                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                    lineNumber: 608,
+                    lineNumber: 606,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))
             ]
@@ -1323,20 +1277,20 @@ const AdminDashboard = ()=>{
                                     className: "w-5 h-5 rotate-180"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                    lineNumber: 660,
+                                    lineNumber: 658,
                                     columnNumber: 11
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     children: "Back to Dashboard"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                    lineNumber: 661,
+                                    lineNumber: 659,
                                     columnNumber: 11
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                            lineNumber: 659,
+                            lineNumber: 657,
                             columnNumber: 9
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -1344,13 +1298,13 @@ const AdminDashboard = ()=>{
                             children: "User Management"
                         }, void 0, false, {
                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                            lineNumber: 663,
+                            lineNumber: 661,
                             columnNumber: 9
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                    lineNumber: 658,
+                    lineNumber: 656,
                     columnNumber: 7
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1360,18 +1314,18 @@ const AdminDashboard = ()=>{
                         children: "User management coming soon..."
                     }, void 0, false, {
                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                        lineNumber: 666,
+                        lineNumber: 664,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 }, void 0, false, {
                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                    lineNumber: 665,
+                    lineNumber: 663,
                     columnNumber: 7
                 }, ("TURBOPACK compile-time value", void 0))
             ]
         }, void 0, true, {
             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-            lineNumber: 657,
+            lineNumber: 655,
             columnNumber: 5
         }, ("TURBOPACK compile-time value", void 0));
     const TasksPageContent = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1387,20 +1341,20 @@ const AdminDashboard = ()=>{
                                     className: "w-5 h-5 rotate-180"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                    lineNumber: 675,
+                                    lineNumber: 673,
                                     columnNumber: 11
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     children: "Back to Dashboard"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                    lineNumber: 676,
+                                    lineNumber: 674,
                                     columnNumber: 11
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                            lineNumber: 674,
+                            lineNumber: 672,
                             columnNumber: 9
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -1408,13 +1362,13 @@ const AdminDashboard = ()=>{
                             children: "Task Management"
                         }, void 0, false, {
                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                            lineNumber: 678,
+                            lineNumber: 676,
                             columnNumber: 9
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                    lineNumber: 673,
+                    lineNumber: 671,
                     columnNumber: 7
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1424,18 +1378,18 @@ const AdminDashboard = ()=>{
                         children: "Task management coming soon..."
                     }, void 0, false, {
                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                        lineNumber: 681,
+                        lineNumber: 679,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 }, void 0, false, {
                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                    lineNumber: 680,
+                    lineNumber: 678,
                     columnNumber: 7
                 }, ("TURBOPACK compile-time value", void 0))
             ]
         }, void 0, true, {
             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-            lineNumber: 672,
+            lineNumber: 670,
             columnNumber: 5
         }, ("TURBOPACK compile-time value", void 0));
     const ContactsPageContent = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1451,20 +1405,20 @@ const AdminDashboard = ()=>{
                                     className: "w-5 h-5 rotate-180"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                    lineNumber: 690,
+                                    lineNumber: 688,
                                     columnNumber: 11
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     children: "Back to Dashboard"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                    lineNumber: 691,
+                                    lineNumber: 689,
                                     columnNumber: 11
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                            lineNumber: 689,
+                            lineNumber: 687,
                             columnNumber: 9
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -1472,13 +1426,13 @@ const AdminDashboard = ()=>{
                             children: "Contact Management"
                         }, void 0, false, {
                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                            lineNumber: 693,
+                            lineNumber: 691,
                             columnNumber: 9
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                    lineNumber: 688,
+                    lineNumber: 686,
                     columnNumber: 7
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1488,18 +1442,18 @@ const AdminDashboard = ()=>{
                         children: "Contact management coming soon..."
                     }, void 0, false, {
                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                        lineNumber: 696,
+                        lineNumber: 694,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 }, void 0, false, {
                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                    lineNumber: 695,
+                    lineNumber: 693,
                     columnNumber: 7
                 }, ("TURBOPACK compile-time value", void 0))
             ]
         }, void 0, true, {
             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-            lineNumber: 687,
+            lineNumber: 685,
             columnNumber: 5
         }, ("TURBOPACK compile-time value", void 0));
     const QuotesPageContent = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1515,20 +1469,20 @@ const AdminDashboard = ()=>{
                                     className: "w-5 h-5 rotate-180"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                    lineNumber: 705,
+                                    lineNumber: 703,
                                     columnNumber: 11
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     children: "Back to Dashboard"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                    lineNumber: 706,
+                                    lineNumber: 704,
                                     columnNumber: 11
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                            lineNumber: 704,
+                            lineNumber: 702,
                             columnNumber: 9
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -1536,13 +1490,13 @@ const AdminDashboard = ()=>{
                             children: "Quote Management"
                         }, void 0, false, {
                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                            lineNumber: 708,
+                            lineNumber: 706,
                             columnNumber: 9
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                    lineNumber: 703,
+                    lineNumber: 701,
                     columnNumber: 7
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1552,18 +1506,18 @@ const AdminDashboard = ()=>{
                         children: "Quote management coming soon..."
                     }, void 0, false, {
                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                        lineNumber: 711,
+                        lineNumber: 709,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 }, void 0, false, {
                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                    lineNumber: 710,
+                    lineNumber: 708,
                     columnNumber: 7
                 }, ("TURBOPACK compile-time value", void 0))
             ]
         }, void 0, true, {
             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-            lineNumber: 702,
+            lineNumber: 700,
             columnNumber: 5
         }, ("TURBOPACK compile-time value", void 0));
     const MaterialsPageContent = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1579,20 +1533,20 @@ const AdminDashboard = ()=>{
                                     className: "w-5 h-5 rotate-180"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                    lineNumber: 720,
+                                    lineNumber: 718,
                                     columnNumber: 11
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     children: "Back to Dashboard"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                    lineNumber: 721,
+                                    lineNumber: 719,
                                     columnNumber: 11
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                            lineNumber: 719,
+                            lineNumber: 717,
                             columnNumber: 9
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -1600,13 +1554,13 @@ const AdminDashboard = ()=>{
                             children: "Materials & Inventory"
                         }, void 0, false, {
                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                            lineNumber: 723,
+                            lineNumber: 721,
                             columnNumber: 9
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                    lineNumber: 718,
+                    lineNumber: 716,
                     columnNumber: 7
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1616,18 +1570,18 @@ const AdminDashboard = ()=>{
                         children: "Inventory management coming soon..."
                     }, void 0, false, {
                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                        lineNumber: 726,
+                        lineNumber: 724,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 }, void 0, false, {
                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                    lineNumber: 725,
+                    lineNumber: 723,
                     columnNumber: 7
                 }, ("TURBOPACK compile-time value", void 0))
             ]
         }, void 0, true, {
             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-            lineNumber: 717,
+            lineNumber: 715,
             columnNumber: 5
         }, ("TURBOPACK compile-time value", void 0));
     const SettingsPageContent = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1643,20 +1597,20 @@ const AdminDashboard = ()=>{
                                     className: "w-5 h-5 rotate-180"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                    lineNumber: 735,
+                                    lineNumber: 733,
                                     columnNumber: 11
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     children: "Back to Dashboard"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                    lineNumber: 736,
+                                    lineNumber: 734,
                                     columnNumber: 11
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                            lineNumber: 734,
+                            lineNumber: 732,
                             columnNumber: 9
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -1664,13 +1618,13 @@ const AdminDashboard = ()=>{
                             children: "Settings"
                         }, void 0, false, {
                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                            lineNumber: 738,
+                            lineNumber: 736,
                             columnNumber: 9
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                    lineNumber: 733,
+                    lineNumber: 731,
                     columnNumber: 7
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1680,18 +1634,18 @@ const AdminDashboard = ()=>{
                         children: "Settings coming soon..."
                     }, void 0, false, {
                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                        lineNumber: 741,
+                        lineNumber: 739,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 }, void 0, false, {
                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                    lineNumber: 740,
+                    lineNumber: 738,
                     columnNumber: 7
                 }, ("TURBOPACK compile-time value", void 0))
             ]
         }, void 0, true, {
             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-            lineNumber: 732,
+            lineNumber: 730,
             columnNumber: 5
         }, ("TURBOPACK compile-time value", void 0));
     const updateSidebarCategories = ()=>{
@@ -1714,7 +1668,7 @@ const AdminDashboard = ()=>{
                 className: "w-5 h-5"
             }, void 0, false, {
                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                lineNumber: 761,
+                lineNumber: 759,
                 columnNumber: 58
             }, ("TURBOPACK compile-time value", void 0))
         },
@@ -1725,7 +1679,7 @@ const AdminDashboard = ()=>{
                 className: "w-5 h-5"
             }, void 0, false, {
                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                lineNumber: 762,
+                lineNumber: 760,
                 columnNumber: 66
             }, ("TURBOPACK compile-time value", void 0))
         },
@@ -1736,7 +1690,7 @@ const AdminDashboard = ()=>{
                 className: "w-5 h-5"
             }, void 0, false, {
                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                lineNumber: 763,
+                lineNumber: 761,
                 columnNumber: 66
             }, ("TURBOPACK compile-time value", void 0))
         },
@@ -1747,7 +1701,7 @@ const AdminDashboard = ()=>{
                 className: "w-5 h-5"
             }, void 0, false, {
                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                lineNumber: 764,
+                lineNumber: 762,
                 columnNumber: 66
             }, ("TURBOPACK compile-time value", void 0))
         },
@@ -1758,7 +1712,7 @@ const AdminDashboard = ()=>{
                 className: "w-5 h-5"
             }, void 0, false, {
                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                lineNumber: 765,
+                lineNumber: 763,
                 columnNumber: 62
             }, ("TURBOPACK compile-time value", void 0))
         },
@@ -1769,7 +1723,7 @@ const AdminDashboard = ()=>{
                 className: "w-5 h-5"
             }, void 0, false, {
                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                lineNumber: 766,
+                lineNumber: 764,
                 columnNumber: 60
             }, ("TURBOPACK compile-time value", void 0))
         },
@@ -1780,7 +1734,7 @@ const AdminDashboard = ()=>{
                 className: "w-5 h-5"
             }, void 0, false, {
                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                lineNumber: 767,
+                lineNumber: 765,
                 columnNumber: 72
             }, ("TURBOPACK compile-time value", void 0))
         },
@@ -1791,7 +1745,7 @@ const AdminDashboard = ()=>{
                 className: "w-5 h-5"
             }, void 0, false, {
                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                lineNumber: 768,
+                lineNumber: 766,
                 columnNumber: 64
             }, ("TURBOPACK compile-time value", void 0))
         },
@@ -1802,7 +1756,7 @@ const AdminDashboard = ()=>{
                 className: "w-5 h-5"
             }, void 0, false, {
                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                lineNumber: 769,
+                lineNumber: 767,
                 columnNumber: 60
             }, ("TURBOPACK compile-time value", void 0))
         },
@@ -1813,7 +1767,7 @@ const AdminDashboard = ()=>{
                 className: "w-5 h-5"
             }, void 0, false, {
                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                lineNumber: 770,
+                lineNumber: 768,
                 columnNumber: 66
             }, ("TURBOPACK compile-time value", void 0))
         }
@@ -1830,29 +1784,29 @@ const AdminDashboard = ()=>{
                                     children: link.icon
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                    lineNumber: 782,
+                                    lineNumber: 780,
                                     columnNumber: 29
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 link.name
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                            lineNumber: 778,
+                            lineNumber: 776,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0))
                     }, link.name, false, {
                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                        lineNumber: 777,
+                        lineNumber: 775,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0)))
             }, void 0, false, {
                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                lineNumber: 775,
+                lineNumber: 773,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         }, void 0, false, {
             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-            lineNumber: 774,
+            lineNumber: 772,
             columnNumber: 5
         }, ("TURBOPACK compile-time value", void 0));
     const addNotification = (notif)=>{
@@ -1904,7 +1858,7 @@ const AdminDashboard = ()=>{
                                                         }
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                        lineNumber: 826,
+                                                        lineNumber: 824,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$building$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Building2$3e$__["Building2"], {
@@ -1914,18 +1868,18 @@ const AdminDashboard = ()=>{
                                                         }
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                        lineNumber: 836,
+                                                        lineNumber: 834,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                lineNumber: 825,
+                                                lineNumber: 823,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0))
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                            lineNumber: 820,
+                                            lineNumber: 818,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1941,7 +1895,7 @@ const AdminDashboard = ()=>{
                                                             children: "SLK Trading"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                            lineNumber: 850,
+                                                            lineNumber: 848,
                                                             columnNumber: 21
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1949,13 +1903,13 @@ const AdminDashboard = ()=>{
                                                             children: "Admin"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                            lineNumber: 851,
+                                                            lineNumber: 849,
                                                             columnNumber: 21
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                    lineNumber: 849,
+                                                    lineNumber: 847,
                                                     columnNumber: 19
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1963,7 +1917,7 @@ const AdminDashboard = ()=>{
                                                     children: "& Construction"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                    lineNumber: 855,
+                                                    lineNumber: 853,
                                                     columnNumber: 19
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1973,7 +1927,7 @@ const AdminDashboard = ()=>{
                                                             className: "w-2 h-2 bg-emerald-400 rounded-full animate-pulse"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                            lineNumber: 857,
+                                                            lineNumber: 855,
                                                             columnNumber: 21
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1981,7 +1935,7 @@ const AdminDashboard = ()=>{
                                                             children: "System Online"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                            lineNumber: 858,
+                                                            lineNumber: 856,
                                                             columnNumber: 21
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1989,7 +1943,7 @@ const AdminDashboard = ()=>{
                                                             children: "•"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                            lineNumber: 859,
+                                                            lineNumber: 857,
                                                             columnNumber: 21
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2000,25 +1954,25 @@ const AdminDashboard = ()=>{
                                                             })
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                            lineNumber: 860,
+                                                            lineNumber: 858,
                                                             columnNumber: 21
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                    lineNumber: 856,
+                                                    lineNumber: 854,
                                                     columnNumber: 19
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                            lineNumber: 844,
+                                            lineNumber: 842,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                    lineNumber: 818,
+                                    lineNumber: 816,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 !sidebarOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2040,7 +1994,7 @@ const AdminDashboard = ()=>{
                                                     }
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                    lineNumber: 879,
+                                                    lineNumber: 877,
                                                     columnNumber: 19
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$building$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Building2$3e$__["Building2"], {
@@ -2050,13 +2004,13 @@ const AdminDashboard = ()=>{
                                                     }
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                    lineNumber: 889,
+                                                    lineNumber: 887,
                                                     columnNumber: 19
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                            lineNumber: 878,
+                                            lineNumber: 876,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2065,18 +2019,18 @@ const AdminDashboard = ()=>{
                                                 className: "w-1 h-1 bg-white rounded-full mx-auto mt-0.5 animate-pulse"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                lineNumber: 895,
+                                                lineNumber: 893,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0))
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                            lineNumber: 894,
+                                            lineNumber: 892,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                    lineNumber: 873,
+                                    lineNumber: 871,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2087,23 +2041,23 @@ const AdminDashboard = ()=>{
                                         className: "w-5 h-5 group-hover:scale-110 transition-transform"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                        lineNumber: 906,
+                                        lineNumber: 904,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                    lineNumber: 901,
+                                    lineNumber: 899,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                            lineNumber: 816,
+                            lineNumber: 814,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                        lineNumber: 815,
+                        lineNumber: 813,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
@@ -2122,7 +2076,7 @@ const AdminDashboard = ()=>{
                                         children: category.title
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                        lineNumber: 925,
+                                        lineNumber: 923,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2154,7 +2108,7 @@ const AdminDashboard = ()=>{
                                                             className: "w-5 h-5 ".concat(item.active ? 'text-orange-600' : 'group-hover:text-slate-700')
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                            lineNumber: 958,
+                                                            lineNumber: 956,
                                                             columnNumber: 25
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         sidebarOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -2171,13 +2125,13 @@ const AdminDashboard = ()=>{
                                                                                     children: "Soon"
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                                                    lineNumber: 967,
+                                                                                    lineNumber: 965,
                                                                                     columnNumber: 35
                                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                                            lineNumber: 964,
+                                                                            lineNumber: 962,
                                                                             columnNumber: 31
                                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                                         item.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2185,13 +2139,13 @@ const AdminDashboard = ()=>{
                                                                             children: item.description
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                                            lineNumber: 973,
+                                                                            lineNumber: 971,
                                                                             columnNumber: 33
                                                                         }, ("TURBOPACK compile-time value", void 0))
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                                    lineNumber: 963,
+                                                                    lineNumber: 961,
                                                                     columnNumber: 29
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 item.badge && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2199,7 +2153,7 @@ const AdminDashboard = ()=>{
                                                                     children: item.badge
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                                    lineNumber: 977,
+                                                                    lineNumber: 975,
                                                                     columnNumber: 31
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
@@ -2207,29 +2161,29 @@ const AdminDashboard = ()=>{
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                    lineNumber: 950,
+                                                    lineNumber: 948,
                                                     columnNumber: 23
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             }, index, false, {
                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                lineNumber: 949,
+                                                lineNumber: 947,
                                                 columnNumber: 21
                                             }, ("TURBOPACK compile-time value", void 0));
                                         })
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                        lineNumber: 929,
+                                        lineNumber: 927,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, categoryIndex, true, {
                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                lineNumber: 923,
+                                lineNumber: 921,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0)))
                     }, void 0, false, {
                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                        lineNumber: 912,
+                        lineNumber: 910,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2249,7 +2203,7 @@ const AdminDashboard = ()=>{
                                                         children: (user === null || user === void 0 ? void 0 : (_user_name = user.name) === null || _user_name === void 0 ? void 0 : (_user_name_charAt = _user_name.charAt(0)) === null || _user_name_charAt === void 0 ? void 0 : _user_name_charAt.toUpperCase()) || 'A'
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                        lineNumber: 1004,
+                                                        lineNumber: 1002,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2258,18 +2212,18 @@ const AdminDashboard = ()=>{
                                                             className: "w-2 h-2 bg-white rounded-full mx-auto mt-0.5 animate-pulse"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                            lineNumber: 1008,
+                                                            lineNumber: 1006,
                                                             columnNumber: 23
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                        lineNumber: 1007,
+                                                        lineNumber: 1005,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                lineNumber: 1003,
+                                                lineNumber: 1001,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2280,7 +2234,7 @@ const AdminDashboard = ()=>{
                                                         children: (user === null || user === void 0 ? void 0 : user.name) || 'Admin User'
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                        lineNumber: 1012,
+                                                        lineNumber: 1010,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2288,7 +2242,7 @@ const AdminDashboard = ()=>{
                                                         children: (user === null || user === void 0 ? void 0 : user.email) || 'admin@slk.com'
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                        lineNumber: 1013,
+                                                        lineNumber: 1011,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2298,7 +2252,7 @@ const AdminDashboard = ()=>{
                                                                 className: "w-3 h-3 text-amber-500 mr-1"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                                lineNumber: 1015,
+                                                                lineNumber: 1013,
                                                                 columnNumber: 23
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2306,19 +2260,19 @@ const AdminDashboard = ()=>{
                                                                 children: "Administrator"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                                lineNumber: 1016,
+                                                                lineNumber: 1014,
                                                                 columnNumber: 23
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                        lineNumber: 1014,
+                                                        lineNumber: 1012,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                lineNumber: 1011,
+                                                lineNumber: 1009,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2332,18 +2286,18 @@ const AdminDashboard = ()=>{
                                                             className: "w-4 h-4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                            lineNumber: 1025,
+                                                            lineNumber: 1023,
                                                             columnNumber: 35
                                                         }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$moon$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Moon$3e$__["Moon"], {
                                                             className: "w-4 h-4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                            lineNumber: 1025,
+                                                            lineNumber: 1023,
                                                             columnNumber: 65
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                        lineNumber: 1020,
+                                                        lineNumber: 1018,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2354,18 +2308,18 @@ const AdminDashboard = ()=>{
                                                             className: "w-4 h-4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                            lineNumber: 1032,
+                                                            lineNumber: 1030,
                                                             columnNumber: 23
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                        lineNumber: 1027,
+                                                        lineNumber: 1025,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                lineNumber: 1019,
+                                                lineNumber: 1017,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
@@ -2380,20 +2334,20 @@ const AdminDashboard = ()=>{
                                                         children: (user === null || user === void 0 ? void 0 : (_user_name1 = user.name) === null || _user_name1 === void 0 ? void 0 : (_user_name_charAt1 = _user_name1.charAt(0)) === null || _user_name_charAt1 === void 0 ? void 0 : _user_name_charAt1.toUpperCase()) || 'A'
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                        lineNumber: 1039,
+                                                        lineNumber: 1037,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         className: "absolute -bottom-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-white"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                        lineNumber: 1042,
+                                                        lineNumber: 1040,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                lineNumber: 1038,
+                                                lineNumber: 1036,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2407,18 +2361,18 @@ const AdminDashboard = ()=>{
                                                             className: "w-4 h-4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                            lineNumber: 1050,
+                                                            lineNumber: 1048,
                                                             columnNumber: 35
                                                         }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$moon$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Moon$3e$__["Moon"], {
                                                             className: "w-4 h-4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                            lineNumber: 1050,
+                                                            lineNumber: 1048,
                                                             columnNumber: 65
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                        lineNumber: 1045,
+                                                        lineNumber: 1043,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2429,34 +2383,34 @@ const AdminDashboard = ()=>{
                                                             className: "w-4 h-4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                            lineNumber: 1057,
+                                                            lineNumber: 1055,
                                                             columnNumber: 23
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                        lineNumber: 1052,
+                                                        lineNumber: 1050,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                lineNumber: 1044,
+                                                lineNumber: 1042,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                        lineNumber: 1037,
+                                        lineNumber: 1035,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0))
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                    lineNumber: 1000,
+                                    lineNumber: 998,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                lineNumber: 999,
+                                lineNumber: 997,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             sidebarOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2468,7 +2422,7 @@ const AdminDashboard = ()=>{
                                             children: "© 2024 SLK Trading"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                            lineNumber: 1069,
+                                            lineNumber: 1067,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2480,7 +2434,7 @@ const AdminDashboard = ()=>{
                                                     children: "Settings"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                    lineNumber: 1071,
+                                                    lineNumber: 1069,
                                                     columnNumber: 19
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2489,36 +2443,36 @@ const AdminDashboard = ()=>{
                                                     children: "Help"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                    lineNumber: 1077,
+                                                    lineNumber: 1075,
                                                     columnNumber: 19
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                            lineNumber: 1070,
+                                            lineNumber: 1068,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                    lineNumber: 1068,
+                                    lineNumber: 1066,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                lineNumber: 1067,
+                                lineNumber: 1065,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                        lineNumber: 997,
+                        lineNumber: 995,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                lineNumber: 805,
+                lineNumber: 803,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2538,7 +2492,7 @@ const AdminDashboard = ()=>{
                                                 children: currentPage === 'dashboard' ? 'Dashboard' : currentPage.charAt(0).toUpperCase() + currentPage.slice(1)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                lineNumber: 1104,
+                                                lineNumber: 1102,
                                                 columnNumber: 17
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2546,13 +2500,13 @@ const AdminDashboard = ()=>{
                                                 children: "Welcome to SLK Admin Dashboard"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                lineNumber: 1107,
+                                                lineNumber: 1105,
                                                 columnNumber: 17
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                        lineNumber: 1103,
+                                        lineNumber: 1101,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2566,12 +2520,12 @@ const AdminDashboard = ()=>{
                                                     className: "w-5 h-5"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                    lineNumber: 1115,
+                                                    lineNumber: 1113,
                                                     columnNumber: 19
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                lineNumber: 1110,
+                                                lineNumber: 1108,
                                                 columnNumber: 17
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2585,25 +2539,25 @@ const AdminDashboard = ()=>{
                                                             className: "w-5 h-5"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                            lineNumber: 1123,
+                                                            lineNumber: 1121,
                                                             columnNumber: 21
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         notifications.filter((n)=>n.unread).length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                             className: "absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-white"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                            lineNumber: 1125,
+                                                            lineNumber: 1123,
                                                             columnNumber: 23
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                    lineNumber: 1118,
+                                                    lineNumber: 1116,
                                                     columnNumber: 19
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                lineNumber: 1117,
+                                                lineNumber: 1115,
                                                 columnNumber: 17
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2614,34 +2568,34 @@ const AdminDashboard = ()=>{
                                                     className: "w-4 h-4"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                    lineNumber: 1134,
+                                                    lineNumber: 1132,
                                                     columnNumber: 19
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                                lineNumber: 1129,
+                                                lineNumber: 1127,
                                                 columnNumber: 17
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                        lineNumber: 1109,
+                                        lineNumber: 1107,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                                lineNumber: 1102,
+                                lineNumber: 1100,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                            lineNumber: 1101,
+                            lineNumber: 1099,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                        lineNumber: 1100,
+                        lineNumber: 1098,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2649,33 +2603,33 @@ const AdminDashboard = ()=>{
                         children: renderPageContent()
                     }, void 0, false, {
                         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                        lineNumber: 1142,
+                        lineNumber: 1140,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                lineNumber: 1091,
+                lineNumber: 1089,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             showNotifications && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "fixed top-20 right-10 w-80 bg-white rounded-xl shadow-2xl border border-slate-200 z-[99999] p-4"
             }, void 0, false, {
                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                lineNumber: 1148,
+                lineNumber: 1146,
                 columnNumber: 3
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hot$2d$toast$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Toaster"], {
                 position: "top-right"
             }, void 0, false, {
                 fileName: "[project]/src/app/admin-dashboard/page.tsx",
-                lineNumber: 1153,
+                lineNumber: 1151,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/admin-dashboard/page.tsx",
-        lineNumber: 803,
+        lineNumber: 801,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
@@ -2686,26 +2640,11 @@ _s(AdminDashboard, "nc4930J9ijWZCP8dZpeh1I8Au04=", false, function() {
         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$contexts$2f$DatabaseContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useDatabase"]
     ];
 });
-_c16 = AdminDashboard;
+_c1 = AdminDashboard;
 const __TURBOPACK__default__export__ = AdminDashboard;
-var _c, _c1, _c2, _c3, _c4, _c5, _c6, _c7, _c8, _c9, _c10, _c11, _c12, _c13, _c14, _c15, _c16;
-__turbopack_context__.k.register(_c, "BarChart$dynamic");
-__turbopack_context__.k.register(_c1, "BarChart");
-__turbopack_context__.k.register(_c2, "Bar$dynamic");
-__turbopack_context__.k.register(_c3, "Bar");
-__turbopack_context__.k.register(_c4, "XAxis$dynamic");
-__turbopack_context__.k.register(_c5, "XAxis");
-__turbopack_context__.k.register(_c6, "YAxis$dynamic");
-__turbopack_context__.k.register(_c7, "YAxis");
-__turbopack_context__.k.register(_c8, "CartesianGrid$dynamic");
-__turbopack_context__.k.register(_c9, "CartesianGrid");
-__turbopack_context__.k.register(_c10, "Tooltip$dynamic");
-__turbopack_context__.k.register(_c11, "Tooltip");
-__turbopack_context__.k.register(_c12, "Legend$dynamic");
-__turbopack_context__.k.register(_c13, "Legend");
-__turbopack_context__.k.register(_c14, "ResponsiveContainer$dynamic");
-__turbopack_context__.k.register(_c15, "ResponsiveContainer");
-__turbopack_context__.k.register(_c16, "AdminDashboard");
+var _c, _c1;
+__turbopack_context__.k.register(_c, "SimpleChart");
+__turbopack_context__.k.register(_c1, "AdminDashboard");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(module, globalThis.$RefreshHelpers$);
 }
