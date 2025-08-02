@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Netlify-specific configuration
+  trailingSlash: true,
+  
   // Build optimizations for faster deployment
   experimental: {
     turbo: {

@@ -1,1 +1,36 @@
+# API routes
+/api/* /.netlify/functions/:splat 200
+
+# Next.js API routes
+/api/* /api/:splat 200
+
+# Admin routes
+/admin-login /admin-login/index.html 200
+/admin-dashboard/* /admin-dashboard/index.html 200
+/admin-panel/* /admin-panel/index.html 200
+
+# Static pages
+/about /about/index.html 200
+/products /products/index.html 200
+/projects /projects/index.html 200
+/services /services/index.html 200
+/careers /careers/index.html 200
+/contact /contact/index.html 200
+/news /news/index.html 200
+
+# Dynamic routes
+/product-catalogue/* /product-catalogue/index.html 200
+/project-catalogue/* /project-catalogue/index.html 200
+/career-catalogue/* /career-catalogue/index.html 200
+/product-item-details/* /product-item-details/index.html 200
+/project-details/* /project-details/index.html 200
+/career-details/* /career-details/index.html 200
+/news-details/* /news-details/index.html 200
+
+# User routes
+/user/* /user/index.html 200
+/employee-dashboard/* /employee-dashboard/index.html 200
+/manager-dashboard/* /manager-dashboard/index.html 200
+
+# Catch-all for client-side routing
 /* /index.html 200
