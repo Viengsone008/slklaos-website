@@ -12,5 +12,40 @@ module.exports = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  
+  // Optimize build performance
+  experimental: {
+    esmExternals: 'loose',
+    serverComponentsExternalPackages: ['xlsx', 'canvas'],
+  },
+  
+  // webpack optimization to prevent build hangs
+  webpack: (config, { isServer }) => {
+    // Ignore certain modules that might cause issues
+    config.externals = config.externals || [];
+    if (!isServer) {
+      config.externals.push({
+        'canvas': 'canvas',
+        'jsdom': 'jsdom',
+      });
+    }
+    
+    // Optimize build performance
+    config.optimization = {
+      ...config.optimization,
+      splitChunks: {
+        chunks: 'all',
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+          },
+        },
+      },
+    };
+    
+    return config;
+  },
 };
  
